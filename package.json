@@ -1,0 +1,21 @@
+{
+  "name": "com.graphi.renderhdrp",
+  "version": "1.2.0",
+  "unity": "2022.3",
+  "displayName": "Graphi Render HDRP",
+  "description": "Unity shader rendering library (HDRP).",
+  "author": "Graphi",
+  "keywords": [
+    "graphi",
+    "render",
+    "unity",
+    "hdrp",
+    "pipeline",
+    "graphics"
+  ],
+  "dependencies": {
+    "com.unity.formats.fbx": "4.2.1",
+    "com.unity.render-pipelines.high-definition": "14.0.10",
+    "com.unity.visualscripting": "1.9.4"
+  }
+}

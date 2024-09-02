@@ -1,0 +1,201 @@
+﻿/*
+   纹理相关的预计算
+        提供一些纹理样式，可用于运行时动态执行图形相关的操作。比如：遮罩纹理等操作。
+
+        注意：提供的 compute 函数，如果函数内部使用了纹理缓冲，那么 c# 方传输过来的 RenderTexture 必须开启 enableRandomWrite 属性，因为 compute 的纹理缓冲都是 UAV 类型。
+
+   渲染管线：
+        High-Definition RenderPipeline
+   
+   作者：强辰
+*/
+
+
+#include "../HLSL/GNoise.hlsl"
+
+
+
+
+// /////////////////////////////////////////
+// ※※※
+//      以 UV 坐标填充一张 2D 纹理
+// ※※※
+// /////////////////////////////////////////
+#pragma kernel FillUV
+
+// 参数
+    // 纹理缓冲
+    RWTexture2D<float4> Tex2DUV;
+    // 纹理尺寸
+    int Tex2DUVSize;
+// 结束
+
+[numthreads(8,8,1)]
+void FillUV( uint3 dispatchThreadID:SV_DispatchThreadID )
+{
+    float2 pixelIndex = dispatchThreadID.xy;
+    float2 uv = pixelIndex / Tex2DUVSize;
+    Tex2DUV[pixelIndex] = float4(uv, 0, 1);
+}
+
+
+
+
+
+// ///////////////////////////////////////
+// ※※※
+//      填充一张 2D 径向渐变圆纹理
+// ※※※
+// ///////////////////////////////////////
+#pragma kernel FillRadialCircle
+
+
+// 透传参数
+    // 纹理缓冲
+    RWTexture2D<float4> Tex2DRadialCircle;
+    // 纹理的尺寸
+    int Tex2DSize; 
+    // 径向范围。
+    // 注意：在 computeshader 中的数组要遵循 HLSL 格式标准。以下代码展示了 c# 与 computeshader 关于数组数据的传输规定及标准。
+    // c# code :
+    //      float[] floats = new float[4 * 2]; // 4代表float的字节数，2代表数组实际包含的数据数。
+    //      floats[0] = 0.5f;
+    //      floats[4] = 0.2f;
+    //      computeshader.SetFloats("xxx", floats);
+    // computeshader code :
+    //      float customFloats[2];
+    //      函数中直接调用：customFloats[0](0.5f) 或者 customFloats[1](0.2f).
+    float RadialRanges[2]; 
+// 结束
+
+
+[numthreads(8,8,1)] 
+void FillRadialCircle (uint3 dispatchThreadID : SV_DispatchThreadID)
+{
+    float2 pixelIndex = dispatchThreadID.xy;
+    float2 uv = pixelIndex / Tex2DSize;
+    float c = smoothstep(RadialRanges[0], RadialRanges[1], length(uv - 0.5));
+    Tex2DRadialCircle[pixelIndex] = c.xxxx;
+}
+
+
+
+
+
+// ////////////////////////////////////////
+// ※※※
+//      填充一张 2D 径向渐变圆环纹理
+// ※※※
+// ////////////////////////////////////////
+#pragma kernel FillAnnulus
+
+// 参数
+    // 纹理缓冲
+    RWTexture2D<float4> Tex2DAnnulus;
+    // 纹理尺寸
+    int Tex2DAnnulusSize;
+    // 径向区间
+    float AnnulusRanges[3]; 
+// 结束
+
+[numthreads(8,8,1)] 
+void FillAnnulus (uint3 dispatchThreadID : SV_DispatchThreadID)
+{
+    float2 pixelIndex = dispatchThreadID.xy;
+    float2 uv = pixelIndex / Tex2DAnnulusSize;
+    float len = length(uv - 0.5);
+    float v1 = smoothstep(AnnulusRanges[0], AnnulusRanges[1], len);
+    float v2 = smoothstep(AnnulusRanges[1], AnnulusRanges[2], len);
+    Tex2DAnnulus[pixelIndex] = (v1-v2).xxxx;
+}
+
+
+
+
+
+// ////////////////////////////////////////
+// ※※※
+//      填充一张 2D Perlin Noise 噪声纹理
+// ※※※
+// ////////////////////////////////////////
+#pragma kernel FillPerlinNoise
+
+// 参数
+    // 纹理缓冲
+    RWTexture2D<float4> Tex2DPerlinNoise;
+    // 纹理尺寸
+    int Tex2DPerlinNoiseSize;
+    // 噪声密度
+    int Tex2DPerlinNoiseTile;
+// 结束
+
+
+[numthreads(8,8,1)]
+void FillPerlinNoise( uint3 dispatchThreadID:SV_DispatchThreadID )
+{
+    float2 pixelIndex = dispatchThreadID.xy;
+    float2 uv = pixelIndex / Tex2DPerlinNoiseSize;
+    float noise = CalculatePerlinNoise(uv, Tex2DPerlinNoiseTile);
+    Tex2DPerlinNoise[pixelIndex] = float4(noise.xxx, 1);
+}
+
+
+
+
+
+// ////////////////////////////////////////
+// ※※※
+//      填充一张 2D Worley Noise 噪声纹理
+// ※※※
+// ////////////////////////////////////////
+#pragma kernel FillWorleyNoise
+
+// 参数
+    // 纹理缓冲
+    RWTexture2D<float4> Tex2DWorleyNoise;
+    // 纹理尺寸
+    int Tex2DWorleyNoiseSize;
+    // 噪声密度
+    int Tex2DWorleyNoiseTile;
+    // 类型（请参考GNoise.hlsl规定）
+    int Tex2DWorleyNoiseType;
+// 结束
+
+
+[numthreads(8,8,1)]
+void FillWorleyNoise( uint3 dispatchThreadID:SV_DispatchThreadID )
+{
+    float2 pixelIndex = dispatchThreadID.xy;
+    float2 uv = pixelIndex / Tex2DWorleyNoiseSize;
+    float noise = CalculateWorleyNoise_Transform(uv, Tex2DWorleyNoiseTile, Tex2DWorleyNoiseType);
+    Tex2DWorleyNoise[pixelIndex] = float4(noise.xxx, 1);
+}
+
+
+
+
+// ////////////////////////////////////////
+// ※※※
+//      填充一张 2D FBM Noise 噪声纹理
+// ※※※
+// ////////////////////////////////////////
+#pragma kernel FillFbmNoise
+
+// 参数
+    // 纹理缓冲
+    RWTexture2D<float4> Tex2DFbmNoise;
+    // 纹理尺寸
+    int Tex2DFbmNoiseSize;
+    // 噪声密度
+    int Tex2DFbmNoiseTile;
+// 结束
+
+
+[numthreads(8,8,1)]
+void FillFbmNoise( uint3 dispatchThreadID:SV_DispatchThreadID )
+{
+    float2 pixelIndex = dispatchThreadID.xy;
+    float2 uv = pixelIndex / Tex2DFbmNoiseSize;
+    float noise = CalculateFbmNoise(uv, Tex2DFbmNoiseTile);
+    Tex2DFbmNoise[pixelIndex] = float4(noise.xxx, 1);
+}

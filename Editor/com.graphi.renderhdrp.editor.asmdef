@@ -1,0 +1,25 @@
+{
+    "name": "com.graphi.renderhdrp.editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:7284725391b64d34b85425fa6dfa24ec",
+        "GUID:54cb1906aeb4e4264bc1d2aa3818a43f",
+        "GUID:21b0c8d1703a94250bfac916590cea4f",
+        "GUID:78bd2ddd6e276394a9615c203e574844",
+        "GUID:457756d89b35d2941b3e7b37b4ece6f1",
+        "GUID:3eae0364be2026648bf74846acb8a731",
+        "GUID:df380645f10b7bc4b97d4f5eb6303d95",
+        "GUID:be0903cd8e1546f498710afdc59db5eb"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
