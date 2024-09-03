@@ -81,7 +81,7 @@ namespace com.graphi.renderhdrp.editor
                 if (rs != 0) { return; }
             }
 
-            string srcp = Tools.FindexactFile("Runtime/Shader/Lit", $"{C_LitStandardVariantShaderName}.shadergraph");
+            string srcp = ProjectUtils.FindexactFile("Runtime/Shader/Lit", $"{C_LitStandardVariantShaderName}.shadergraph");
             File.Copy(srcp, tarp, true);
 
             Shader sha = AssetDatabase.LoadAssetAtPath<Shader>(srcp);

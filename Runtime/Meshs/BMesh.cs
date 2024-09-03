@@ -123,37 +123,6 @@ namespace com.graphi.renderhdrp
         /// <param name="triangles">三角面数组（数组需要手动初始化）</param>
         protected virtual void OnCreateMesh(ref Vector3[] vertices, ref Vector2[] uv0s, ref int[] triangles) { }
         #endregion
-
-
-        // Editor Logic
-#if UNITY_EDITOR
-        /// <summary>
-        /// 在 Hierarchy 中创建网格对象
-        /// </summary>
-        /// <param name="classType">网格类类型</param>
-        static public void PrivateObject(Type classType)
-        {
-            string name = classType.Name;
-            GameObject go = new GameObject(name);
-            go.AddComponent(classType);
-
-            // 设置对象icon
-            //string iconPath = Tools.FindexactFile("Editor/Images", $"Graphi-Mesh-{name}-Icon.png");
-            //if (!string.IsNullOrEmpty(iconPath))
-            //{
-            //    EditorGUIUtility.SetIconForObject(go, AssetDatabase.LoadAssetAtPath<Texture2D>(iconPath));
-            //}
-
-
-            GameObject parent = Selection.activeGameObject;
-            if (parent != null)
-                go.transform.SetParent(parent.transform);
-
-            go.transform.localScale = Vector3.one;
-            go.transform.localRotation = Quaternion.identity;
-            go.transform.localPosition = Vector3.zero;
-        }
-#endif
     }
 
 

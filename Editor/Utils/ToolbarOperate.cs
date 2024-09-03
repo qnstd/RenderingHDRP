@@ -55,7 +55,7 @@ namespace com.graphi.renderhdrp.editor
         static void OnGui()
         {
             if (logoTex2D == null)
-                logoTex2D = AssetDatabase.LoadAssetAtPath<Texture2D>(Tools.FindexactFile("Editor/Images", "Graphi-Logo-Little.png"));
+                logoTex2D = AssetDatabase.LoadAssetAtPath<Texture2D>(ProjectUtils.FindexactFile("Editor/Images", "Graphi-Logo-Little.png"));
             if (sty == null)
                 sty = new GUIStyle("IN EditColliderButton") { fontSize = 11, richText = true, alignment = TextAnchor.MiddleRight };
 

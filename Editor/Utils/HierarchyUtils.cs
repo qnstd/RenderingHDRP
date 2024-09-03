@@ -1,6 +1,8 @@
+using System;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 namespace com.graphi.renderhdrp.editor
 {
@@ -114,25 +116,46 @@ namespace com.graphi.renderhdrp.editor
         }
 
 
+        static private void CreateCustomMeshObject(Type t)
+        {
+            string name = t.Name;
+            GameObject go = new GameObject(name);
+            go.AddComponent(t);
+
+            // 设置对象icon
+            string iconPath = ProjectUtils.FindexactFile("Editor/Images", $"Graphi-Mesh-{name}-Icon.png");
+            if (!string.IsNullOrEmpty(iconPath))
+            {
+                EditorGUIUtility.SetIconForObject(go, AssetDatabase.LoadAssetAtPath<Texture2D>(iconPath));
+            }
+
+            GameObject parent = Selection.activeGameObject;
+            if (parent != null)
+                go.transform.SetParent(parent.transform);
+
+            go.transform.localScale = Vector3.one;
+            go.transform.localRotation = Quaternion.identity;
+            go.transform.localPosition = Vector3.zero;
+        }
         [MenuItem("GameObject/Graphi/3D Object/Tetrahedrons")]
         static private void Create_Tetrahedrons()
         {
-            BMesh.PrivateObject(typeof(Tetrahedrons));
+            CreateCustomMeshObject(typeof(Tetrahedrons));
         }
         [MenuItem("GameObject/Graphi/3D Object/Shuriken")]
         static private void Create_Shuriken()
         {
-            BMesh.PrivateObject(typeof(Shuriken));
+            CreateCustomMeshObject(typeof(Shuriken));
         }
         [MenuItem("GameObject/Graphi/3D Object/Lozenge")]
         static private void Create_Lozenge()
         {
-            BMesh.PrivateObject(typeof(Lozenge));
+            CreateCustomMeshObject(typeof(Lozenge));
         }
         [MenuItem("GameObject/Graphi/3D Object/Flat")]
         static private void Create_Flat()
         {
-            BMesh.PrivateObject(typeof(Flat));
+            CreateCustomMeshObject(typeof(Flat));
         }
 
         #endregion
@@ -145,7 +168,7 @@ namespace com.graphi.renderhdrp.editor
         /// <param name="icon">图标文件名（不带文件名后缀）</param>
         static public void SetIcon(GameObject go, string icon)
         {
-            EditorGUIUtility.SetIconForObject(go, AssetDatabase.LoadAssetAtPath<Texture2D>(Tools.FindexactFile("Editor/Images", $"{icon}.png")));
+            EditorGUIUtility.SetIconForObject(go, AssetDatabase.LoadAssetAtPath<Texture2D>(ProjectUtils.FindexactFile("Editor/Images", $"{icon}.png")));
         }
 
 

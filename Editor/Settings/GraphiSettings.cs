@@ -28,7 +28,7 @@ namespace com.graphi.renderhdrp.editor
 
         private static T load<T>(string assetName) where T : UnityEngine.Object
         {
-            return AssetDatabase.LoadAssetAtPath<T>(Tools.FindexactFile("Editor/Settings", $"{assetName}.asset"));
+            return AssetDatabase.LoadAssetAtPath<T>(ProjectUtils.FindexactFile("Editor/Settings", $"{assetName}.asset"));
         }
     }
 
