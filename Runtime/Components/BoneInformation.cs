@@ -22,20 +22,20 @@ namespace com.graphi.renderhdrp
     public class BoneInformation : MonoBehaviour
     {
         #region Inspector 
-        [FieldAttr("开启骨骼线框")]
+        [FieldAttr("Show Bone Wireframe")]
         public bool drawBoneGizmos = true;
-        [FieldAttr("开启骨骼名称")]
+        [FieldAttr("Show Bone Name")]
         public bool drawBoneName = false;
-        [FieldAttr("骨骼尺寸")]
+        [FieldAttr("Bone Size")]
         [Range(0.001f, 0.01f)]
         public float boneSize = 0.0025f;
-        [FieldAttr("骨骼颜色")]
+        [FieldAttr("Bone Color")]
         public Color boneColor = Color.red;
-        [FieldAttr("骨骼名称颜色")]
+        [FieldAttr("Bone Name Color")]
         public Color boneNameColor = Color.white;
-        [FieldAttr("骨骼连接线颜色")]
+        [FieldAttr("Bone Line Color")]
         public Color connectLineColor = new Color(1.0f, 0.8f, 0.0f, 1.0f);
-        [FieldAttr("骨骼名称背景颜色")]
+        [FieldAttr("Bone Name Background Color")]
         public Color boneNameBgColor = new Color(0.3570863f, 0.563387f, 0.7232704f, 1.0f);
         #endregion
 
@@ -123,7 +123,7 @@ namespace com.graphi.renderhdrp
         public override void OnInspectorGUI()
         {
             serializedObject.Update();
-            EditorGUILayout.LabelField("只在编辑器 SceneView 视图内应用.", EditorStyles.linkLabel);
+            EditorGUILayout.LabelField("Only SceneView", EditorStyles.linkLabel);
             EditorGUILayout.Space(3);
             EditorGUI.indentLevel++;
             Tools.ShowFieldInfo(m_FieldList);

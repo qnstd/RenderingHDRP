@@ -1,9 +1,9 @@
+using System;
+using UnityEditor;
+using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.HighDefinition;
-using System;
-using UnityEditor.Rendering;
-using UnityEditor;
 
 namespace com.graphi.renderhdrp
 {
@@ -43,7 +43,7 @@ namespace com.graphi.renderhdrp
             if (m_Shader != null)
                 m_Material = new Material(m_Shader);
             else
-                Lg.Err("未找到运动模糊后处理所使用的着色器脚本. ");
+                Lg.Err("Not find Shader.");
         }
 
 
@@ -59,7 +59,7 @@ namespace com.graphi.renderhdrp
             Matrix4x4 m44 = cam.projectionMatrix * cam.worldToCameraMatrix;
             m_Material.SetMatrix("_CurrentViewProjectionInverse", m44.inverse);
             m_PreviousViewProjection = m44;
-            
+
 
             // 设置参数
             m_Material.SetInt("_Intertion", m_Intertion.value);
@@ -101,12 +101,12 @@ namespace com.graphi.renderhdrp
         {
             EditorGUILayout.Space(10);
 
-            PropertyField(m_SpeedFactor, new GUIContent("速度因子"));
-            PropertyField(m_Intensity, new GUIContent("强度"));
-            PropertyField(m_Intertion, new GUIContent("模糊迭代"));
+            PropertyField(m_SpeedFactor, new GUIContent("Speed"));
+            PropertyField(m_Intensity, new GUIContent("Force"));
+            PropertyField(m_Intertion, new GUIContent("Iteration"));
 
             EditorGUILayout.Space(10);
-            EditorGUILayout.HelpBox("请注意，与内置的 MotionBlur 有所区别，此效果是基于后处理的屏幕级操作。当带有此效果的 Volume 所绑定的渲染相机在执行位移变化时，会对当前视窗体内的所有像素执行速度缓存，并对其进行相应的计算得到 MotionBlur 效果。", MessageType.Info);
+            EditorGUILayout.HelpBox("Note that, unlike the built-in MotionBlur, this effect is a screen-level operation based on post-processing. When the rendering camera attached to the Volume with this effect performs a shift change, it executes a speed cache on all pixels in the current window body and calculates them accordingly to get the MotionBlur effect.", MessageType.Info);
             EditorGUILayout.Space(5);
         }
     }

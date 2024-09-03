@@ -184,13 +184,13 @@ namespace com.graphi.renderhdrp
             EditorGUILayout.Space(1);
             Color c = GUI.backgroundColor;
             GUI.backgroundColor = Color.green;
-            if (GUILayout.Button("数据重置", GUILayout.Width(80), GUILayout.Height(20)))
+            if (GUILayout.Button("Data Reset", GUILayout.Width(80), GUILayout.Height(20)))
             {
                 ResetMesh();
             }
             GUI.backgroundColor = c;
             GUI.backgroundColor = Color.yellow;
-            if (GUILayout.Button("保存网格", GUILayout.Width(80), GUILayout.Height(20)))
+            if (GUILayout.Button("Save Mesh", GUILayout.Width(80), GUILayout.Height(20)))
             {
                 SaveMesh();
             }

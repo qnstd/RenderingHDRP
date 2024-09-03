@@ -356,7 +356,7 @@ namespace com.graphi.renderhdrp
             EditorGUILayout.Space(5);
 
             EditorGUI.BeginChangeCheck();
-            EditorGUILayout.PropertyField(m_Aspect, new GUIContent("横纵比"));
+            EditorGUILayout.PropertyField(m_Aspect, new GUIContent("Aspect"));
             if (EditorGUI.EndChangeCheck())
             {
                 ChangeAspectAndSize(m_Aspect.intValue, m_Size.vector2Value);
@@ -365,7 +365,7 @@ namespace com.graphi.renderhdrp
 
             EditorGUILayout.Space(3);
             EditorGUI.BeginChangeCheck();
-            EditorGUILayout.PropertyField(m_Size, new GUIContent("尺寸"));
+            EditorGUILayout.PropertyField(m_Size, new GUIContent("Size"));
             if (EditorGUI.EndChangeCheck())
             {
                 ChangeAspectAndSize(m_Aspect.intValue, m_Size.vector2Value);
@@ -374,7 +374,7 @@ namespace com.graphi.renderhdrp
 
             EditorGUILayout.Space(3);
             EditorGUI.BeginChangeCheck();
-            EditorGUILayout.PropertyField(m_Mat, new GUIContent("渲染材质"));
+            EditorGUILayout.PropertyField(m_Mat, new GUIContent("Material"));
             if (EditorGUI.EndChangeCheck())
             {
                 ChangeMat();
@@ -382,7 +382,7 @@ namespace com.graphi.renderhdrp
 
             EditorGUILayout.Space(3);
             EditorGUI.BeginChangeCheck();
-            EditorGUILayout.PropertyField(m_Source, new GUIContent("数据源类型"));
+            EditorGUILayout.PropertyField(m_Source, new GUIContent("DataSource"));
             if (EditorGUI.EndChangeCheck())
             {
                 ChangeSource();
@@ -392,11 +392,11 @@ namespace com.graphi.renderhdrp
             switch ((VideoSource)m_Source.intValue)
             {
                 case VideoSource.VideoClip:
-                    DrawVideoSourceGUI(m_Clip, "切片");
+                    DrawVideoSourceGUI(m_Clip, "Clip");
                     break;
                 case VideoSource.Url:
                     EditorGUILayout.BeginHorizontal();
-                    DrawVideoSourceGUI(m_URL, "地址（file:// 或 http/https）");
+                    DrawVideoSourceGUI(m_URL, "URL（file:// or http/https）");
                     Color c = GUI.backgroundColor;
                     GUI.backgroundColor = Color.green;
                     if (GUILayout.Button("...", GUILayout.Width(30), GUILayout.Height(18)))
@@ -461,17 +461,17 @@ namespace com.graphi.renderhdrp
                 Color c = GUI.backgroundColor;
                 GUI.backgroundColor = Color.green;
                 float _w = 34, _h = 17;
-                if (GUILayout.Button("播放", btnStyle, GUILayout.Width(_w), GUILayout.Height(_h)))
+                if (GUILayout.Button("Play", btnStyle, GUILayout.Width(_w), GUILayout.Height(_h)))
                 {
                     VideoPlayStopPause(1);
                 }
                 GUI.backgroundColor = Color.yellow;
-                if (GUILayout.Button("暂停", btnStyle, GUILayout.Width(_w), GUILayout.Height(_h)))
+                if (GUILayout.Button("Stop", btnStyle, GUILayout.Width(_w), GUILayout.Height(_h)))
                 {
                     VideoPlayStopPause(3);
                 }
                 GUI.backgroundColor = Color.red;
-                if (GUILayout.Button("停止", btnStyle, GUILayout.Width(_w), GUILayout.Height(_h)))
+                if (GUILayout.Button("Pause", btnStyle, GUILayout.Width(_w), GUILayout.Height(_h)))
                 {
                     VideoPlayStopPause(2);
                 }
@@ -563,7 +563,7 @@ namespace com.graphi.renderhdrp
         // 选择本地视频
         void SelectLocalVideo()
         {
-            string p = EditorUtility.OpenFilePanel("选择视频", "Assets", null);
+            string p = EditorUtility.OpenFilePanel("Select Video", "Assets", null);
             if (!string.IsNullOrEmpty(p))
             {
                 p = "file://" + p;

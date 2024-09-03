@@ -32,13 +32,7 @@ namespace com.graphi.renderhdrp
         protected override void Descs()
         {
             EditorGUILayout.HelpBox(
-                "Layout  :  平面的行列数据， Size   :  平面每个单元格尺寸", MessageType.None);
-        }
-
-        [MenuItem("GameObject/Graphi/3D Object/平面")]
-        static private void CreateInHierarchy()
-        {
-            BMesh.PrivateObject(typeof(Flat));
+                "Layout  :  Row And Col\nSize   :  Cell Size", MessageType.None);
         }
     }
 #endif

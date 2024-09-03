@@ -1,9 +1,9 @@
-using UnityEngine;
-using UnityEngine.Rendering.HighDefinition;
-using UnityEngine.Rendering;
-using UnityEditor.Rendering.HighDefinition;
 using UnityEditor;
+using UnityEditor.Rendering.HighDefinition;
+using UnityEngine;
 using UnityEngine.Experimental.Rendering;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.HighDefinition;
 
 namespace com.graphi.renderhdrp
 {
@@ -28,7 +28,7 @@ namespace com.graphi.renderhdrp
         #region 对外属性
         public DownsampleEnum m_Downsample = DownsampleEnum.x2;
         public Vector2 m_Center = new Vector2(0.25f, 0.25f);
-        [Range(2, 64)]public int m_Internation = 8;
+        [Range(2, 64)] public int m_Internation = 8;
         public float m_Intensity = 0.6f;
         #endregion
 
@@ -57,7 +57,7 @@ namespace com.graphi.renderhdrp
         /// <param name="name"></param>
         /// <param name="scal"></param>
         /// <returns></returns>
-        private RTHandle CreateRT(string name, float scal=1.0f)
+        private RTHandle CreateRT(string name, float scal = 1.0f)
         {
             return RTHandles.Alloc
                 (
@@ -67,7 +67,7 @@ namespace com.graphi.renderhdrp
                     useDynamicScale: true,
                     colorFormat: GraphicsFormat.B10G11R11_UFloatPack32,
                     name: name
-                );;
+                ); ;
         }
 
         private void ReleaseDownsampleTexs()
@@ -78,7 +78,7 @@ namespace com.graphi.renderhdrp
 
         private void CreateDownsampleTexs()
         {
-            if(m_curDownsample == m_Downsample) { return; }
+            if (m_curDownsample == m_Downsample) { return; }
             ReleaseDownsampleTexs();
 
             m_curDownsample = m_Downsample;
@@ -94,7 +94,7 @@ namespace com.graphi.renderhdrp
             if (m_Shader != null)
                 m_Material = CoreUtils.CreateEngineMaterial(m_Shader);
             else
-                Lg.Err($"未找到径向模糊后处理所使用的着色器脚本 '{m_Shader.name}' .");
+                Lg.Err($"Not find shader. '{m_Shader.name}'");
 
 
             // 创建操作时的临时纹理
@@ -123,7 +123,7 @@ namespace com.graphi.renderhdrp
 
         protected override void Cleanup()
         {
-            if(m_Material != null)
+            if (m_Material != null)
                 CoreUtils.Destroy(m_Material);
             ReleaseDownsampleTexs();
             m_curDownsample = 0;
@@ -152,10 +152,10 @@ namespace com.graphi.renderhdrp
         /// <param name="customPass"></param>
         protected override void Initialize(SerializedProperty customPass)
         {
-            prop_m_Center       = customPass.FindPropertyRelative("m_Center");
-            prop_m_Intensity    = customPass.FindPropertyRelative("m_Intensity");
-            prop_m_Internation  = customPass.FindPropertyRelative("m_Internation");
-            prop_m_Downsample   = customPass.FindPropertyRelative("m_Downsample");
+            prop_m_Center = customPass.FindPropertyRelative("m_Center");
+            prop_m_Intensity = customPass.FindPropertyRelative("m_Intensity");
+            prop_m_Internation = customPass.FindPropertyRelative("m_Internation");
+            prop_m_Downsample = customPass.FindPropertyRelative("m_Downsample");
 
             curDownsample = (RadialBlur.DownsampleEnum)prop_m_Downsample.boxedValue;
 
@@ -174,28 +174,17 @@ namespace com.graphi.renderhdrp
         {
             rect.y += 10;
 
-            EditorGUI.PropertyField(rect, prop_m_Downsample, new GUIContent("降采样"));
+            EditorGUI.PropertyField(rect, prop_m_Downsample, new GUIContent("Downsample"));
             rect.y += GetSingleH(prop_m_Downsample, 5);
 
             EditorGUI.indentLevel++;
-            canEditCenter = EditorGUI.Toggle(rect, new GUIContent("开启后可手动编辑（中心位置）"), canEditCenter);
+            canEditCenter = EditorGUI.Toggle(rect, new GUIContent("Manual editing (center position)"), canEditCenter);
             rect.y += 20;
             EditorGUI.BeginDisabledGroup(!canEditCenter);
-            EditorGUI.PropertyField(rect, prop_m_Center, new GUIContent("径向中心位置"));
+            EditorGUI.PropertyField(rect, prop_m_Center, new GUIContent("Radial center position"));
             EditorGUI.EndDisabledGroup();
             rect.y += GetSingleH(prop_m_Center, 5);
-            EditorGUI.BeginDisabledGroup(true);
-            rect.height = 65;
-            EditorGUI.TextArea
-                (
-                    rect,
-                    "<color=#fbb843>降采样</color> 用于提高渲染性能，同时也会为模糊处理模块提供间接的模糊处理。此值是以2的幂方式进行设置。\n" +
-                    "值越大，提供的间接模糊程度越大。但值过大时，在同等的迭代次数及强度下，边缘会有明显的锯齿。\n" +
-                    "因此，需要更多的迭代次数来弥补。建议<color=#fbb843>4K（含4K）在以下使用 X2</color>。",
-                    helpBoxStyle
-                );
-            EditorGUI.EndDisabledGroup();
-            rect.y += 70;
+            rect.y += 5;
             rect.height = 20;
             EditorGUI.indentLevel--;
 
@@ -205,12 +194,12 @@ namespace com.graphi.renderhdrp
                 float s = 1.0f / ((int)prop_m_Downsample.boxedValue * 2);
                 prop_m_Center.boxedValue = new Vector2(s, s);
             }
-            
 
-            EditorGUI.PropertyField(rect, prop_m_Internation, new GUIContent("迭代次数"));
+
+            EditorGUI.PropertyField(rect, prop_m_Internation, new GUIContent("Iteration"));
             rect.y += GetSingleH(prop_m_Internation, 5);
 
-            EditorGUI.PropertyField(rect, prop_m_Intensity, new GUIContent("强度"));
+            EditorGUI.PropertyField(rect, prop_m_Intensity, new GUIContent("Force"));
             rect.y += GetSingleH(prop_m_Intensity, 5);
 
             rect.y += 10;
@@ -233,7 +222,7 @@ namespace com.graphi.renderhdrp
         /// <returns></returns>
         protected override float GetPassHeight(SerializedProperty customPass)
         {
-            return base.GetPassHeight(customPass) + 130;
+            return base.GetPassHeight(customPass) + 60;
         }
 
         /// <summary>

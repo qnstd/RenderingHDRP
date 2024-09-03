@@ -21,11 +21,11 @@ namespace com.graphi.renderhdrp
 
 
         #region 对外参数
-        [Header("HDRI 立方图")]
+        [Header("HDRI Cubemap")]
         public CubemapParameter m_HDRICubemap = new CubemapParameter(null);
-        [Header("天空自动旋转（当开启时，默认的Rotation参数将被废除）")]
+        [Header("Auto Rotation")]
         public BoolParameter m_AutoRotation = new BoolParameter(true);
-        [Header("天空自动旋转速度（只在开启自动旋转时可用）")]
+        [Header("Rotation Speed")]
         public FloatParameter m_AutoRotationSpeed = new FloatParameter(0.01f);
         #endregion
 

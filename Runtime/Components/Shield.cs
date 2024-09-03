@@ -104,17 +104,17 @@ namespace com.graphi.renderhdrp
                     }
                 }
             }
-            if(m_Mat == null)
+            if (m_Mat == null)
                 Lg.Err
                     (
-                        string.Format("未找到 {0} 着色器! Shader = {1}", "护盾", SHADER_NAME)
+                        string.Format("Not find {0}! Shader = {1}", "Shield", SHADER_NAME)
                     );
         }
         private bool ExistShieldMat() { return m_Mat != null; }
 
         private void ShaderDataInput()
         {
-            if(m_Mat == null) { return; }
+            if (m_Mat == null) { return; }
 
             // 透传数据至着色器
             m_Mat.SetFloat(TouchNumbers_ID, m_Data.Count);
@@ -145,7 +145,7 @@ namespace com.graphi.renderhdrp
             m_PointDatas = new Vector4[m_TouchNum];
             Array.Fill<Vector4>(m_Points, Vector4.zero);
             Array.Fill<Vector4>(m_PointDatas, Vector4.zero);
-        } 
+        }
         // 结束
 
 
@@ -163,7 +163,7 @@ namespace com.graphi.renderhdrp
             if (!ExistShieldMat()) { return; }
 
             int datalen = m_Data.Count;
-            if(datalen != 0)
+            if (datalen != 0)
             {
                 // 调整数据并向着色器提供可交互的渲染数据
                 for (int i = 0; i < datalen; i++)
@@ -178,7 +178,7 @@ namespace com.graphi.renderhdrp
                 ShaderDataInput();
 
                 // 移除操作完毕的撞击点
-                int delnum = 
+                int delnum =
                 m_Data.RemoveAll((info) => { return info.DelMark; });
             }
         }
@@ -239,20 +239,10 @@ namespace com.graphi.renderhdrp
             serializedObject.Update();
 
             EditorGUILayout.Space(5);
-            EditorGUILayout.PropertyField(touchnum, new GUIContent("撞击点最大值"));
+            EditorGUILayout.PropertyField(touchnum, new GUIContent("touch max number"));
             EditorGUILayout.Space(5);
-            EditorGUILayout.PropertyField(disBetweenTouchPoints, new GUIContent("撞击点间距最小值"));
+            EditorGUILayout.PropertyField(disBetweenTouchPoints, new GUIContent("touch min distance"));
             EditorGUILayout.Space(5);
-
-            EditorGUILayout.HelpBox(
-                "说明\n" +
-                "   此脚本可用于与护盾交互，以下是需要注意的相关事项。\n\n" +
-                "· 撞击点最大值" +
-                "   此值是允许在护盾上可创建的交互点最大数量。虽然是Slider滑块模式，但无法在运行时实时调整，原因是在于着色器方面。" +
-                "可交互的撞击点数据是以数组方式将数据送入，但着色器方面规定，声明数组类型的变量需要固定长度，并且只能一次性设置，不" +
-                "允许动态改变数组类型的长度，否则会弹出警告，导致交互效果异常。即使进行拖动调整，也无法修改数据长度及着色器内数组长" +
-                "度。因此，若要调整最大撞击点需要退出运行时后进行设置，设置完毕并保存后再次启动进行测试。"
-                , MessageType.Info);
 
             serializedObject.ApplyModifiedProperties();
         }

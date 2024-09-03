@@ -62,7 +62,7 @@ namespace com.graphi.renderhdrp
 
         // Profiler
         string[] m_Units = new string[] { "B", "KB", "MB", "GB", "TB", "PB" };
-        string[] m_Boundary = new string[] { "", "万", "亿" };
+        string[] m_Boundary = new string[] { "", "w", "billion" };
         struct ProfilerData
         {
             public string key; // 数据索引。与 Unity 内部名称一致。
@@ -74,49 +74,49 @@ namespace com.graphi.renderhdrp
         static readonly ProfilerData[] m_ProfilerKeys = new ProfilerData[]
         {
             // 一帧内切换着色器的次数（主要检测本项，GPU切换着色器渲染类型代价要比 DC 高）
-            new ProfilerData(){ key="SetPass Calls Count", desc="切换着色器次数  (SPC)", importance=true, byteTransfer = false, newline="\n\n"},
+            new ProfilerData(){ key="SetPass Calls Count", desc="SPC", importance=true, byteTransfer = false, newline="\n\n"},
             // 一帧内向GPU提供渲染游戏对象所需的数据次数（包括动、静态批处理，非SRP批处理）
-            new ProfilerData(){ key="Draw Calls Count", desc="提交数据的总次数  (DC)", importance=true, byteTransfer = false, newline="\n"},
+            new ProfilerData(){ key="Draw Calls Count", desc="DC", importance=true, byteTransfer = false, newline="\n"},
             // 一帧内总共的批次总数（包含动、静态）
-            new ProfilerData(){ key="Batches Count", desc="执行合批（动、静态）的次数  (Batches)", importance=true, byteTransfer = false, newline="\n"},
+            new ProfilerData(){ key="Batches Count", desc="Batches", importance=true, byteTransfer = false, newline="\n"},
             
             // /////////////////////////////////////////////////////////////////
             // 编辑环境下
 #if UNITY_EDITOR
 
-            new ProfilerData(){key="Dynamic Batched Draw Calls Count,Dynamic Batches Count",desc="  ---|[<color='#999999ff'> 动态批处理 </color>] 绘制调用次数（DC）: {0} / 批处理次数（Batches）: {1}", importance=false, byteTransfer=false, newline="\n"},
-            new ProfilerData(){key="Static Batched Draw Calls Count,Static Batches Count",desc="  ---|[<color='#999999ff'> 静态批处理 </color>] 绘制调用次数（DC）: {0} / 批处理次数（Batches）: {1}", importance=false, byteTransfer=false, newline="\n"},
-            new ProfilerData(){key="Instanced Batched Draw Calls Count,Instanced Batches Count",desc="  ---|[<color='#999999ff'>  GPU实例 </color>] 绘制调用次数（DC）: {0} / 批处理次数（Batches）: {1}", importance=false, byteTransfer=false, newline="\n"},
+            new ProfilerData(){key="Dynamic Batched Draw Calls Count,Dynamic Batches Count",desc="  ---| [<color='#999999ff'> Dynamic </color>] DC: {0} / Batches: {1}", importance=false, byteTransfer=false, newline="\n"},
+            new ProfilerData(){key="Static Batched Draw Calls Count,Static Batches Count",desc="  ---| [<color='#999999ff'> Static </color>] DC: {0} / Batches: {1}", importance=false, byteTransfer=false, newline="\n"},
+            new ProfilerData(){key="Instanced Batched Draw Calls Count,Instanced Batches Count",desc="  ---| [<color='#999999ff'> GPU Instance </color>] DC: {0} / Batches: {1}", importance=false, byteTransfer=false, newline="\n"},
 
 #endif
             // 结束
             // /////////////////////////////////////////////////////////////////
 
             // 顶点数量 
-            new ProfilerData(){ key="Vertices Count", desc="顶点数  (Vertices)", importance=true, byteTransfer = false, newline="\n"},
+            new ProfilerData(){ key="Vertices Count", desc="Vertices", importance=true, byteTransfer = false, newline="\n"},
             // 三角面数量
-            new ProfilerData(){ key="Triangles Count", desc="三角面  (Triangles)", importance=true, byteTransfer = false, newline="\n"},
+            new ProfilerData(){ key="Triangles Count", desc="Triangles", importance=true, byteTransfer = false, newline="\n"},
             // 参与投影的游戏对象数量
-            new ProfilerData(){ key="Shadow Casters Count", desc="参与投影计算的游戏对象总数  (ShadowCasters)", importance=true, byteTransfer = false, newline="\n\n"},
+            new ProfilerData(){ key="Shadow Casters Count", desc="ShadowCasters", importance=true, byteTransfer = false, newline="\n\n"},
 
 
             //// ---------------------------------------------------------------
             //// --在发布后的数据比在Editor环境下要准确
 
             // 每帧使用的 RenderTexture 的数量及内存占用
-            new ProfilerData(){ key="Render Textures Count", desc="使用的纹理总数  (RT Count)", importance=false, byteTransfer = false, newline="\n"},
-            new ProfilerData(){ key="Render Textures Bytes", desc="使用的纹理占用内存总数  (RT Size)", importance=false, byteTransfer = true, newline="\n"},
+            new ProfilerData(){ key="Render Textures Count", desc="RT Count", importance=false, byteTransfer = false, newline="\n"},
+            new ProfilerData(){ key="Render Textures Bytes", desc="RT Size", importance=false, byteTransfer = true, newline="\n"},
             // 每帧中设置一个或者多个RT作为渲染目标次数（切换RT渲染目标）
-            new ProfilerData(){ key="Render Textures Changes Count", desc="切换渲染目标的次数  (RT Target SwitchNumber)", importance=false, byteTransfer = false, newline="\n\n"},
+            new ProfilerData(){ key="Render Textures Changes Count", desc="RT Target SwitchNumber", importance=false, byteTransfer = false, newline="\n\n"},
             // 使用GPU缓冲区的总数及内存总数。包含顶点、顶点索引、计算缓冲区及渲染需要的所有内部缓冲区
-            new ProfilerData(){ key="Used Buffers Count", desc="缓冲区使用总数  (GPU Buffer Count)", importance=false, byteTransfer = false, newline="\n"},
-            new ProfilerData(){ key="Used Buffers Bytes", desc="缓冲区使用内存总数  (GPU Buffer Size)", importance=false, byteTransfer = true, newline="\n"},
+            new ProfilerData(){ key="Used Buffers Count", desc="GPU Buffer Count", importance=false, byteTransfer = false, newline="\n"},
+            new ProfilerData(){ key="Used Buffers Bytes", desc="GPU Buffer Size", importance=false, byteTransfer = true, newline="\n"},
             // 每帧 CPU 提交到 GPU 的几何体数量（包含顶点、法线、UV数据）
-            new ProfilerData(){ key="Vertex Buffer Upload In Frame Count", desc="---| 提交顶点、法线、UV数据的总数  (VertexBuffer Upload Count InFrame)", importance=false, byteTransfer = false, newline="\n"},
-            new ProfilerData(){ key="Vertex Buffer Upload In Frame Bytes", desc="---| 提交顶点、法线、UV数据的尺寸  (VertexBuffer Upload Size InFrame)", importance=false, byteTransfer = true, newline="\n"},
+            new ProfilerData(){ key="Vertex Buffer Upload In Frame Count", desc="---| VertexBuffer Upload Count InFrame", importance=false, byteTransfer = false, newline="\n"},
+            new ProfilerData(){ key="Vertex Buffer Upload In Frame Bytes", desc="---| VertexBuffer Upload Size InFrame", importance=false, byteTransfer = true, newline="\n"},
             // 每帧 CPU 提交到 GPU 的几何体数量（包含三角面的索引数据）
-            new ProfilerData(){ key="Index Buffer Upload In Frame Count", desc="---| 提交三角面的总数  (IndexBuffer Upload Count InFrame)", importance=false, byteTransfer = false, newline="\n"},
-            new ProfilerData(){ key="Index Buffer Upload In Frame Bytes", desc="---| 提交三角面的尺寸  (IndexBuffer Upload Size InFrame)", importance=false, byteTransfer = true, newline="\n"},
+            new ProfilerData(){ key="Index Buffer Upload In Frame Count", desc="---| IndexBuffer Upload Count InFrame", importance=false, byteTransfer = false, newline="\n"},
+            new ProfilerData(){ key="Index Buffer Upload In Frame Bytes", desc="---| IndexBuffer Upload Size InFrame", importance=false, byteTransfer = true, newline="\n"},
 
             //// --结束
             //// ---------------------------------------------------------------
@@ -136,11 +136,6 @@ namespace com.graphi.renderhdrp
         /// FPS 毫秒值
         /// </summary>
         static public float FPSMilliSec { get { return m_FpsMillSec; } }
-        /// <summary>
-        /// 绘制开关
-        /// <para>当为绘制模式时，此属性才被激活</para>
-        /// </summary>
-        static public bool DrawFlag { get; set; } = false;
         #endregion
 
 
@@ -228,7 +223,7 @@ namespace com.graphi.renderhdrp
                 m_DrawStyle = new GUIStyle("AM EffectName") { richText = true, fontSize = m_DrawSize };
             }
 
-            if (m_CanDraw && DrawFlag)
+            if (m_CanDraw)
             {
                 Tools.CaluResolutionScale(ref m_LastResolution, C_Size4K, (scale) =>
                 {
@@ -301,11 +296,11 @@ namespace com.graphi.renderhdrp
             else
             {
                 INFO
-                .Append("<color=#ffffffff><b>性能监测器 (Graphi)</b>\n\n")
+                .Append("<color=#ffffffff><b>Graphi Profiler</b>\n\n")
                 // fps
                 .Append("   <color=" + color + ">FPS: " + FPS.ToString("F1") + " / " + framerate + " - " + FPSMilliSec.ToString("F3") + " ms</color>\n\n")
                 // profiler
-                .Append("   <color=#89b5ffff>图形信息（按照每帧计算）</color>\n\n");
+                .Append("   <color=#89b5ffff>Graphics（PerFrame）</color>\n\n");
                 int dataIndex = 0; //数据真正的索引
                 for (int i = 0; i < m_ProfilerKeys.Length; i++)
                 {
@@ -318,7 +313,7 @@ namespace com.graphi.renderhdrp
                         extra = "\n";
                         // 额外: 在顶点数的数据前插入一条自定义的数据（节省的批次数量 = 总DC数量 - 合批数量）
                         long savebybatchesNum = GetProfilerData(1) - GetProfilerData(2);
-                        INFO.Append("       <color=#ff7979ff><b>*</b></color> <color=#ccccccff>节省的批次数 (Saveby Batches): <color=#8eeb89ff>" + savebybatchesNum + "</color></color>\n");
+                        INFO.Append("       <color=#ff7979ff><b>*</b></color> <color=#ccccccff>Saveby Batches: <color=#8eeb89ff>" + savebybatchesNum + "</color></color>\n");
                     }
                     else { extra = ""; }
 
@@ -343,17 +338,17 @@ namespace com.graphi.renderhdrp
                 string[] processor = GraphiMachine.SystemProcessor;
                 object[] graphics = GraphiMachine.Graphics;
                 INFO
-                    .Append("\n\n   <color=#89b5ffff>系统信息</color><color=#ccccccff>\n\n")
-                    .AppendLine($"       操作系统: {GraphiMachine.SystemOperating}")
-                    .AppendLine($"\n       处理器: {processor[0]} / {processor[1]}核 ({processor[2]}MHz)")
-                    .AppendLine($"\n       内存: {GraphiMachine.SystemMemory} MB")
-                    .AppendLine($"\n       显卡: {graphics[0]}")
-                    .AppendLine($"               显存: {graphics[1]} MB")
-                    .AppendLine($"               支持版本: {graphics[2]}")
-                    .AppendLine($"               支持着色等级: {graphics[3]}")
-                    .AppendLine($"               最大图片尺寸: {graphics[4]}")
-                    .AppendLine($"               是否支持多线程渲染: {graphics[5]}")
-                    .AppendLine($"\n       渲染平台: {GraphiMachine.GraphicsDevice}");
+                    .Append("\n\n   <color=#89b5ffff>System</color><color=#ccccccff>\n\n")
+                    .AppendLine($"       OS: {GraphiMachine.SystemOperating}")
+                    .AppendLine($"\n       Processor: {processor[0]} / {processor[1]}core ({processor[2]}MHz)")
+                    .AppendLine($"\n       Memory: {GraphiMachine.SystemMemory} MB")
+                    .AppendLine($"\n       Graphics: {graphics[0]}")
+                    .AppendLine($"               Memory: {graphics[1]} MB")
+                    .AppendLine($"               Version: {graphics[2]}")
+                    .AppendLine($"               Level: {graphics[3]}")
+                    .AppendLine($"               Max Size: {graphics[4]}")
+                    .AppendLine($"               Multiply Thread: {graphics[5]}")
+                    .AppendLine($"\n       Target: {GraphiMachine.GraphicsDevice}");
                 INFO.Append("</color></color>");
             }
 
@@ -417,33 +412,32 @@ namespace com.graphi.renderhdrp
             serializedObject.Update();
 
             EditorGUILayout.Space(5);
-            EditorGUILayout.PropertyField(extremelyAustere, new GUIContent("极简模式"));
+            EditorGUILayout.PropertyField(extremelyAustere, new GUIContent("Simple Mode"));
 
             EditorGUILayout.Space(10);
-            EditorGUILayout.PropertyField(updateInterval, new GUIContent("刷新间隔 (单位：秒)"));
+            EditorGUILayout.PropertyField(updateInterval, new GUIContent("Interval"));
 
             EditorGUILayout.Space(10);
-            EditorGUILayout.PropertyField(showType, new GUIContent("显示类型"));
+            EditorGUILayout.PropertyField(showType, new GUIContent("Type"));
             switch (showType.intValue)
             {
                 case 2: //Gui
                     EditorGUI.indentLevel += 2;
 
                     EditorGUILayout.Space(4);
-                    EditorGUILayout.PropertyField(drawSize, new GUIContent("文本尺寸"));
+                    EditorGUILayout.PropertyField(drawSize, new GUIContent("Text Size"));
                     EditorGUILayout.Space(2);
-                    EditorGUILayout.PropertyField(drawArea, new GUIContent("绘制位置"));
+                    EditorGUILayout.PropertyField(drawArea, new GUIContent("Draw Position"));
                     EditorGUILayout.Space(2);
-                    EditorGUILayout.PropertyField(perforInterval, new GUIContent("FPS 颜色区间"));
+                    EditorGUILayout.PropertyField(perforInterval, new GUIContent("Color interval"));
 
                     EditorGUILayout.Space(10);
                     EditorGUILayout.HelpBox(
-                        "   文本尺寸以4k分辨率为基准\n\n" +
-                        "   FPS 颜色区间说明\n" +
-                        "       x：大于此数值为优秀区间；\n" +
-                        "       y：大于此数值并小于等于 x 数值则为中等区间，小于等于此数值则为低效区间；\n\n" +
-                        "   * 在此显示模式下，运行时可使用快捷键（ ` ）来快速切换显隐状态。"
-                        , MessageType.Info);
+                        "Text size is based on 4k resolution.\n\n" +
+                        "FPS ColorSpace\n" +
+                        "x：Greater than this value is an excellent interval；\n" +
+                        "y：Greater than this value and less than or equal to the x value is a medium interval, and less than or equal to this value is an inefficient interval；\n"
+                        , MessageType.None);
 
                     EditorGUI.indentLevel -= 2;
 

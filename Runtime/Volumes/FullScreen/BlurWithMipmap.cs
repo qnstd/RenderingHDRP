@@ -1,10 +1,10 @@
-using UnityEngine;
-using UnityEngine.Rendering.HighDefinition;
-using UnityEngine.Rendering;
 using System;
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEditor.Rendering.HighDefinition;
-using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.HighDefinition;
 
 namespace com.graphi.renderhdrp
 {
@@ -17,10 +17,10 @@ namespace com.graphi.renderhdrp
     {
         #region 对外参数
 
-        [FieldAttr("模糊级别")]
+        [FieldAttr("Blur Level")]
         [Range(0, 7)]
         public int m_MipmapLv = 4;
-        [FieldAttr("亮度")]
+        [FieldAttr("Brightness")]
         [Range(0, 1)]
         public float m_Brightness = 1.0f;
 
@@ -100,7 +100,7 @@ namespace com.graphi.renderhdrp
             EditorGUI.TextArea
                 (
                     rect,
-                    "建议着色器插入节点为：<color=#fbb843> Before PostProcess (Injection Point) </color>。",
+                    "It is recommended that shaders insert nodes as：<color=#fbb843> Before PostProcess (Injection Point) </color>.",
                     _HelpBoxStyle
                 );
             EditorGUI.EndDisabledGroup();

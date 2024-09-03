@@ -1,11 +1,11 @@
-using UnityEngine;
-using UnityEngine.Rendering.HighDefinition;
-using UnityEngine.Rendering;
-using UnityEngine.Experimental.Rendering;
-using UnityEditor.Rendering.HighDefinition;
-using UnityEditor;
 using System;
 using System.Collections.Generic;
+using UnityEditor;
+using UnityEditor.Rendering.HighDefinition;
+using UnityEngine;
+using UnityEngine.Experimental.Rendering;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.HighDefinition;
 
 namespace com.graphi.renderhdrp
 {
@@ -17,24 +17,24 @@ namespace com.graphi.renderhdrp
     public class Blur : CustomPass
     {
         #region 对外参数
-        [FieldAttr("迭代次数")]
+        [FieldAttr("Iteration")]
         public int m_iteration = 4;
 
-        [FieldAttr("模糊值")]
+        [FieldAttr("Blur")]
         public float m_blur = 3f;
 
-        [FieldAttr("缩放比")]
+        [FieldAttr("Scale")]
         [Range(0.1f, 1)]
         public float m_Scale = 0.5f;
 
-        [FieldAttr("附加纹理")]
+        [FieldAttr("Parameter")]
         public Texture2DParameter m_Tex2dParameter = new Texture2DParameter(null, false);
 
-        [FieldAttr("强度")]
+        [FieldAttr("Force")]
         [Range(0, 1)]
         public float m_Intensity = 0.01f;
 
-        [FieldAttr("反向")]
+        [FieldAttr("Reverse")]
         public bool m_Reverse = false;
         #endregion
 
@@ -211,21 +211,7 @@ namespace com.graphi.renderhdrp
 
             Tools.ShowFieldInfo(lst, ref rect, GetH);
 
-            rect.y += 5;
-            rect.height = 90;
-            _Yoffset += 95;
-            EditorGUI.BeginDisabledGroup(true);
-            EditorGUI.TextArea
-                (
-                    rect,
-                    "<color=#fbb843>缩放因子</color> 是指在处理模糊过程中，所需临时目标纹理与当前屏幕的比例（缩放比）。\n" +
-                    "此参数用于优化模糊处理的执行速度，减少性能消耗。同时，也可作为降采样来间接的实现模糊。\n" +
-                    "值越大，性能消耗越大。当设置为最大值时，每一步的操作都将以全尺寸进行模糊处理；\n" +
-                    "相反，性能消耗越小。但过小的值会影响最终的效果，在不同像素处会出现不同程度的马萨克。\n\n" +
-                    "<color=#fbb843>附加纹理</color> 是一张切空间的法线图，用于增强模糊效果及其质感。",
-                    _HelpBoxStyle
-                );
-            EditorGUI.EndDisabledGroup();
+            _Yoffset += 10;
         }
 
         /// <summary>

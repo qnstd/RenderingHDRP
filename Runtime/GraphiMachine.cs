@@ -66,15 +66,6 @@ namespace com.graphi.renderhdrp
         #endregion
 
 
-        #region Mono
-        private void Update()
-        {
-            Kb.Run();
-        }
-        #endregion
-
-
-
         #region 静态公共接口
 
         #region 体积
@@ -89,13 +80,13 @@ namespace com.graphi.renderhdrp
             int layid = 1 << LayerMask.NameToLayer(layer);
             if (layid < 0)
             {
-                Lg.Err("无法创建热扭曲渲染通道！渲染特定层不存在。");
+                Lg.Err("twist layer does not exist.");
                 return null;
             }
 
             if (GameObject.Find(layer) != null)
             {
-                Lg.Err("场景中已存在热扭曲渲染通道，无法进行创建！请注意，若场景中存在的热扭曲渲染通道是在Editor模式下手动创建的，请及时删除，运行时会自动创建。");
+                Lg.Err("already exist in scene.");
                 return null;
             }
 
@@ -141,12 +132,12 @@ namespace com.graphi.renderhdrp
             int layid = 1 << LayerMask.NameToLayer(layer);
             if (layid < 0)
             {
-                Debug.LogError("无法创建遮挡显示组件！渲染特定层不存在。");
+                Lg.Err("occdisplay layer does not exist.");
                 return null;
             }
             if (GameObject.Find(layer) != null)
             {
-                Debug.LogError("场景中已存在遮挡显示组件，无法进行创建！");
+                Lg.Err("already exist in scene.");
                 return null;
             }
 
@@ -263,7 +254,7 @@ namespace com.graphi.renderhdrp
         {
             if (!IsContainLevel(lv))
             {
-                Lg.Err("未注册的渲染品质等级！无法完成渲染品质更换。");
+                Lg.Err("Unregistered render quality level! Unable to complete render quality change.");
                 return null;
             }
             return AllQualitys[lv];
@@ -315,7 +306,7 @@ namespace com.graphi.renderhdrp
             //不存在的Level配置
             if (!IsContainLevel(lv))
             {
-                Lg.Err("未注册的渲染品质等级！无法完成渲染品质更换。");
+                Lg.Err("Unregistered render quality level! Unable to complete render quality change.");
                 return;
             }
 
@@ -441,7 +432,7 @@ namespace com.graphi.renderhdrp
 
             if (!Mth.IntIsApowof2(resolution))
             {
-                Lg.Err("设置光源投影质量错误！投影质量的分辨率值不是2的幂。");
+                Lg.Err("Set the light source projection quality error! The resolution value of the projected mass is not a power of two.");
                 return;
             }
 

@@ -1,9 +1,9 @@
-using UnityEngine;
-using UnityEngine.Rendering.HighDefinition;
-using UnityEngine.Rendering;
-using UnityEngine.Experimental.Rendering;
-using UnityEditor.Rendering.HighDefinition;
 using UnityEditor;
+using UnityEditor.Rendering.HighDefinition;
+using UnityEngine;
+using UnityEngine.Experimental.Rendering;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.HighDefinition;
 
 namespace com.graphi.renderhdrp
 {
@@ -89,13 +89,13 @@ namespace com.graphi.renderhdrp
         protected override void DoPassGUI(SerializedProperty customPass, Rect rect)
         {
             rect.y += YOffset;
-            EditorGUI.PropertyField(rect, prop_Layer, new GUIContent("渲染层级"), true);
+            EditorGUI.PropertyField(rect, prop_Layer, new GUIContent("Layer"), true);
             rect.y += GetH(prop_Layer);
-            EditorGUI.PropertyField(rect, prop_Color, new GUIContent("颜色"), true);
+            EditorGUI.PropertyField(rect, prop_Color, new GUIContent("Color"), true);
             rect.y += GetH(prop_Color);
-            EditorGUI.PropertyField(rect, prop_Width, new GUIContent("宽度"), true);
+            EditorGUI.PropertyField(rect, prop_Width, new GUIContent("Width"), true);
             rect.y += GetH(prop_Width);
-            EditorGUI.PropertyField(rect, prop_Threshold, new GUIContent("亮度阔值"), true);
+            EditorGUI.PropertyField(rect, prop_Threshold, new GUIContent("Threshold"), true);
             rect.y += GetH(prop_Threshold);
         }
 

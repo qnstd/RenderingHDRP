@@ -29,14 +29,7 @@ namespace com.graphi.renderhdrp
         protected override void Descs()
         {
             EditorGUILayout.HelpBox(
-                "x :  长度，y :  高度，z :  厚度", MessageType.None);
-        }
-
-
-        [MenuItem("GameObject/Graphi/3D Object/四面体")]
-        static private void CreateInHierarchy()
-        {
-            BMesh.PrivateObject(typeof(Tetrahedrons));
+                "x :  Width\ny :  Height\nz :  Thickness", MessageType.None);
         }
     }
 #endif

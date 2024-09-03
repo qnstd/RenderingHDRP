@@ -1,9 +1,9 @@
-using UnityEngine;
-using UnityEngine.Rendering.HighDefinition;
-using UnityEngine.Rendering;
-using UnityEngine.Experimental.Rendering;
-using UnityEditor.Rendering.HighDefinition;
 using UnityEditor;
+using UnityEditor.Rendering.HighDefinition;
+using UnityEngine;
+using UnityEngine.Experimental.Rendering;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.HighDefinition;
 
 namespace com.graphi.renderhdrp
 {
@@ -79,7 +79,7 @@ namespace com.graphi.renderhdrp
         protected override void DoPassGUI(SerializedProperty customPass, Rect rect)
         {
             rect.y += 10;
-            EditorGUI.PropertyField(rect, prop_m_Brightness, new GUIContent("Ã÷ÁÁ¶È"), true);
+            EditorGUI.PropertyField(rect, prop_m_Brightness, new GUIContent("Brightness"), true);
             rect.y += GetH(prop_m_Brightness);
         }
 

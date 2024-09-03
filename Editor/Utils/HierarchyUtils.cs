@@ -11,6 +11,7 @@ namespace com.graphi.renderhdrp.editor
     public class HierarchyUtils : EditorWindow
     {
         #region 游戏对象创建
+
         [MenuItem("GameObject/Graphi/Volume/OccDisplay")]
         static private void Create_OccDisplay()
         {
@@ -32,7 +33,6 @@ namespace com.graphi.renderhdrp.editor
         }
 
 
-
         [MenuItem("GameObject/Graphi/Profiler")]
         static private void Create_RuntimePerformance()
         {
@@ -40,8 +40,6 @@ namespace com.graphi.renderhdrp.editor
             SetIcon(go, "Graphi-Analyze-Icon");
             go.AddComponent<RuntimePerformance>();
         }
-
-
 
 
         [MenuItem("GameObject/Graphi/Volume/Twist")]
@@ -69,7 +67,6 @@ namespace com.graphi.renderhdrp.editor
                 SetIcon(go, "Graphi-TwistRP-Icon");
             }
         }
-
 
 
         [MenuItem("GameObject/Graphi/Fx/Particle")]
@@ -114,6 +111,29 @@ namespace com.graphi.renderhdrp.editor
 
             renderhdrp.Tools.LocationElement(mat, false);
         }
+
+
+        [MenuItem("GameObject/Graphi/3D Object/Tetrahedrons")]
+        static private void Create_Tetrahedrons()
+        {
+            BMesh.PrivateObject(typeof(Tetrahedrons));
+        }
+        [MenuItem("GameObject/Graphi/3D Object/Shuriken")]
+        static private void Create_Shuriken()
+        {
+            BMesh.PrivateObject(typeof(Shuriken));
+        }
+        [MenuItem("GameObject/Graphi/3D Object/Lozenge")]
+        static private void Create_Lozenge()
+        {
+            BMesh.PrivateObject(typeof(Lozenge));
+        }
+        [MenuItem("GameObject/Graphi/3D Object/Flat")]
+        static private void Create_Flat()
+        {
+            BMesh.PrivateObject(typeof(Flat));
+        }
+
         #endregion
 
 

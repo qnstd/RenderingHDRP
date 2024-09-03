@@ -39,7 +39,7 @@ namespace com.graphi.renderhdrp
             //创建Shader
             if (m_material == null)
             {
-                Lg.Err("UiVFX 渲染材质不能为空.");
+                Lg.Err("UiVFX material is null.");
                 return;
             }
 
@@ -265,20 +265,17 @@ namespace com.graphi.renderhdrp
 
             EditorGUILayout.Space(5);
             EditorGUI.BeginChangeCheck();
-            EditorGUILayout.PropertyField(m_Material, new GUIContent("材质"));
+            EditorGUILayout.PropertyField(m_Material, new GUIContent("Material"));
 
             EditorGUILayout.Space(10);
-            EditorGUILayout.PropertyField(m_OutEdgeWidth, new GUIContent("外描边尺寸"));
+            EditorGUILayout.PropertyField(m_OutEdgeWidth, new GUIContent("Outline Width"));
 
             EditorGUILayout.Space(10);
-            EditorGUILayout.PropertyField(m_ShadowUVOffset, new GUIContent("阴影偏移量"));
+            EditorGUILayout.PropertyField(m_ShadowUVOffset, new GUIContent("Shadow Offset"));
             if (EditorGUI.EndChangeCheck())
             { }
 
-            EditorGUILayout.Space(10);
-            EditorGUILayout.HelpBox(
-                "请注意，此组件的参数是针对着色程序中需要对顶点及UV区域修改的渲染项（如：阴影、外描边等）。如果无需修改顶点或者UV，则不用绑定该组件，直接创建对应的材质即可。"
-                , MessageType.Info);
+            EditorGUILayout.Space(5);
 
             serializedObject.ApplyModifiedProperties();
         }

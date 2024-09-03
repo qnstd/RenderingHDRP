@@ -192,24 +192,24 @@ namespace com.graphi.renderhdrp
 
         protected override void Initialize(SerializedProperty customPass)
         {
-            prop_color      = customPass.FindPropertyRelative("m_Color");
-            prop_intensity  = customPass.FindPropertyRelative("m_Intensity");
-            prop_threshold  = customPass.FindPropertyRelative("m_Threshold");
-            prop_spread     = customPass.FindPropertyRelative("m_Spread");
+            prop_color = customPass.FindPropertyRelative("m_Color");
+            prop_intensity = customPass.FindPropertyRelative("m_Intensity");
+            prop_threshold = customPass.FindPropertyRelative("m_Threshold");
+            prop_spread = customPass.FindPropertyRelative("m_Spread");
             prop_interation = customPass.FindPropertyRelative("m_Interation");
         }
 
         protected override void DoPassGUI(SerializedProperty customPass, Rect rect)
         {
-            EditorGUI.PropertyField(rect, prop_color, new GUIContent("颜色"), true);
+            EditorGUI.PropertyField(rect, prop_color, new GUIContent("Color"), true);
             rect.y += GetH(prop_color);
-            EditorGUI.PropertyField(rect, prop_intensity, new GUIContent("强度"), true);
+            EditorGUI.PropertyField(rect, prop_intensity, new GUIContent("Force"), true);
             rect.y += GetH(prop_intensity);
-            EditorGUI.PropertyField(rect, prop_threshold, new GUIContent("亮度阔值"), true);
+            EditorGUI.PropertyField(rect, prop_threshold, new GUIContent("Threshold"), true);
             rect.y += GetH(prop_threshold);
-            EditorGUI.PropertyField(rect, prop_spread, new GUIContent("辉光扩散"), true);
+            EditorGUI.PropertyField(rect, prop_spread, new GUIContent("Spread"), true);
             rect.y += GetH(prop_spread);
-            EditorGUI.PropertyField(rect, prop_interation, new GUIContent("迭代次数"), true);
+            EditorGUI.PropertyField(rect, prop_interation, new GUIContent("iteration"), true);
             rect.y += GetH(prop_interation, 10);
 
         }

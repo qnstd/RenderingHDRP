@@ -1,9 +1,9 @@
+using System;
+using UnityEditor;
+using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.HighDefinition;
-using System;
-using UnityEditor.Rendering;
-using UnityEditor;
 
 namespace com.graphi.renderhdrp
 {
@@ -56,7 +56,7 @@ namespace com.graphi.renderhdrp
             if (m_shader != null)
                 m_Material = CoreUtils.CreateEngineMaterial(m_shader);
             else
-                Debug.LogError($"未找到着色器 '{m_shader.name}'. 后处理渲染 [Hue] 不能被加载.");
+                Lg.Err($"Not find '{m_shader.name}'.");
         }
 
 
@@ -121,10 +121,10 @@ namespace com.graphi.renderhdrp
         {
             EditorGUILayout.Space(10);
 
-            PropertyField(m_Open, new GUIContent("启用"));
-            PropertyField(m_Brightness, new GUIContent("明亮度"));
-            PropertyField(m_Saturation, new GUIContent("饱和度"));
-            PropertyField(m_Contrast, new GUIContent("对比度"));
+            PropertyField(m_Open, new GUIContent("Enable"));
+            PropertyField(m_Brightness, new GUIContent("Brightness"));
+            PropertyField(m_Saturation, new GUIContent("Saturation"));
+            PropertyField(m_Contrast, new GUIContent("Contrast"));
 
             EditorGUILayout.Space(10);
         }

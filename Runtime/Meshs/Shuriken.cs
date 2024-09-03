@@ -32,14 +32,7 @@ namespace com.graphi.renderhdrp
         protected override void Descs()
         {
             EditorGUILayout.HelpBox(
-                "x :  长度，y :  高度，z :  内角长度，w :  内角高度", MessageType.None);
-        }
-
-
-        [MenuItem("GameObject/Graphi/3D Object/四角星")]
-        static private void CreateInHierarchy()
-        {
-            BMesh.PrivateObject(typeof(Shuriken));
+                "x :  Width\ny :  Height\nz :  Inside Angle length\nw :  Inside Angle height", MessageType.None);
         }
     }
 #endif

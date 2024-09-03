@@ -31,15 +31,11 @@ namespace com.graphi.renderhdrp
         protected override void Descs()
         {
             EditorGUILayout.HelpBox(
-                "x :  长度，y :  厚度，z :  高度", MessageType.None);
+                "x :  Width\ny :  Thickness\nz :  Height", MessageType.None);
         }
 
 
-        [MenuItem("GameObject/Graphi/3D Object/菱形")]
-        static private void CreateInHierarchy()
-        {
-            BMesh.PrivateObject(typeof(Lozenge));
-        }
+
     }
 #endif
 }
