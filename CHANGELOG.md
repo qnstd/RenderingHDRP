@@ -1,4 +1,4 @@
-# Graphi Rendering (*HDRP*)
+# Graphi Rendering HDRP
 
 #
 ## 日志

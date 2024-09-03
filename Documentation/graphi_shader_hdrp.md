@@ -1,4 +1,4 @@
-# Graphi Rendering (*HDRP*) 文档
+# Graphi Rendering HDRP 文档
 
 >
 ## 目录结构
@@ -15,6 +15,7 @@
 
 > README.md （自述）
 
+> package.json（配置）
 
 
 ## 部署 
