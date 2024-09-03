@@ -29,6 +29,9 @@ namespace com.graphi.renderhdrp.editor
             }
             return result.ToArray();
         }
+
+
+
         /// <summary>
         /// «Î«Û unity ±‡“ÎΩ≈±æ
         /// </summary>

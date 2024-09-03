@@ -107,7 +107,7 @@ namespace com.graphi.renderhdrp.editor
         }
         #endregion
 
-        #region 星球
+        #region Space
 
         [MenuItem("Assets/Graphi/Material/Space/Atmosphere")]
         static private void CreatePlanet_AtmoSphere()
