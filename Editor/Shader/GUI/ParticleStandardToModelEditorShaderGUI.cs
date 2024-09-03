@@ -68,7 +68,7 @@ namespace com.graphi.renderhdrp.editor
             #region 控制变体
             Material mat = materialEditor.target as Material;
             List<object> lst;
-            for(int i=0; i<m_ShaderPropConf.Count; i++)
+            for (int i = 0; i < m_ShaderPropConf.Count; i++)
             {
                 lst = m_ShaderPropConf[i];
                 string keyword = GetKeyword(lst[0].ToString(), lst[1].ToString());
@@ -88,9 +88,7 @@ namespace com.graphi.renderhdrp.editor
         //帮助说明组
         List<List<string>> m_helpdesc = new List<List<string>>()
         {//0: 属性字段；1: 属性相关的帮助说明
-            new List<string>(){ "_LuminancePow", "亮度系数：提取主纹理的亮度图，将亮度值与系数相乘。操作结果小于1，亮度值衰减。相反，亮度值递增。衰减、递增以非线性呈现；\n亮度指数：影响最终亮度衰减、递增的幅度；\n\n(此操作可以增加主贴图采样后颜色的差异化及质感，对于科技类的渲染需求很有作用)" },
-            new List<string>(){ "_UVFloatParams", "xy: 负责扭曲纹理的UV流动速度，zw: 负责扭曲遮罩纹理的UV流动速度。" },
-            new List<string>(){ "_FresnelType", "Gradient: 边缘光渐变。指数越小，影响区域越大。\nGeneral : 边缘光实心。指数越小，影响区域越小。" },
+            new List<string>(){ "_UVFloatParams", "xy: Twist UV spee\nzw: Twist Mak UV speed" },
         };
 
         protected override void FurtherSelect(MaterialEditor materialEditor, MaterialProperty[] properties)

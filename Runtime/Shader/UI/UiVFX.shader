@@ -17,92 +17,92 @@ Shader "Graphi/UI/UiVFX"
         [HideInInspector]_Color ("Tint", Color) = (1,1,1,1)
 
         [Space(10)]
-        [Foldout]_StencilM("模板",Range(0,1)) = 1
+        [Foldout]_StencilM("Stencil",Range(0,1)) = 1
         [Space(8)]
-        [To(_StencilM)][IntRange]_Stencil ("引用值", Range(0,255)) = 0
-        [To(_StencilM)][Enum(UnityEngine.Rendering.CompareFunction)]_StencilComp ("比较器", Float) = 8
-        [To(_StencilM)][Enum(UnityEngine.Rendering.StencilOp)]_StencilOp ("通过时的操作项", Float) = 0
-        [To(_StencilM)][IntRange]_StencilWriteMask ("写入掩码", Range(0,255)) = 255
-        [To(_StencilM)][IntRange]_StencilReadMask ("读取掩码", Range(0,255)) = 255
+        [To(_StencilM)][IntRange]_Stencil ("Ref", Range(0,255)) = 0
+        [To(_StencilM)][Enum(UnityEngine.Rendering.CompareFunction)]_StencilComp ("Compare", Float) = 8
+        [To(_StencilM)][Enum(UnityEngine.Rendering.StencilOp)]_StencilOp ("Pass OP", Float) = 0
+        [To(_StencilM)][IntRange]_StencilWriteMask ("WriteMask", Range(0,255)) = 255
+        [To(_StencilM)][IntRange]_StencilReadMask ("ReadMask", Range(0,255)) = 255
         [Space(8)]
-        [Enum(UnityEngine.Rendering.ColorWriteMask)]_ColorMask ("颜色通道输出", Float) = 15
+        [Enum(UnityEngine.Rendering.ColorWriteMask)]_ColorMask ("ColorMask", Float) = 15
 
         _SplitBar1("", int) = 0 // GUI 分隔条
 
         // 渐变色
         [Space(10)]
-        [Foldout] _Gradients("渐变色（Gradient）", Range(0,1)) = 0
+        [Foldout] _Gradients("Gradient", Range(0,1)) = 0
         [Space(8)]
-        [To(_Gradients)][Toggle]_GradientFlag("开关", float) = 0
-        [To(_Gradients)]_GradientDir("方向",Range(0,-360)) = 0
-        [To(_Gradients)][HDR]_TopClr("前置颜色",Color)=(1,1,1,1)
-        [To(_Gradients)][HDR]_BotClr("后置颜色",Color)=(1,1,1,1)
-        [To(_Gradients)]_GradientBlend("混合因子", Range(0,1)) = 0.5
+        [To(_Gradients)][Toggle]_GradientFlag("Enable", float) = 0
+        [To(_Gradients)]_GradientDir("Dir",Range(0,-360)) = 0
+        [To(_Gradients)][HDR]_TopClr("Front Color",Color)=(1,1,1,1)
+        [To(_Gradients)][HDR]_BotClr("Back Color",Color)=(1,1,1,1)
+        [To(_Gradients)]_GradientBlend("Blend Factor", Range(0,1)) = 0.5
 
         // 色相
         [Space(10)]
-        [Foldout] _Hue("色相（Hue）", Range(0,1)) = 0
+        [Foldout] _Hue("Hue", Range(0,1)) = 0
         [Space(8)]
-        [To(_Hue)][Toggle]_HueFlag("开关", float) = 0
-        [To(_Hue)]_Brightness("明亮度", Range(0, 5)) = 1
-        [To(_Hue)]_Saturation("饱和度", Range(0, 5)) = 1
-        [To(_Hue)]_Contrast("对比度", Range(0, 5)) = 1
+        [To(_Hue)][Toggle]_HueFlag("Enable", float) = 0
+        [To(_Hue)]_Brightness("Brightness", Range(0, 5)) = 1
+        [To(_Hue)]_Saturation("Saturation", Range(0, 5)) = 1
+        [To(_Hue)]_Contrast("Contrast", Range(0, 5)) = 1
 
         // 内描边
         [Space(10)]
-        [Foldout] _InnerEdge("内描边（InnerLine）", Range(0,1)) = 0
+        [Foldout] _InnerEdge("Inner line", Range(0,1)) = 0
         [Space(8)]
-        [To(_InnerEdge)][Toggle]_InnerEdgeFlag("开关", float) = 0
-        [To(_InnerEdge)]_InnerEdgeClr("颜色", Color) = (0,0,0,1)
-        [To(_InnerEdge)]_InnerEdgeWidth("宽度", float) = 1
+        [To(_InnerEdge)][Toggle]_InnerEdgeFlag("Enable", float) = 0
+        [To(_InnerEdge)]_InnerEdgeClr("Color", Color) = (0,0,0,1)
+        [To(_InnerEdge)]_InnerEdgeWidth("Width", float) = 1
 
         // 外描边
         [Space(10)]
-        [Foldout] _OutEdge("外描边（Outline）", Range(0,1)) = 0
+        [Foldout] _OutEdge("Out line", Range(0,1)) = 0
         [Space(8)]
-        [To(_OutEdge)][Toggle]_OutEdgeFlag("开关", float) = 1
-        [To(_OutEdge)][HDR]_OutEdgeClr("颜色", Color) = (0,0,0,1)
-        [HideInInspector]_OutEdgeWidth("宽度", float) = 1
+        [To(_OutEdge)][Toggle]_OutEdgeFlag("Enable", float) = 1
+        [To(_OutEdge)][HDR]_OutEdgeClr("Color", Color) = (0,0,0,1)
+        [HideInInspector]_OutEdgeWidth("Width", float) = 1
 
         // 流光
         [Space(10)]
-        [Foldout] _SweepLight("流光（SweepLight）", Range(0,1)) = 0
+        [Foldout] _SweepLight("SweepLight", Range(0,1)) = 0
         [Space(8)]
-        [To(_SweepLight)][Toggle]_SweepFlag("开关", float) = 0
-        [To(_SweepLight)]_ShowTime("显示时间（单位：秒）", float) = 1.0
-        [To(_SweepLight)]_Interval("触发的时间间隔（单位：秒）",  float) = 2.0
-        [To(_SweepLight)]_Size("平行四边形的横向尺寸（左上与右上的差值）", float) = 0.3
-        [To(_SweepLight)]_Degree("平行四边形倾斜角度（单位：角度）", float) = 45.0
-        [To(_SweepLight)]_BrightnessSweep("亮度", float) = 1.4
-        [To(_SweepLight)][HDR]_SweepClr("颜色", Color) = (1,1,1,1)
+        [To(_SweepLight)][Toggle]_SweepFlag("Enable", float) = 0
+        [To(_SweepLight)]_ShowTime("Time", float) = 1.0
+        [To(_SweepLight)]_Interval("Interval",  float) = 2.0
+        [To(_SweepLight)]_Size("Size", float) = 0.3
+        [To(_SweepLight)]_Degree("Degress", float) = 45.0
+        [To(_SweepLight)]_BrightnessSweep("Brightness", float) = 1.4
+        [To(_SweepLight)][HDR]_SweepClr("Color", Color) = (1,1,1,1)
 
         // 波动
         [Space(10)]
-        [Foldout] _Wave("波浪（Wave）", Range(0,1)) = 0
+        [Foldout] _Wave("Wave", Range(0,1)) = 0
         [Space(8)]
-        [To(_Wave)][Toggle] _WaveFlag("开关", float) = 0 
-        [To(_Wave)][Enum(X,0,Y,1,XY,2)]_WaveDir("方向",float) = 2
-        [To(_Wave)]_WaveForce("振幅", float) = 5
-        [To(_Wave)]_WaveAngle("角速度", float) = 10
-        [To(_Wave)]_WaveSpeed("初相", float) = 5
+        [To(_Wave)][Toggle] _WaveFlag("Enable", float) = 0 
+        [To(_Wave)][Enum(X,0,Y,1,XY,2)]_WaveDir("Dir",float) = 2
+        [To(_Wave)]_WaveForce("Amp", float) = 5
+        [To(_Wave)]_WaveAngle("Angle", float) = 10
+        [To(_Wave)]_WaveSpeed("Phase", float) = 5
 
         // 阴影
         [Space(10)]
-        [Foldout] _Shadows("阴影（Shadow）", Range(0,1)) = 0
+        [Foldout] _Shadows("Shadow", Range(0,1)) = 0
         [Space(8)]
-        [To(_Shadows)][Toggle]_ShadowFlag("开关",float) = 1
-        [To(_Shadows)]_ShadowClr("颜色",Color)=(0,0,0,1)
-        [To(_Shadows)]_ShadowAlphaThreshold("透明度阔值", Range(0,1)) = 0.5
-        [HideInInspector][To(_Shadows)]_ShadowDist("偏移",Vector)=(0,0,0,0)
+        [To(_Shadows)][Toggle]_ShadowFlag("Enable",float) = 1
+        [To(_Shadows)]_ShadowClr("Color",Color)=(0,0,0,1)
+        [To(_Shadows)]_ShadowAlphaThreshold("Alpha Threshold", Range(0,1)) = 0.5
+        [HideInInspector][To(_Shadows)]_ShadowDist("Offset",Vector)=(0,0,0,0)
 
 
         // 反色
         [Space(20)]
-        [Toggle]_Negation("反色（Negation）", float) = 0
+        [Toggle]_Negation("Negation", float) = 0
 
         // 灰度
         [Space(5)]
-        [Toggle]_Gray("置灰（Gray）", float) = 0
+        [Toggle]_Gray("Gray", float) = 0
 
         _SplitBar2("", int) = 0 // GUI 分隔条
         [Space(10)]

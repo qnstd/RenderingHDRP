@@ -1,7 +1,7 @@
-using UnityEngine;
-using UnityEditor;
 using System.IO;
 using System.Text;
+using UnityEditor;
+using UnityEngine;
 
 namespace com.graphi.renderhdrp.editor
 {
@@ -50,34 +50,34 @@ namespace com.graphi.renderhdrp.editor
             int _w = 80;
             Gui.Space(12);
             Gui.Hor();
-            Gui.Label("HLSL名称: <color=#fa5b93ff>*</color>", sty, _w);
+            Gui.Label("Filename: <color=#fa5b93ff>*</color>", sty, _w);
             m_name = EditorGUILayout.TextField(m_name, sty2);
             Gui.EndHor();
-            
+
             Gui.Space(5);
-            Gui.Label("描述信息: <color=#fa5b93ff>*</color>", sty, _w);
+            Gui.Label("Description: <color=#fa5b93ff>*</color>", sty, _w);
             m_desc = EditorGUILayout.TextArea(m_desc, sty2, Gui.H(100));
 
             Gui.Space(5);
             Gui.Hor();
-            Gui.Label("作者信息: <color=#fa5b93ff>*</color>", sty, _w);
+            Gui.Label("Author: <color=#fa5b93ff>*</color>", sty, _w);
             m_author = EditorGUILayout.TextField(m_author, sty2);
             Gui.EndHor();
 
             float w = 100, h = 22;
             Gui.Area((C_SIZE.x - w) * 0.5f, C_SIZE.y - h - 10, w, h);
-            Gui.Btn("创建", () => { Create(); }, null, Gui.H(h));
+            Gui.Btn("Build", () => { Create(); }, null, Gui.H(h));
             Gui.EndArea();
         }
 
 
         private void Create()
         {
-            if (!Tools.SelectDirectory(out m_path)) { return; }
+            if (!ProjectUtils.SelectDirectory(out m_path)) { return; }
             if (string.IsNullOrEmpty(m_name) || string.IsNullOrEmpty(m_author) || string.IsNullOrEmpty(m_desc))
             {
                 Close();
-                Gui.Dialog("参数未设置正确，无法创建！", "错误");
+                Gui.Dialog("Params Error！", "Error");
                 return;
             }
 
@@ -94,8 +94,8 @@ namespace com.graphi.renderhdrp.editor
             AssetDatabase.Refresh();
 
             Close();
-            Gui.Dialog("创建完毕！");
+            Gui.Dialog("Create Success！");
         }
     }
-    
+
 }

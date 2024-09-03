@@ -40,7 +40,7 @@ namespace com.graphi.renderhdrp.editor
         {
             GUIStyle sty = new GUIStyle("WordWrappedMiniLabel")
             {
-                richText=true,
+                richText = true,
                 fontSize = 10
             };
             GUIStyle sty2 = EditorStyles.helpBox;
@@ -48,36 +48,36 @@ namespace com.graphi.renderhdrp.editor
             Gui.Space(15);
             int _w = 80;
             Gui.Hor();
-            Gui.Label("文件名： <color=#fa5b93ff>*</color>", sty, 125);
+            Gui.Label("Filename： <color=#fa5b93ff>*</color>", sty, 125);
             m_name = EditorGUILayout.TextField(m_name, sty2);
             Gui.EndHor();
 
-            Gui.Space(10);
+            Gui.Space(5);
             Gui.Hor();
-            Gui.Label("是否创建材质：", sty, _w);
+            Gui.Label("Material：", sty, _w);
             m_bCreateMat = EditorGUILayout.Toggle(m_bCreateMat);
             Gui.EndHor();
 
             float w = 100, h = 22;
             Gui.Area((C_SIZE.x - w) * 0.5f, C_SIZE.y - h - 10, w, h);
-            Gui.Btn("创建", () => { Create(); }, null, Gui.H(h));
+            Gui.Btn("Build", () => { Create(); }, null, Gui.H(h));
             Gui.EndArea();
         }
 
 
         private void Create()
         {
-            if (!Tools.SelectDirectory(out m_path)) { return; }
+            if (!ProjectUtils.SelectDirectory(out m_path)) { return; }
             if (string.IsNullOrEmpty(m_name))
             {
-                Gui.Dialog("请正确填写必要参数！");
+                Gui.Dialog("Params Error！");
                 return;
             }
             string tarFileName = m_name + ".shadergraph";
             string tarp = Path.Combine(m_path, tarFileName).Replace("\\", "/");
             if (File.Exists(tarp))
             {
-                int rs = Gui.Confirm("当前路径下存在同名的着色器文件，同时也可能存在 Shader 路径冲突，确定要创建吗？", "提示", "创建", "放弃");
+                int rs = Gui.Confirm("There is a Shader file with the same name in the current path, and there may be a shader path conflict, are you sure to create it?", "Tip", "build", "cancel");
                 if (rs != 0) { return; }
             }
 
@@ -85,7 +85,7 @@ namespace com.graphi.renderhdrp.editor
             File.Copy(srcp, tarp, true);
 
             Shader sha = AssetDatabase.LoadAssetAtPath<Shader>(srcp);
-            string shapath = sha.name.Substring(0, sha.name.LastIndexOf("/") +1) + m_name;
+            string shapath = sha.name.Substring(0, sha.name.LastIndexOf("/") + 1) + m_name;
             //Lg.Trace(shapath);
 
             AssetDatabase.Refresh();
@@ -97,9 +97,9 @@ namespace com.graphi.renderhdrp.editor
             Close();
             Gui.Dialog
                 (
-                    "创建完毕! \n\n" +
-                    "着色器路径：" + shapath + "\n\n" +
-                    "文件路径：" + tarp
+                    "Success! \n\n" +
+                    "Shader Path：" + shapath + "\n\n" +
+                    "File path：" + tarp
                 );
         }
 

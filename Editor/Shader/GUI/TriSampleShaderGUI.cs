@@ -50,27 +50,27 @@ namespace com.graphi.renderhdrp.editor
         {
             if (m_Type == TriSampleType.General)
             {
-                Gui.Label((string.IsNullOrEmpty(m_Label) ? "三向反照率采样" : m_Label));
+                Gui.Label((string.IsNullOrEmpty(m_Label) ? "TriDefaultSample" : m_Label));
                 Gui.IndentLevelAdd();
                 Gui.Space(3);
                 Gui.Hor();
-                DrawTex("纹理", ShaderPropIDs.ID_AlbedoTex, editor, props);
+                DrawTex("Tex", ShaderPropIDs.ID_AlbedoTex, editor, props);
                 DrawDefault(ShaderPropIDs.ID_AlbedoColor, "", editor, props);
                 Gui.EndHor();
-                DrawDefault(ShaderPropIDs.ID_AlbedoUVTile, "瓦片", editor, props);
-                DrawDefault(ShaderPropIDs.ID_AlbedoTriBlendWeight, "混合权重", editor, props);
+                DrawDefault(ShaderPropIDs.ID_AlbedoUVTile, "Tile", editor, props);
+                DrawDefault(ShaderPropIDs.ID_AlbedoTriBlendWeight, "Blend Weight", editor, props);
                 Gui.Space(3);
                 Gui.IndentLevelSub();
             }
             else
             {
-                Gui.Label((string.IsNullOrEmpty(m_Label) ? "三向法线采样" : m_Label));
+                Gui.Label((string.IsNullOrEmpty(m_Label) ? "TriNormalSample" : m_Label));
                 Gui.IndentLevelAdd();
                 Gui.Space(3);
-                DrawTex("纹理", ShaderPropIDs.ID_NormalTex, editor, props);
-                DrawDefault(ShaderPropIDs.ID_NormalStrength, "强度", editor, props);
-                DrawDefault(ShaderPropIDs.ID_NormalUVTile, "瓦片", editor, props);
-                DrawDefault(ShaderPropIDs.ID_NormalTriBlendWeight, "混合权重", editor, props);
+                DrawTex("Tex", ShaderPropIDs.ID_NormalTex, editor, props);
+                DrawDefault(ShaderPropIDs.ID_NormalStrength, "Force", editor, props);
+                DrawDefault(ShaderPropIDs.ID_NormalUVTile, "Tile", editor, props);
+                DrawDefault(ShaderPropIDs.ID_NormalTriBlendWeight, "Blend Weight", editor, props);
                 Gui.Space(3);
                 Gui.IndentLevelSub();
             }

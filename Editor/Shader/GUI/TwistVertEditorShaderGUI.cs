@@ -8,11 +8,12 @@ namespace com.graphi.renderhdrp.editor
     /// </summary>
     public class TwistVertEditorShaderGUI : TwistBaseShaderGUI
     {
-        public TwistVertEditorShaderGUI() : base(new List<List<string>>() 
+        public TwistVertEditorShaderGUI() : base(new List<List<string>>()
         {
-            new List<string>(){ "_UVParams", "xy: 扭曲纹理的 UV 流动速度 \nzw: 顶点偏移纹理的 UV 流动速度" },
+            new List<string>(){ "_UVParams", "xy: twist tex UV speed \nzw: vertex offset tex UV speed" },
 
-        }) { }
+        })
+        { }
 
     }
 }

@@ -46,7 +46,7 @@ namespace com.graphi.renderhdrp.editor
 
         static public Rect GetEditorMainWinPosition()
         {
-            var containerWinType = Tools.GetAllDerivedTypes(System.AppDomain.CurrentDomain, typeof(ScriptableObject)).Where(t => t.Name == "ContainerWindow").FirstOrDefault();
+            var containerWinType = AssemblyUtils.GetAllDerivedTypes(System.AppDomain.CurrentDomain, typeof(ScriptableObject)).Where(t => t.Name == "ContainerWindow").FirstOrDefault();
             if (containerWinType == null)
             {
                 Lg.Err("Not find 'ContainerWindow' type. ");

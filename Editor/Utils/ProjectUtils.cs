@@ -6,16 +6,14 @@ using UnityEditor;
 namespace com.graphi.renderhdrp.editor
 {
     /// <summary>
-    /// Graphi ç¼–è¾‘æ¨¡å¼ä¸‹çš„å·¥å…·ç±»
-    /// <para>ä½œè€…ï¼šå¼ºè¾°</para>
+    /// Unity Project ²Ù×÷
+    /// <para>×÷Õß£ºÇ¿³½</para>
     /// </summary>
-    public class Tools
+    public class ProjectUtils
     {
-
-        #region Project æ£€è§†é¢æ¿å†…çš„æ“ä½œ
         /// <summary>
-        /// è·å–ç›®å½•ä¸‹æ‰€æœ‰æ–‡ä»¶
-        /// <para>é»˜è®¤å¿½ç•¥å…¶ä¸‹æ‰€æœ‰çš„.metaæ–‡ä»¶</para>
+        /// »ñÈ¡Ä¿Â¼ÏÂËùÓĞÎÄ¼ş
+        /// <para>Ä¬ÈÏºöÂÔÆäÏÂËùÓĞµÄ.metaÎÄ¼ş</para>
         /// </summary>
         /// <param name="path"></param>
         /// <param name="lst"></param>
@@ -46,7 +44,7 @@ namespace com.graphi.renderhdrp.editor
             }
         }
         /// <summary>
-        /// è·å–åœ¨ Unity Project é¢æ¿å†…é€‰ä¸­çš„ç›®å½•
+        /// »ñÈ¡ÔÚ Unity Project Ãæ°åÄÚÑ¡ÖĞµÄÄ¿Â¼
         /// </summary>
         /// <param name="p"></param>
         /// <returns></returns>
@@ -56,50 +54,17 @@ namespace com.graphi.renderhdrp.editor
             string[] guids = Selection.assetGUIDs;
             if (guids.Length == 0)
             {
-                Gui.Dialog("Unselected directoryï¼", "Error");
+                Gui.Dialog("Unselected directory£¡", "Error");
                 return false;
             }
             p = AssetDatabase.GUIDToAssetPath(guids[0]);
             if (!Directory.Exists(p))
             {
-                Gui.Dialog("Unselected directoryï¼\n\nTipï¼š\nIn the Project panel activation item, the first selected activation must be the directory.\n", "Error");
+                Gui.Dialog("Unselected directory£¡\n\nTip£º\nIn the Project panel activation item, the first selected activation must be the directory.\n", "Error");
                 return false;
             }
             return true;
         }
-        #endregion
-
-
-        #region ç¨‹åºé›†
-        /// <summary>
-        /// è·å–å‚æ•°ç±»å‹çš„æ‰€æœ‰å­ç±»
-        /// </summary>
-        /// <param name="aAppDomain"></param>
-        /// <param name="aType"></param>
-        /// <returns></returns>
-        static public System.Type[] GetAllDerivedTypes(System.AppDomain aAppDomain, System.Type aType)
-        {
-            var result = new List<System.Type>();
-            var assemblies = aAppDomain.GetAssemblies();
-            foreach (var assembly in assemblies)
-            {
-                var types = assembly.GetTypes();
-                foreach (var type in types)
-                {
-                    if (type.IsSubclassOf(aType))
-                        result.Add(type);
-                }
-            }
-            return result.ToArray();
-        }
-        /// <summary>
-        /// è¯·æ±‚ unity ç¼–è¯‘è„šæœ¬
-        /// </summary>
-        static public void CompileScripts()
-        {
-            UnityEditor.Compilation.CompilationPipeline.RequestScriptCompilation();
-        }
-        #endregion
-
     }
+
 }

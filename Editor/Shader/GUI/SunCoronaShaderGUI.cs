@@ -13,8 +13,8 @@ namespace com.graphi.renderhdrp.editor
         //帮助说明组
         List<List<string>> m_helpdesc = new List<List<string>>()
         {//0: 属性字段；1: 属性相关的帮助说明
-            new List<string>(){ "_HybridMap", "R：风暴\nG: 日冕（同时用于风暴的混合因子）\nBA：【暂未使用】" },
-            
+            new List<string>(){ "_HybridMap", "R：Storm\nG: Corona（Blend factor with storm）\nBA：【Unused】" },
+
         };
 
 

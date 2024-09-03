@@ -34,7 +34,7 @@ namespace com.graphi.renderhdrp.editor
         /// <param name="matname">材质文件名（不带文件后缀）</param>
         static public void Excute(string shaderpath, string matname)
         {
-            if (!Tools.SelectDirectory(out string p)) { return; }
+            if (!ProjectUtils.SelectDirectory(out string p)) { return; }
             p = Path.Combine(p, matname + ".mat").Replace("\\", "/");
 
             AssetDatabase.CreateAsset(new Material(ShaderFind.GetTradition(shaderpath)), p);

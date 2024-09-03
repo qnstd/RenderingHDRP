@@ -52,7 +52,7 @@ namespace com.graphi.renderhdrp.editor
                     Gui.Label("Compile: ", new GUIStyle("LODSliderText") { richText = true, fontSize = 11 }, 100);
                     Color c = GUI.backgroundColor;
                     GUI.backgroundColor = m_CompileBtnColor;
-                    Gui.Btn("Run", () => { Tools.CompileScripts(); }, new GUIStyle("IN EditColliderButton") { richText = true, fontSize = 10, alignment = TextAnchor.MiddleCenter }, Gui.W(45), Gui.H(20));
+                    Gui.Btn("Run", () => { AssemblyUtils.CompileScripts(); }, new GUIStyle("IN EditColliderButton") { richText = true, fontSize = 10, alignment = TextAnchor.MiddleCenter }, Gui.W(45), Gui.H(20));
                     GUI.backgroundColor = c;
                     Gui.EndHor();
 

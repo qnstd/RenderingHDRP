@@ -11,12 +11,12 @@ namespace com.graphi.renderhdrp.editor
     {
         public override void Draw(MaterialEditor editor, MaterialProperty[] props)
         {
-            Gui.Label("·ÆÄù¶û±ßÔµ¹â");
+            Gui.Label("Fresnel Light");
             Gui.IndentLevelAdd();
             Gui.Space(3);
-            DrawDefault(ShaderPropIDs.ID_FresnelColor, "ÑÕÉ«", editor, props);
-            DrawDefault(ShaderPropIDs.ID_FresnelArea, "·¶Î§", editor, props);
-            DrawDefault(ShaderPropIDs.ID_FresnelForce, "Ç¿¶È", editor, props);
+            DrawDefault(ShaderPropIDs.ID_FresnelColor, "Color", editor, props);
+            DrawDefault(ShaderPropIDs.ID_FresnelArea, "Area", editor, props);
+            DrawDefault(ShaderPropIDs.ID_FresnelForce, "Force", editor, props);
             Gui.Space(3);
             Gui.IndentLevelSub();
         }

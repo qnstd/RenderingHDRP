@@ -46,7 +46,7 @@ namespace com.graphi.renderhdrp.editor
         static void GetGraphiLibIcons()
         {
             m_GraphiIconNames.Clear();
-            Tools.GetFiles
+            ProjectUtils.GetFiles
             (
                 "Packages/com.cngraphi.renderhdrp/Editor/Images",
                 ref m_GraphiIconNames,

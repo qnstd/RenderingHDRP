@@ -10,12 +10,12 @@ namespace com.graphi.renderhdrp.editor
     {
         public override void Draw(MaterialEditor editor, MaterialProperty[] props)
         {
-            Gui.Label("±°ƒ§∏……Ê");
+            Gui.Label("Iridescence");
             Gui.Space(3);
             Gui.IndentLevelAdd();
 
-            DrawRange("’€…‰∫Ò∂»", ShaderPropIDs.ID_IorThickness, editor, props);
-            DrawRange("’€…‰«ø∂»", ShaderPropIDs.ID_IorIntensity, editor, props);
+            DrawRange("Thickness", ShaderPropIDs.ID_IorThickness, editor, props);
+            DrawRange("Force", ShaderPropIDs.ID_IorIntensity, editor, props);
 
             Gui.IndentLevelSub();
         }

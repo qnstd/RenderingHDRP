@@ -12,49 +12,49 @@ namespace com.graphi.renderhdrp.editor
 
         public override void Draw(MaterialEditor editor, MaterialProperty[] props)
         {
-            DrawDefault(ShaderPropIDs.ID_CoverFlag, "覆盖色", editor, props);
+            DrawDefault(ShaderPropIDs.ID_CoverFlag, "Cover", editor, props);
             Gui.Space(3);
 
             if (Find(ShaderPropIDs.ID_CoverFlag, props).floatValue == 1)
             {
                 Gui.IndentLevelAdd();
-                DrawTex("覆盖贴图", ShaderPropIDs.ID_CoverMap, editor, props);
+                DrawTex("Tex", ShaderPropIDs.ID_CoverMap, editor, props);
 
                 Gui.IndentLevelAdd();
                 Gui.Space(5);
                 if (!IsNullTex(ShaderPropIDs.ID_CoverMap, props))
                 {
                     // r
-                    DrawChannel("通道1（R）", ShaderPropIDs.ID_RFlag, ShaderPropIDs.ID_R, ShaderPropIDs.ID_RBright, editor, props);
+                    DrawChannel("R channel", ShaderPropIDs.ID_RFlag, ShaderPropIDs.ID_R, ShaderPropIDs.ID_RBright, editor, props);
                     // g
-                    DrawChannel("通道2（G）", ShaderPropIDs.ID_GFlag, ShaderPropIDs.ID_G, ShaderPropIDs.ID_GBright, editor, props);
+                    DrawChannel("G channel", ShaderPropIDs.ID_GFlag, ShaderPropIDs.ID_G, ShaderPropIDs.ID_GBright, editor, props);
                     // b
-                    DrawChannel("通道3（B）", ShaderPropIDs.ID_BFlag, ShaderPropIDs.ID_B, ShaderPropIDs.ID_BBright, editor, props);
+                    DrawChannel("B channel", ShaderPropIDs.ID_BFlag, ShaderPropIDs.ID_B, ShaderPropIDs.ID_BBright, editor, props);
                     // a
-                    DrawChannel("通道4（A）", ShaderPropIDs.ID_AFlag, ShaderPropIDs.ID_A, ShaderPropIDs.ID_ABright, editor, props);
+                    DrawChannel("A channel", ShaderPropIDs.ID_AFlag, ShaderPropIDs.ID_A, ShaderPropIDs.ID_ABright, editor, props);
 
                     Gui.Space(3);
-                    DrawDefault(ShaderPropIDs.ID_BlendFlag, "颜色混合", editor, props);
+                    DrawDefault(ShaderPropIDs.ID_BlendFlag, "Blend", editor, props);
                     if (Find(ShaderPropIDs.ID_BlendFlag, props).floatValue == 1)
                     {
                         Gui.Space(2);
                         Gui.IndentLevelAdd();
-                        m_BlendType = Gui.EnumPop<BlendColorType>("混合类型", m_BlendType);
+                        m_BlendType = Gui.EnumPop<BlendColorType>("BlendType", m_BlendType);
                         Find(ShaderPropIDs.ID_BlendType, props).floatValue = (float)m_BlendType;
-                        DrawDefault(ShaderPropIDs.ID_BlendFactor, "混合因子", editor, props);
+                        DrawDefault(ShaderPropIDs.ID_BlendFactor, "BlendFactor", editor, props);
                         Gui.IndentLevelSub();
                     }
                     Gui.Space(2);
                     Gui.Help(
-                        "1. 颜色混合是针对各通道存在叠加区域时的处理。若在设计时，不存在各通道相互叠加区域，建议关闭颜色混合处理模块以节省性能开销；\n" +
-                        "2. 若颜色混合处理模块处于关闭状态下，且存在不同通道之间的叠加区域，则按照“颜色相加”的方式进行混合；\n" +
-                        "3. 当4个通道全部未开启时，即使开启了颜色混合，也无法进行混合操作；"
+                        "1. Color mixing is the processing when there are overlapping areas of each channel. If there is no overlapping area between channels during the design, it is recommended to turn off the color mixing processing module to save performance overhead；\n" +
+                        "2. If the color mixing processing module is turned off and there is a superposition area between different channels, the method of \"color adding\" is used for mixing；\n" +
+                        "3. When all four channels are not opened, the mixing operation cannot be performed even if the color mixing is enabled；"
                         ,
                         UnityEditor.MessageType.None);
 
                     Gui.Space(3);
-                    DrawDefault(ShaderPropIDs.ID_CoverThreshold, "阔值", editor, props);
-                    Gui.Help("阔值的作用是解决覆盖色贴图中存在灰度值过低的像素，从而导致覆盖上色时出现破点（黑块）问题。一般默认值0.1即可。数值越大，抽色越多。", MessageType.None);
+                    DrawDefault(ShaderPropIDs.ID_CoverThreshold, "Threshold", editor, props);
+                    Gui.Help("The function of the width value is to solve the problem of pixels with too low gray value in the overlay color map, resulting in broken points (black blocks) during the overlay color. Generally, the default value is 0.1. The larger the value, the more color is drawn.", MessageType.None);
                 }
                 Gui.IndentLevelSub();
 
@@ -68,8 +68,8 @@ namespace com.graphi.renderhdrp.editor
             Gui.IndentLevelAdd(2);
             if (Find(flagname, props).floatValue == 1)
             {
-                DrawDefault(colorname, "颜色", editor, props);
-                DrawDefault(brightnessname, "亮度", editor, props);
+                DrawDefault(colorname, "Color", editor, props);
+                DrawDefault(brightnessname, "Brightness", editor, props);
             }
             Gui.IndentLevelSub(2);
         }

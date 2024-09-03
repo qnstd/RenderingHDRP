@@ -10,7 +10,7 @@ namespace com.graphi.renderhdrp.editor
     {
         public TwistEditorShaderGUI() : base(new List<List<string>>()
         {
-            new List<string>(){ "_UVParams", "xy: 噪声图 UV 流动速度 \nzw: 遮罩图 UV 流动速度" },
+            new List<string>(){ "_UVParams", "xy: Noise tex UV speed \nzw: Mask tex UV speed" },
         })
         { }
 
