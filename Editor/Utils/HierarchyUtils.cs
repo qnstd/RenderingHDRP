@@ -5,14 +5,14 @@ using UnityEngine;
 namespace com.graphi.renderhdrp.editor
 {
     /// <summary>
-    /// 负责快速在 Hierarchy 列表内创建对象
+    /// 负责对 Hierarchy 列表内游戏对象进行相关操作的工具类
     /// <para>作者：强辰</para>
     /// </summary>
-    public class HierarchyObject : EditorWindow
+    public class HierarchyUtils : EditorWindow
     {
-
+        #region 游戏对象创建
         [MenuItem("GameObject/Graphi/Volume/OccDisplay")]
-        static private void CreateOccDisplay()
+        static private void Create_OccDisplay()
         {
             if (Application.isPlaying)
             {
@@ -28,7 +28,7 @@ namespace com.graphi.renderhdrp.editor
                      CreateShaderMat.Excute2($"{savepath}occdisplaydraw_{Mth.GenerateRandomNum(6)}.mat", "Graphi/FullScreen/OccDisplay")
                 );
             if (obj != null)
-                Tools.SetIcon(obj, "Graphi-OccDisplay-Icon");
+                SetIcon(obj, "Graphi-OccDisplay-Icon");
         }
 
 
@@ -37,7 +37,7 @@ namespace com.graphi.renderhdrp.editor
         static private void Create_RuntimePerformance()
         {
             GameObject go = new GameObject("GraphicsProfiler");
-            Tools.SetIcon(go, "Graphi-Analyze-Icon");
+            SetIcon(go, "Graphi-Analyze-Icon");
             go.AddComponent<RuntimePerformance>();
         }
 
@@ -45,7 +45,7 @@ namespace com.graphi.renderhdrp.editor
 
 
         [MenuItem("GameObject/Graphi/Volume/Twist")]
-        static private void CreateTwistDiver()
+        static private void Create_TwistDiver()
         {
             if (Application.isPlaying)
             {
@@ -66,20 +66,20 @@ namespace com.graphi.renderhdrp.editor
             if (go != null)
             {
                 EditorGUIUtility.PingObject(go);
-                Tools.SetIcon(go, "Graphi-TwistRP-Icon");
+                SetIcon(go, "Graphi-TwistRP-Icon");
             }
         }
 
 
 
         [MenuItem("GameObject/Graphi/Fx/Particle")]
-        static private void CreateFx()
+        static private void Create_Fx()
         {
             //在 Hierarchy 列表中创建粒子对象
             string id = Mth.GenerateRandomNum(8);
             GameObject obj = new GameObject("Particle_" + id);
             ParticleSystem ps = obj.AddComponent<ParticleSystem>();
-            Tools.SetIcon(obj, "Graphi-ParticleObj-Icon");
+            SetIcon(obj, "Graphi-ParticleObj-Icon");
 
 
             //TODO：修改粒子对象绑定的粒子系统数据
@@ -113,6 +113,32 @@ namespace com.graphi.renderhdrp.editor
             //END
 
             renderhdrp.Tools.LocationElement(mat, false);
+        }
+        #endregion
+
+
+        /// <summary>
+        /// 为游戏对象设置图标
+        /// </summary>
+        /// <param name="go">游戏对象</param>
+        /// <param name="icon">图标文件名（不带文件名后缀）</param>
+        static public void SetIcon(GameObject go, string icon)
+        {
+            EditorGUIUtility.SetIconForObject(go, AssetDatabase.LoadAssetAtPath<Texture2D>(renderhdrp.Tools.FindexactFile("Editor/Images", $"{icon}.png")));
+        }
+
+
+        /// <summary>
+        /// 获取 Hierarchy 列表中游戏对象的路径
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        static public string GetGameObjectHierarchyPath(GameObject obj)
+        {
+            if (!obj.transform.parent)
+                return obj.transform.name;
+
+            return GetGameObjectHierarchyPath(obj.transform.parent.gameObject) + "/" + obj.transform.name;
         }
 
     }

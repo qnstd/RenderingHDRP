@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using UnityEditor;
-using UnityEngine;
 
 namespace com.graphi.renderhdrp.editor
 {
@@ -67,31 +66,6 @@ namespace com.graphi.renderhdrp.editor
                 return false;
             }
             return true;
-        }
-        #endregion
-
-
-        #region Hierarchy 列表功能
-        /// <summary>
-        /// 为游戏对象设置图标
-        /// </summary>
-        /// <param name="go">游戏对象</param>
-        /// <param name="icon">图标文件名（不带文件名后缀）</param>
-        static public void SetIcon(GameObject go, string icon)
-        {
-            EditorGUIUtility.SetIconForObject(go, AssetDatabase.LoadAssetAtPath<Texture2D>(renderhdrp.Tools.FindexactFile("Editor/Images", $"{icon}.png")));
-        }
-        /// <summary>
-        /// 获取 Hierarchy 列表中游戏对象的路径
-        /// </summary>
-        /// <param name="obj"></param>
-        /// <returns></returns>
-        static public string GetGameObjectHierarchyPath(GameObject obj)
-        {
-            if (!obj.transform.parent)
-                return obj.transform.name;
-
-            return GetGameObjectHierarchyPath(obj.transform.parent.gameObject) + "/" + obj.transform.name;
         }
         #endregion
 

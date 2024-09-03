@@ -36,7 +36,7 @@ namespace com.graphi.renderhdrp.editor
                 win.Show();
             return win;
         }
-        
+
         static public void WinCenter(EditorWindow win, Vector2 size)
         {
             Rect r = GetEditorMainWinPosition();
@@ -49,7 +49,7 @@ namespace com.graphi.renderhdrp.editor
             var containerWinType = Tools.GetAllDerivedTypes(System.AppDomain.CurrentDomain, typeof(ScriptableObject)).Where(t => t.Name == "ContainerWindow").FirstOrDefault();
             if (containerWinType == null)
             {
-                Lg.Err("没有找到 'ContainerWindow' 类型. 可能 Unity 内部发生了改变。");
+                Lg.Err("Not find 'ContainerWindow' type. ");
                 return default;
             }
 
@@ -57,7 +57,7 @@ namespace com.graphi.renderhdrp.editor
             var positionProperty = containerWinType.GetProperty("position", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance);
             if (showModeField == null || positionProperty == null)
             {
-                Lg.Err("没有找到 m_ShowMode 及 position 变量. 可能 Unity 内部发生了改变。");
+                Lg.Err("Not find 'm_ShowMode' and 'position' vars. ");
                 return default;
             }
 
@@ -71,7 +71,7 @@ namespace com.graphi.renderhdrp.editor
                 }
             }
 
-            Lg.Err("没有找到主窗体类型。可能 Unity 内部发生了改变。");
+            Lg.Err("Not find win type.");
             return default;
         }
 
@@ -194,7 +194,7 @@ namespace com.graphi.renderhdrp.editor
             return EditorGUILayout.ObjectField(label, obj, typeof(T), canSelectInHierarchy) as T;
         }
 
-        
+
         static public T EnumPop<T>(T obj, params GUILayoutOption[] options) where T : Enum
         {
             return (T)EditorGUILayout.EnumPopup(obj, options);
@@ -212,7 +212,7 @@ namespace com.graphi.renderhdrp.editor
             return (T)EditorGUILayout.EnumPopup(label, obj, options);
         }
 
-     
+
         static public float Slider(float val, float min, float max, params GUILayoutOption[] options)
         {
             return EditorGUILayout.Slider(val, min, max, options);
@@ -237,7 +237,7 @@ namespace com.graphi.renderhdrp.editor
             if (CreateBtn(str, sty, options)) { action?.Invoke(p); }
         }
 
-       
+
         static public void Check() { EditorGUI.BeginChangeCheck(); }
         static public bool EndCheck() { return EditorGUI.EndChangeCheck(); }
 
