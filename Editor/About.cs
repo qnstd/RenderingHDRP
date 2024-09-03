@@ -65,10 +65,10 @@ namespace com.graphi.renderhdrp.editor
 
         private void OnEnable()
         {
-            string f = renderhdrp.Tools.FindexactFile("Editor/Images", "Graphi-Logo.png");
+            string f = Tools.FindexactFile("Editor/Images", "Graphi-Logo.png");
             if (f != null)
                 m_t2d = AssetDatabase.LoadAssetAtPath<Texture2D>(f);
-            f = renderhdrp.Tools.FindexactFile("Editor/Images", "Graphi-AboutBackground.png");
+            f = Tools.FindexactFile("Editor/Images", "Graphi-AboutBackground.png");
             if (f != null)
                 m_t2d2 = AssetDatabase.LoadAssetAtPath<Texture2D>(f);
         }

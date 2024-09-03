@@ -490,7 +490,15 @@ namespace com.graphi.renderhdrp
         // 设置进度时间字符信息
         void SetTimeInfo()
         {
-            m_TimeInfo = $"{((m_Frame == 0) ? "00:00" : Tools.Seconds2Time((int)(m_Frame * player.length)))} / {Tools.Seconds2Time((int)player.length)}";
+            m_TimeInfo = $"{((m_Frame == 0) ? "00:00" : Seconds2Time((int)(m_Frame * player.length)))} / {Seconds2Time((int)player.length)}";
+        }
+
+        string Seconds2Time(int seconds)
+        {
+            int v = seconds;
+            int m = v / 60;
+            int s = v % 60;
+            return string.Format("{0:D2}:{1:D2}", m, s);
         }
 
         // 材质发生改变

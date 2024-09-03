@@ -109,7 +109,8 @@ namespace com.graphi.renderhdrp.editor
             psr.SetActiveVertexStreams(streams);
             //END
 
-            renderhdrp.Tools.LocationElement(mat, false);
+            EditorGUIUtility.PingObject(obj);
+            Selection.activeObject = obj;
         }
 
 
@@ -144,7 +145,7 @@ namespace com.graphi.renderhdrp.editor
         /// <param name="icon">图标文件名（不带文件名后缀）</param>
         static public void SetIcon(GameObject go, string icon)
         {
-            EditorGUIUtility.SetIconForObject(go, AssetDatabase.LoadAssetAtPath<Texture2D>(renderhdrp.Tools.FindexactFile("Editor/Images", $"{icon}.png")));
+            EditorGUIUtility.SetIconForObject(go, AssetDatabase.LoadAssetAtPath<Texture2D>(Tools.FindexactFile("Editor/Images", $"{icon}.png")));
         }
 
 

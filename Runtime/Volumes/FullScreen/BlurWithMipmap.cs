@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEditor;
 using UnityEditor.Rendering.HighDefinition;
 using UnityEngine;
@@ -17,10 +18,8 @@ namespace com.graphi.renderhdrp
     {
         #region 对外参数
 
-        [FieldAttr("Blur Level")]
         [Range(0, 7)]
         public int m_MipmapLv = 4;
-        [FieldAttr("Brightness")]
         [Range(0, 1)]
         public float m_Brightness = 1.0f;
 
@@ -76,12 +75,16 @@ namespace com.graphi.renderhdrp
     [CustomPassDrawerAttribute(typeof(BlurWithMipmap))]
     internal class BlurWithMipmapCustomPassDraw : CustomPassDrawer
     {
-        List<Field> lst = new List<Field>();
+        List<SerializedProperty> lst = new List<SerializedProperty>();
         GUIStyle _HelpBoxStyle;
 
         protected override void Initialize(SerializedProperty customPass)
         {
-            Tools.GetFieldInfo(typeof(BlurWithMipmap), customPass, ref lst);
+            FieldInfo[] fields = typeof(BlurWithMipmap).GetFields(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly);
+            foreach (FieldInfo fi in fields)
+            {
+                lst.Add(customPass.FindPropertyRelative(fi.Name));
+            }
 
             _HelpBoxStyle = new GUIStyle("FrameBox");
             _HelpBoxStyle.richText = true;
@@ -92,7 +95,12 @@ namespace com.graphi.renderhdrp
         protected override void DoPassGUI(SerializedProperty customPass, Rect rect)
         {
             rect.y += 10;
-            Tools.ShowFieldInfo(lst, ref rect, GetH);
+            for (int i = 0; i < lst.Count; i++)
+            {
+                SerializedProperty prop = lst[i];
+                EditorGUI.PropertyField(rect, prop, true);
+                rect.y += GetH(prop);
+            }
 
             rect.y += 5;
             rect.height = 20;

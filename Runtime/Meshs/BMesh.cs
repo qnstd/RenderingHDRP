@@ -138,11 +138,11 @@ namespace com.graphi.renderhdrp
             go.AddComponent(classType);
 
             // …Ë÷√∂‘œÛicon
-            string iconPath = Tools.FindexactFile("Editor/Images", $"Graphi-Mesh-{name}-Icon.png");
-            if (!string.IsNullOrEmpty(iconPath))
-            {
-                EditorGUIUtility.SetIconForObject(go, AssetDatabase.LoadAssetAtPath<Texture2D>(iconPath));
-            }
+            //string iconPath = Tools.FindexactFile("Editor/Images", $"Graphi-Mesh-{name}-Icon.png");
+            //if (!string.IsNullOrEmpty(iconPath))
+            //{
+            //    EditorGUIUtility.SetIconForObject(go, AssetDatabase.LoadAssetAtPath<Texture2D>(iconPath));
+            //}
 
 
             GameObject parent = Selection.activeGameObject;

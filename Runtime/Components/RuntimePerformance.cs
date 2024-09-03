@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Unity.Profiling;
@@ -157,7 +158,7 @@ namespace com.graphi.renderhdrp
                     }
                 }
             }
-            m_DrawTxtBackground = Tools.CreateT2D(4, new UnityEngine.Color(0, 0, 0, 0.5f));
+            m_DrawTxtBackground = CreateT2D(4, new UnityEngine.Color(0, 0, 0, 0.5f));
         }
 
         void OnDisable()
@@ -225,7 +226,7 @@ namespace com.graphi.renderhdrp
 
             if (m_CanDraw)
             {
-                Tools.CaluResolutionScale(ref m_LastResolution, C_Size4K, (scale) =>
+                CaluResolutionScale(ref m_LastResolution, C_Size4K, (scale) =>
                 {
                     m_DrawStyle.fontSize = (int)(m_DrawSize * scale);
                     Vector2 size = C_DrawBgSize * scale;
@@ -235,6 +236,49 @@ namespace com.graphi.renderhdrp
                     GUI.DrawTexture(m_DrawBgRect, m_DrawTxtBackground);
                 GUI.Label(m_DrawRect, InfoForamt(), m_DrawStyle);
             }
+        }
+
+
+        /// <summary>
+        /// 分辨率更改
+        /// </summary>
+        /// <param name="lastResolution">上次分辨率</param>
+        /// <param name="resolution">分辨率参照</param>
+        /// <param name="act">分辨率比列计算完毕后续操作的委托</param>
+        void CaluResolutionScale(ref Vector2 lastResolution, Vector2 resolution, Action<float> act)
+        {
+            int curw = Screen.width;
+            int curh = Screen.height;
+            if (lastResolution.x != curw || lastResolution.y != curh)
+            {
+                lastResolution.Set(curw, curh);
+                float wscale = lastResolution.x / resolution.x;
+                float hscale = lastResolution.y / resolution.y;
+                float scale = (wscale <= hscale) ? wscale : hscale;
+                // 更新
+                act?.Invoke(scale);
+            }
+        }
+
+
+        /// <summary>
+        /// 创建一张单颜色的纹理
+        /// </summary>
+        /// <param name="size">尺寸</param>
+        /// <param name="c">颜色</param>
+        /// <returns></returns>
+        Texture2D CreateT2D(int size, Color c)
+        {
+            Texture2D t2d = new Texture2D(size, size);
+            for (int i = 0; i < t2d.width; i++)
+            {
+                for (int j = 0; j < t2d.height; j++)
+                {
+                    t2d.SetPixel(i, j, c);
+                }
+            }
+            t2d.Apply();
+            return t2d;
         }
 
 

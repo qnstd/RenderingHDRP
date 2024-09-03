@@ -17,24 +17,18 @@ namespace com.graphi.renderhdrp
     public class Blur : CustomPass
     {
         #region 对外参数
-        [FieldAttr("Iteration")]
         public int m_iteration = 4;
 
-        [FieldAttr("Blur")]
         public float m_blur = 3f;
 
-        [FieldAttr("Scale")]
         [Range(0.1f, 1)]
         public float m_Scale = 0.5f;
 
-        [FieldAttr("Parameter")]
         public Texture2DParameter m_Tex2dParameter = new Texture2DParameter(null, false);
 
-        [FieldAttr("Force")]
         [Range(0, 1)]
         public float m_Intensity = 0.01f;
 
-        [FieldAttr("Reverse")]
         public bool m_Reverse = false;
         #endregion
 
@@ -186,55 +180,6 @@ namespace com.graphi.renderhdrp
     [CustomPassDrawerAttribute(typeof(Blur))]
     public class BlurCustomPassDrawer : CustomPassDrawer
     {
-        List<Field> lst = new List<Field>();
-
-        float _Yoffset;
-        GUIStyle _HelpBoxStyle;
-
-
-        protected override void Initialize(SerializedProperty customPass)
-        {
-            Tools.GetFieldInfo(target.GetType(), customPass, ref lst);
-
-            _HelpBoxStyle = new GUIStyle("FrameBox");
-            _HelpBoxStyle.richText = true;
-            _HelpBoxStyle.fontSize = 10;
-            _HelpBoxStyle.alignment = TextAnchor.UpperLeft;
-        }
-
-
-        protected override void DoPassGUI(SerializedProperty customPass, Rect rect)
-        {
-            _Yoffset = 0;
-            rect.y += 10;
-            _Yoffset += 10;
-
-            Tools.ShowFieldInfo(lst, ref rect, GetH);
-
-            _Yoffset += 10;
-        }
-
-        /// <summary>
-        /// 在Inspector中，每个自定义属性项的行高
-        /// </summary>
-        /// <param name="p"></param>
-        /// <param name="adddist"></param>
-        /// <returns></returns>
-        private float GetH(SerializedProperty p, float adddist = 0.0f)
-        {
-            return EditorGUI.GetPropertyHeight(p) + EditorGUIUtility.standardVerticalSpacing + adddist;
-        }
-
-        /// <summary>
-        /// Inspector 总高度
-        /// </summary>
-        /// <param name="customPass"></param>
-        /// <returns></returns>
-        protected override float GetPassHeight(SerializedProperty customPass)
-        {
-            return base.GetPassHeight(customPass) + _Yoffset;
-        }
-
         /// <summary>
         /// 屏蔽unity提供的默认标签，在模糊渲染过程中，无需修改默认提供的标签项
         /// </summary>
