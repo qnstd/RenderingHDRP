@@ -15,7 +15,7 @@ namespace com.graphi.renderhdrp
     public class Tools
     {
         #region 字节转字符串
-        static string[] C_UNITS = new string[]{ "B", "KB", "MB", "GB", "TB", "PB" };
+        static string[] C_UNITS = new string[] { "B", "KB", "MB", "GB", "TB", "PB" };
         static public string Bytes2Str(long val, bool isunits = true, string format = "f1")
         {
             return Bytes2Str(val, isunits, format);
@@ -132,7 +132,7 @@ namespace com.graphi.renderhdrp
         {
             string p = Path.Combine
                         (
-                            "Packages/com.graphi.renderhdrp",
+                            "Packages/com.cngraphi.renderhdrp",
                             relpath,
                             filename
                         );

@@ -48,8 +48,8 @@ namespace com.graphi.renderhdrp.editor
             m_GraphiIconNames.Clear();
             Tools.GetFiles
             (
-                "Packages/com.graphi.renderhdrp/Editor/Images", 
-                ref m_GraphiIconNames, 
+                "Packages/com.cngraphi.renderhdrp/Editor/Images",
+                ref m_GraphiIconNames,
                 new string[] { ".png" }
             );
         }
