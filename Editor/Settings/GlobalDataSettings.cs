@@ -23,7 +23,7 @@ namespace com.graphi.renderhdrp.editor
     /// Graphi 着色库全局数据配置
     /// <para>作者：强辰</para>
     /// </summary>
-    [CreateAssetMenu(fileName = "GlobalDataSettingsAsset", menuName = "Graphi/EditorGlobalSettings", order = 0)]
+    [CreateAssetMenu(fileName = "GlobalDataSettingsAsset", menuName = "Rendering/Graphi EditorGlobalSettings", order = 0)]
     public class GlobalDataSettings : ScriptableObject
     {
         public Color m_GeometryColor = Color.white;

@@ -36,7 +36,7 @@ namespace com.graphi.renderhdrp.editor
             m_Editor.TexturePropertySingleLine(new UnityEngine.GUIContent("Tex£¨R£ºGray¡¢G£ºMask¡¢B£ºSmooth£©"), FindProperty(ShaderPropIDs.ID_DetailTex, m_Props));
             DrawShaderProperty(ShaderPropIDs.ID_DetailColor, "");
             Gui.EndHor();
-            m_Editor.TexturePropertySingleLine(new UnityEngine.GUIContent("·¨Ïß"), FindProperty(ShaderPropIDs.ID_DetailNormalTex, m_Props));
+            m_Editor.TexturePropertySingleLine(new UnityEngine.GUIContent("Normal"), FindProperty(ShaderPropIDs.ID_DetailNormalTex, m_Props));
             DrawShaderProperty(ShaderPropIDs.ID_DetailUVTile, "Tile");
             DrawShaderProperty(ShaderPropIDs.ID_DetailBlendWeight, "Blend Weight");
             DrawShaderProperty(ShaderPropIDs.ID_DetailAlbedoScal, "Albedo Force");

@@ -11,8 +11,8 @@ Shader "Hidden/Graphi/Tool/GeometryMesh"
 {
     Properties
     {
-        [HideInInspector] _Color("颜色", Color) = (1,1,1,1)
-        [HideInInspector] _Color2("颜色（不受光照区域）", Color) = (1,1,1,1)
+        [HideInInspector] _Color("color", Color) = (1,1,1,1)
+        [HideInInspector] _Color2("color(unreceive light)", Color) = (1,1,1,1)
     }
 
 

@@ -155,24 +155,6 @@ namespace com.graphi.renderhdrp.editor
             Excute("Graphi/Lit/LitStandardVariant", "LitStandardVariant Material");
         }
 
-        [MenuItem("Assets/Graphi/Material/Lit/Standard Cover")]
-        static private void CreateLitStandardCover()
-        {
-            Excute("Graphi/Lit/LitStandardCover", "LitStandardCover Material");
-        }
-
-        [MenuItem("Assets/Graphi/Material/Lit/Standard Iridescence And Cover")]
-        static private void CreateLitIridescenceCover()
-        {
-            Excute("Graphi/Lit/LitIridescenceCover", "LitIridescenceCover Material");
-        }
-
-        [MenuItem("Assets/Graphi/Material/Lit/Layered")]
-        static private void CreateLayeredLit()
-        {
-            Excute("Graphi/Lit/Layered", "LayeredLit Material");
-        }
-
         [MenuItem("Assets/Graphi/Material/Lit/Normal permutation")]
         static private void CreateNormalDisplacement()
         {

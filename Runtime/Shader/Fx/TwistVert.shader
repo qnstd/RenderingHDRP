@@ -11,23 +11,23 @@ Shader "Graphi/Fx/TwistVert"
 {
     Properties
     {
-        [Foldout] _TwistOperate("热扭曲（Twist）",Range(0,1)) = 1
+        [Foldout] _TwistOperate("Twist",Range(0,1)) = 1
         [Space(5)]
-        [To(_TwistOperate)]_MainTex("纹理", 2D) = "white" {}
-        [SingleLine][To(_TwistOperate)]_MskTex("蒙版", 2D) = "white"{}
-        [To(_TwistOperate)]_Intensity("强度", Float) = 0
+        [To(_TwistOperate)]_MainTex("Tex", 2D) = "white" {}
+        [SingleLine][To(_TwistOperate)]_MskTex("Mask", 2D) = "white"{}
+        [To(_TwistOperate)]_Intensity("Force", Float) = 0
 
         [Space(10)]
-        [Foldout] _VertexOperate("顶点偏移（Vertex Offset）",Range(0,1)) = 0
+        [Foldout] _VertexOperate("Vertex Offset",Range(0,1)) = 0
         [Space(5)]
-        [To(_VertexOperate)]_VertexTex("偏移纹理", 2D) = "white" {}
-        [To(_VertexOperate)]_Nor("法线偏移因子", Float) = 0
+        [To(_VertexOperate)]_VertexTex("Offset tex", 2D) = "white" {}
+        [To(_VertexOperate)]_Nor("Normal Offset", Float) = 0
 
         [Space(10)]
-        [Foldout] _Pub("公共属性（Public）",Range(0,1)) = 1
-        [To(_Pub)]_UVParams("UV 偏移设置", Vector) = (0, 0, 0, 0)
+        [Foldout] _Pub("Public",Range(0,1)) = 1
+        [To(_Pub)]_UVParams("UV offset", Vector) = (0, 0, 0, 0)
 
-        [HideInInspector]_AlphaCutoff("Alpha 裁剪", Range(0.0, 1.0)) = 0
+        [HideInInspector]_AlphaCutoff("Alpha cutoff", Range(0.0, 1.0)) = 0
         [HideInInspector]_BlendMode("_BlendMode", Range(0.0, 1.0)) = 0.5
     }
 

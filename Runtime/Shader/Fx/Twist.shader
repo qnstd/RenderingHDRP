@@ -12,23 +12,23 @@ Shader "Graphi/Fx/Twist"
     Properties
     {
         //噪声
-        [Foldout] _NoiseOperate("噪声（Noise）",Range(0,1)) = 1
+        [Foldout] _NoiseOperate("Noise",Range(0,1)) = 1
         [Space(5)]
-        [To(_NoiseOperate)]_NoiseTex("纹理", 2D) = "white" {}
-        [To(_NoiseOperate)]_NoiseRot("旋转角度", Range(0,360)) = 0
+        [To(_NoiseOperate)]_NoiseTex("Tex", 2D) = "white" {}
+        [To(_NoiseOperate)]_NoiseRot("Rotation", Range(0,360)) = 0
 
         //遮罩
         [Space(10)]
-        [Foldout]_MaskOperate("遮罩（Mask）",Range(0,1)) = 1
+        [Foldout]_MaskOperate("Mask",Range(0,1)) = 1
         [Space(5)]
-        [To(_MaskOperate)]_MaskTex("纹理", 2D) = "white"{}
-        [To(_MaskOperate)]_MaskRot("旋转角度", Range(0,360)) = 0
+        [To(_MaskOperate)]_MaskTex("Tex", 2D) = "white"{}
+        [To(_MaskOperate)]_MaskRot("Rotation", Range(0,360)) = 0
 
         [Space(10)]
-        [Foldout]_PublicProp("公共属性（Public）", Range(0,1)) = 1
+        [Foldout]_PublicProp("Public", Range(0,1)) = 1
         [Space(5)]
-        [To(_PublicProp)]_Force("强度", float) = 0.1
-        [To(_PublicProp)]_UVParams("UV 流动参数", Vector) = (0, 0, 0, 0)
+        [To(_PublicProp)]_Force("Force", float) = 0.1
+        [To(_PublicProp)]_UVParams("UV speed", Vector) = (0, 0, 0, 0)
         //[To(_PublicProp)]_VertexAlpha("Vertex Alpha", Range(0,1)) = 1 // 模拟顶点颜色的alpha值
     }
 

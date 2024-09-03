@@ -11,10 +11,10 @@ Shader "Hidden/Graphi/Tool/GeometryNormal"
 {
     Properties
     {
-        [HideInInspector][Enum(WS,1,VS,2)]_SpaceType("空间", float) = 1
-        [HideInInspector] _Color("颜色", Color) = (1,1,1,1)
-        [HideInInspector] _Color2("颜色（不受光照区域）", Color) = (1,1,1,1)
-        [HideInInspector] _Length("长度", float) = 1
+        [HideInInspector][Enum(WS,1,VS,2)]_SpaceType("space", float) = 1
+        [HideInInspector] _Color("color", Color) = (1,1,1,1)
+        [HideInInspector] _Color2("color (unreceive light)", Color) = (1,1,1,1)
+        [HideInInspector] _Length("length", float) = 1
     }
 
 

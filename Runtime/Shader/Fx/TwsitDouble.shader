@@ -12,19 +12,19 @@ Shader "Graphi/Fx/TwistDouble"
     Properties
     {
         [Space(10)]
-        [Foldout]_TwistParams("扰动", Range(0,1)) = 1
+        [Foldout]_TwistParams("Twist", Range(0,1)) = 1
         [Space(5)]
-        [To(_TwistParams)]_TwistMap("纹理", 2D) = "white"{}
-        [To(_TwistParams)]_TwistIntensity("强度", float) = 0.05
+        [To(_TwistParams)]_TwistMap("Tex", 2D) = "white"{}
+        [To(_TwistParams)]_TwistIntensity("Force", float) = 0.05
         [To(_TwistParams)]_TwistUVParams("UV", Vector) = (0,0,0,0)
 
-        [Foldout]_SubjoinTwistParams("附加扰动", Range(0,1)) = 1
+        [Foldout]_SubjoinTwistParams("Subjoin Twist", Range(0,1)) = 1
         [Space(5)]
-        [To(_SubjoinTwistParams)]_ColorMap("纹理", 2D) = "white" {}
-        [To(_SubjoinTwistParams)]_Intensity("强度", float) = 0.5
+        [To(_SubjoinTwistParams)]_ColorMap("Tex", 2D) = "white" {}
+        [To(_SubjoinTwistParams)]_Intensity("Force", float) = 0.5
 
         [Space(10)]
-        [SingleLine]_MskTex("蒙版", 2D) = "white"{}
+        [SingleLine]_MskTex("Mask", 2D) = "white"{}
 
         [HideInInspector]_AlphaCutoff("Alpha Cutoff", Range(0.0, 1.0)) = 0
         [HideInInspector]_BlendMode("_BlendMode", Range(0.0, 1.0)) = 0.5

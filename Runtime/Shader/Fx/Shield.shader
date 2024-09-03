@@ -11,33 +11,33 @@ Shader "Graphi/Fx/Shield"
 {
     Properties
     {
-        [Foldout]_Base("基础", Range(0, 1)) = 1
-        [To(_Base)][HDR]_Color("颜色", Color) = (1,1,1,1)
-        [To(_Base)][SingleLine][NoScaleOffset]_Tex("纹理", CUBE) = "white"{}
-        [To(_Base)]_TexPow("强度", float) = 1
+        [Foldout]_Base("Base", Range(0, 1)) = 1
+        [To(_Base)][HDR]_Color("Color", Color) = (1,1,1,1)
+        [To(_Base)][SingleLine][NoScaleOffset]_Tex("Tex", CUBE) = "white"{}
+        [To(_Base)]_TexPow("Force", float) = 1
 
         [Space(10)]
-        [Foldout]_Rim("边缘光", Range(0, 1)) = 1
-        [To(_Rim)][HDR]_RimColor("颜色", Color) = (1,1,1,1)
-        [To(_Rim)]_RimPow("强度指数", float) = 3
+        [Foldout]_Rim("Rim", Range(0, 1)) = 1
+        [To(_Rim)][HDR]_RimColor("Color", Color) = (1,1,1,1)
+        [To(_Rim)]_RimPow("Force", float) = 3
 
         [Space(10)]
-        [Foldout]_Intersect("交接处", Range(0,1)) = 1
-        [To(_Intersect)][HDR]_IntersectColor("颜色", Color) = (1,1,1,1)
-        [To(_Intersect)]_IntersectArea("区域", float) = 1
-        [To(_Intersect)]_IntersectPow("区域指数", float) = 6
+        [Foldout]_Intersect("Fade", Range(0,1)) = 1
+        [To(_Intersect)][HDR]_IntersectColor("Color", Color) = (1,1,1,1)
+        [To(_Intersect)]_IntersectArea("Area", float) = 1
+        [To(_Intersect)]_IntersectPow("Pow", float) = 6
 
         [Space(10)]
-        [Foldout]_Msks("遮罩", Range(0,1)) = 1
-        [To(_Msks)][HDR]_MskColor("颜色", Color) = (1,1,1,1)
-        [To(_Msks)]_MskTex("纹理", 2D) = "white"{}
-        [To(_Msks)]_MskFloatSpeed("浮动参数", Vector) = (0,0,0,0)
+        [Foldout]_Msks("Mask", Range(0,1)) = 1
+        [To(_Msks)][HDR]_MskColor("color", Color) = (1,1,1,1)
+        [To(_Msks)]_MskTex("tex", 2D) = "white"{}
+        [To(_Msks)]_MskFloatSpeed("speed", Vector) = (0,0,0,0)
 
         [Space(10)]
-        [Foldout]_Interaction("交互参数", Range(0, 1)) = 1
-        [To(_Interaction)][HDR] _TouchColor("碰撞颜色", Color) = (1,0,0,1)
-        [To(_Interaction)] _TouchColorIntensity("碰撞颜色强度", float) = 10
-        [To(_Interaction)] _TouchColorRadiasAtten("碰撞颜色衰减因子", float) = 3
+        [Foldout]_Interaction("Interaction", Range(0, 1)) = 1
+        [To(_Interaction)][HDR] _TouchColor("Touch Color", Color) = (1,0,0,1)
+        [To(_Interaction)] _TouchColorIntensity("Touch Force", float) = 10
+        [To(_Interaction)] _TouchColorRadiasAtten("Touch RadiasAtten", float) = 3
 
         [HideInInspector]_AlphaCutoff("Alpha Cutoff", Range(0.0, 1.0)) = 0
         [HideInInspector]_BlendMode("_BlendMode", Range(0.0, 1.0)) = 0.5

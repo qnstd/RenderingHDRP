@@ -14,101 +14,101 @@ Shader "Graphi/Fx/ParticleStandardToModel"
     {
         //基本项
         [Space(5)]
-        [Foldout] _Options("操作项（Options）", Range(0,1)) = 1
-        [To(_Options)][Enum(UnityEngine.Rendering.BlendMode)] _BlendSrc("混合模式 [源颜色混合系数]", int) = 5
-        [To(_Options)][Enum(UnityEngine.Rendering.BlendMode)] _BlendDst("混合模式 [目标色混合系数]", int) = 10
-        [To(_Options)][Enum(Off,0,On,1)] _ZWrite("深度写入", float) = 0
-        [To(_Options)][Enum(UnityEngine.Rendering.CompareFunction)] _ZTest("深度测试", float) = 4
-        [To(_Options)][Enum(UnityEngine.Rendering.CullMode)] _CullMode("Cull剔除模式", float) = 2
-        [To(_Options)][Enum(UnityEngine.Rendering.ColorWriteMask)] _ColorMask("颜色通道输出", float) = 15
+        [Foldout] _Options("Options", Range(0,1)) = 1
+        [To(_Options)][Enum(UnityEngine.Rendering.BlendMode)] _BlendSrc("Blend Src", int) = 5
+        [To(_Options)][Enum(UnityEngine.Rendering.BlendMode)] _BlendDst("Blend Dst", int) = 10
+        [To(_Options)][Enum(Off,0,On,1)] _ZWrite("Zwrite", float) = 0
+        [To(_Options)][Enum(UnityEngine.Rendering.CompareFunction)] _ZTest("Ztest", float) = 4
+        [To(_Options)][Enum(UnityEngine.Rendering.CullMode)] _CullMode("Cull Mode", float) = 2
+        [To(_Options)][Enum(UnityEngine.Rendering.ColorWriteMask)] _ColorMask("Color Mask", float) = 15
 
         //模板
         [Space(5)]
-        [Foldout] _Stencil("模板（Stencil）", Range(0,1)) = 0
-        [To(_Stencil)][IntRange] _Ref("参考值", Range(0,255)) = 0
-        [To(_Stencil)][Enum(UnityEngine.Rendering.CompareFunction)] _StencilComp("模板测试比较", float) = 8
-        [To(_Stencil)][Enum(UnityEngine.Rendering.StencilOp)] _StencilPass("模板测试与深度测试都通过时处理方式", float) = 0
-        [To(_Stencil)][Enum(UnityEngine.Rendering.StencilOp)] _StencilFail("模板测试与深度测试都失败时处理方式", float) = 0
-        [To(_Stencil)][Enum(UnityEngine.Rendering.StencilOp)] _StencilZFail("模板测试通过，深度测试失败时处理方式", float) = 0
-        [To(_Stencil)][IntRange] _StencilReadMask("模板遮罩（读）", Range(0,255)) = 255
-        [To(_Stencil)][IntRange] _StencilWriteMask("模板遮罩（写）", Range(0,255)) = 255
+        [Foldout] _Stencil("Stencil", Range(0,1)) = 0
+        [To(_Stencil)][IntRange] _Ref("Ref", Range(0,255)) = 0
+        [To(_Stencil)][Enum(UnityEngine.Rendering.CompareFunction)] _StencilComp("Compare", float) = 8
+        [To(_Stencil)][Enum(UnityEngine.Rendering.StencilOp)] _StencilPass("Pass OP", float) = 0
+        [To(_Stencil)][Enum(UnityEngine.Rendering.StencilOp)] _StencilFail("Fail OP", float) = 0
+        [To(_Stencil)][Enum(UnityEngine.Rendering.StencilOp)] _StencilZFail("ZFail OP", float) = 0
+        [To(_Stencil)][IntRange] _StencilReadMask("Read Mask", Range(0,255)) = 255
+        [To(_Stencil)][IntRange] _StencilWriteMask("Write Mask", Range(0,255)) = 255
 
         //主纹理属性
         [Space(5)]
-        [Foldout] _BaseFunc("基础（Base）", Range(0,1)) = 1
-        [To(_BaseFunc)][HDR]_Tint("主贴图颜色混合", Color) = (1,1,1,1)
-        [To(_BaseFunc)]/*[SingleLine]*/_MainTex("主贴图", 2D) = "white"{}
-        [To(_BaseFunc)]_MainRot("主贴图旋转角度", Range(0,360)) = 0
-        [To(_BaseFunc)]_MainIntensity("主贴图强度",float) = 1
-        [To(_BaseFunc)][Enum(Off,0,On,1)]_LumFlag("亮度控制",float)=0
-        [To(_BaseFunc)]_LumMulti("亮度系数",Range(0,10)) = 0
-        [To(_BaseFunc)]_LuminancePow("亮度指数", Range(0.001, 6)) = 0.001
-        [To(_BaseFunc)]_MainTex_U("主贴图 U 流动速度", float) = 0
-        [To(_BaseFunc)]_MainTex_V("主贴图 V 流动速度", float) = 0
+        [Foldout] _BaseFunc("Base", Range(0,1)) = 1
+        [To(_BaseFunc)][HDR]_Tint("Color", Color) = (1,1,1,1)
+        [To(_BaseFunc)]/*[SingleLine]*/_MainTex("Tex", 2D) = "white"{}
+        [To(_BaseFunc)]_MainRot("Rotation", Range(0,360)) = 0
+        [To(_BaseFunc)]_MainIntensity("Force",float) = 1
+        [To(_BaseFunc)][Enum(Off,0,On,1)]_LumFlag("Luminance",float)=0
+        [To(_BaseFunc)]_LumMulti("Lum Multi",Range(0,10)) = 0
+        [To(_BaseFunc)]_LuminancePow("Lum Pow", Range(0.001, 6)) = 0.001
+        [To(_BaseFunc)]_MainTex_U("U speed", float) = 0
+        [To(_BaseFunc)]_MainTex_V("V speed", float) = 0
 
         //遮罩属性
         [Space(5)]
-        [Foldout] _MaskFunc("遮罩（Mask）", Range(0,1)) = 0
-        [To(_MaskFunc)]_MaskTex("遮罩图", 2D) = "white"{}
-        [To(_MaskFunc)]_MaskRot("遮罩图旋转角度", Range(0,360)) = 0
-        [To(_MaskFunc)]_MaskIntensity("遮罩强度", float) = 1
-        [To(_MaskFunc)]_MaskTex_U("遮罩图 U 流动速度", float) = 0
-        [To(_MaskFunc)]_MaskTex_V("遮罩图 V 流动速度", float) = 0
+        [Foldout] _MaskFunc("Mask", Range(0,1)) = 0
+        [To(_MaskFunc)]_MaskTex("Tex", 2D) = "white"{}
+        [To(_MaskFunc)]_MaskRot("Rotation", Range(0,360)) = 0
+        [To(_MaskFunc)]_MaskIntensity("Force", float) = 1
+        [To(_MaskFunc)]_MaskTex_U("U speed", float) = 0
+        [To(_MaskFunc)]_MaskTex_V("V speed", float) = 0
 
         //溶解属性
         [Space(5)]
-        [Foldout] _DissFunc("溶解（Dissolve）", Range(0,1)) = 0
-        [To(_DissFunc)]_DissolveTex("溶解纹理", 2D) = "white"{}
-        [To(_DissFunc)]_DissolveTex_U("溶解流动 U 速度", float) = 0
-        [To(_DissFunc)]_DissolveTex_V("溶解流动 V 速度", float) = 0
-        [To(_DissFunc)][HDR]_DissolveColor("溶解边缘色", Color) = (1,1,1,1)
-        [To(_DissFunc)]_DissolveIntensity("溶解程度", Range(0,1)) = 0
-        [To(_DissFunc)]_DissolveEdgeIntensity("溶解边缘软硬强度", Range(0,1)) = 0.5
-        [To(_DissFunc)]_DissArea("溶解边缘尺寸", float) = 0.1
+        [Foldout] _DissFunc("Dissolve", Range(0,1)) = 0
+        [To(_DissFunc)]_DissolveTex("Tex", 2D) = "white"{}
+        [To(_DissFunc)]_DissolveTex_U("U speed", float) = 0
+        [To(_DissFunc)]_DissolveTex_V("V speed", float) = 0
+        [To(_DissFunc)][HDR]_DissolveColor("Color", Color) = (1,1,1,1)
+        [To(_DissFunc)]_DissolveIntensity("Force", Range(0,1)) = 0
+        [To(_DissFunc)]_DissolveEdgeIntensity("Edge Force", Range(0,1)) = 0.5
+        [To(_DissFunc)]_DissArea("Edge Area", float) = 0.1
 
         //扭曲属性
         [Space(5)]
-        [Foldout] _TwistFunc("扭曲（Twist）", Range(0,1)) = 0
-        [To(_TwistFunc)]_TwistTex("扭曲纹理", 2D) = "white"{}
-        [To(_TwistFunc)]_TwistMskTex("扭曲遮罩纹理", 2D) = "white"{}
-        [To(_TwistFunc)]_UVFloatParams("UV 流动参数", Vector) = (0,0,0,0)
-        [To(_TwistFunc)]_TwistIntensity("扭曲强度", float) = 0
-        [To(_TwistFunc)][Enum(Off,0,On,1)]_TwistMainTex("扭曲主纹理", float) = 1
-        [To(_TwistFunc)][Enum(Off,0,On,1)]_TwistDissolveTex("扭曲溶解纹理", float) = 1
-        [To(_TwistFunc)][Enum(Off,0,On,1)]_TwistMaskTex("扭曲遮罩纹理", float) = 0
+        [Foldout] _TwistFunc("Twist", Range(0,1)) = 0
+        [To(_TwistFunc)]_TwistTex("Tex", 2D) = "white"{}
+        [To(_TwistFunc)]_TwistMskTex("Tex Mask", 2D) = "white"{}
+        [To(_TwistFunc)]_UVFloatParams("UV speed", Vector) = (0,0,0,0)
+        [To(_TwistFunc)]_TwistIntensity("Force", float) = 0
+        [To(_TwistFunc)][Enum(Off,0,On,1)]_TwistMainTex("Twist Albedo", float) = 1
+        [To(_TwistFunc)][Enum(Off,0,On,1)]_TwistDissolveTex("Twist Dissolve", float) = 1
+        [To(_TwistFunc)][Enum(Off,0,On,1)]_TwistMaskTex("Twist Mask", float) = 0
 
         //顶点动画属性
         [Space(5)]
-        [Foldout] _VertexAniFunc("顶点动画（Vertex Animation）", Range(0,1)) = 0
-        [To(_VertexAniFunc)]_VertexAniTex("顶点动画纹理", 2D) = "white"{}
-        [To(_VertexAniFunc)]_VertexAni_U("顶点动画 U 偏移", float) = 0
-        [To(_VertexAniFunc)]_VertexAni_V("顶点动画 V 偏移", float) = 0
-        [To(_VertexAniFunc)]_VertexAniForce("强度", float) = 0
+        [Foldout] _VertexAniFunc("Vertex Animation", Range(0,1)) = 0
+        [To(_VertexAniFunc)]_VertexAniTex("Tex", 2D) = "white"{}
+        [To(_VertexAniFunc)]_VertexAni_U("U offset", float) = 0
+        [To(_VertexAniFunc)]_VertexAni_V("V offset", float) = 0
+        [To(_VertexAniFunc)]_VertexAniForce("Force", float) = 0
 
         //菲涅尔
         [Space(5)]
-        [Foldout] _FresnelFunc("菲涅尔边缘光（Fresnel）", Range(0,1)) = 0
-        [To(_FresnelFunc)][Enum(Gradient,0,General,1)]_FresnelType("菲涅尔类型", float) = 0
-        [To(_FresnelFunc)][HDR]_FresnelColor("菲涅尔边缘光颜色", Color) = (1,1,1,1)
-        [To(_FresnelFunc)]_FresnelArea("菲涅尔影响区域指数", float) = 1
-        [To(_FresnelFunc)]_FresnelIntensity("菲涅尔强度", float) = 0
+        [Foldout] _FresnelFunc("Fresnel", Range(0,1)) = 0
+        [To(_FresnelFunc)][Enum(Gradient,0,General,1)]_FresnelType("Type", float) = 0
+        [To(_FresnelFunc)][HDR]_FresnelColor("Color", Color) = (1,1,1,1)
+        [To(_FresnelFunc)]_FresnelArea("Area", float) = 1
+        [To(_FresnelFunc)]_FresnelIntensity("Force", float) = 0
 
         //Hue
         [Space(5)]
-        [Foldout] _HueFunc("色相（Hue）", Range(0,1)) = 0
-        [To(_HueFunc)]_Brightness("明亮度", Range(0,3)) = 1
-        [To(_HueFunc)]_Saturation("饱和度", Range(0,3)) = 1
-        [To(_HueFunc)]_Contrast("对比度", Range(0,3)) = 1
+        [Foldout] _HueFunc("Hue", Range(0,1)) = 0
+        [To(_HueFunc)]_Brightness("Brightness", Range(0,3)) = 1
+        [To(_HueFunc)]_Saturation("Saturate", Range(0,3)) = 1
+        [To(_HueFunc)]_Contrast("Contrast", Range(0,3)) = 1
 
         //高级设置
         [Space(10)]
-        [Foldout]_Advanced("高级项（Advanced）", Range(0,1)) = 0
+        [Foldout]_Advanced("Advanced", Range(0,1)) = 0
         [Space(5)]
-        [To(_Advanced)][Toggle]_USEVOLUMEFOG("体积雾",float) = 0
-        [To(_Advanced)][Enum(UnityEditor.Rendering.HighDefinition.BlendMode)]_BlendMode("体积雾混合模式", float) = 0
+        [To(_Advanced)][Toggle]_USEVOLUMEFOG("Fog",float) = 0
+        [To(_Advanced)][Enum(UnityEditor.Rendering.HighDefinition.BlendMode)]_BlendMode("Fog blend mode", float) = 0
         [Space(5)]
-        [To(_Advanced)][FloatRange]_Soft("交接处平滑处理", Range(0.01, 10)) = 0.01
-        [To(_Advanced)][FloatRange]_AlphaCulloff("透明度裁剪", Range(0, 1)) = 0
+        [To(_Advanced)][FloatRange]_Soft("Fade", Range(0.01, 10)) = 0.01
+        [To(_Advanced)][FloatRange]_AlphaCulloff("Alpha Culloff", Range(0, 1)) = 0
     }
     
 

@@ -14,7 +14,7 @@ namespace com.graphi.renderhdrp.editor
     {
         #region 游戏对象创建
 
-        [MenuItem("GameObject/Graphi/Volume/OccDisplay")]
+        [MenuItem("GameObject/Volume/Graphi_OccDisplay")]
         static private void Create_OccDisplay()
         {
             if (Application.isPlaying)
@@ -34,17 +34,7 @@ namespace com.graphi.renderhdrp.editor
                 SetIcon(obj, "Graphi-OccDisplay-Icon");
         }
 
-
-        [MenuItem("GameObject/Graphi/Profiler")]
-        static private void Create_RuntimePerformance()
-        {
-            GameObject go = new GameObject("GraphicsProfiler");
-            SetIcon(go, "Graphi-Analyze-Icon");
-            go.AddComponent<RuntimePerformance>();
-        }
-
-
-        [MenuItem("GameObject/Graphi/Volume/Twist")]
+        [MenuItem("GameObject/Volume/Graphi_Twist")]
         static private void Create_TwistDiver()
         {
             if (Application.isPlaying)
@@ -71,7 +61,16 @@ namespace com.graphi.renderhdrp.editor
         }
 
 
-        [MenuItem("GameObject/Graphi/Fx/Particle")]
+        [MenuItem("GameObject/Graphi Profiler")]
+        static private void Create_RuntimePerformance()
+        {
+            GameObject go = new GameObject("GraphicsProfiler");
+            SetIcon(go, "Graphi-Analyze-Icon");
+            go.AddComponent<RuntimePerformance>();
+        }
+
+
+        [MenuItem("GameObject/Effects/Graphi_Particle")]
         static private void Create_Fx()
         {
             //在 Hierarchy 列表中创建粒子对象
@@ -137,22 +136,22 @@ namespace com.graphi.renderhdrp.editor
             go.transform.localRotation = Quaternion.identity;
             go.transform.localPosition = Vector3.zero;
         }
-        [MenuItem("GameObject/Graphi/3D Object/Tetrahedrons")]
+        [MenuItem("GameObject/3D Object/Graphi_Tetrahedrons")]
         static private void Create_Tetrahedrons()
         {
             CreateCustomMeshObject(typeof(Tetrahedrons));
         }
-        [MenuItem("GameObject/Graphi/3D Object/Shuriken")]
+        [MenuItem("GameObject/3D Object/Graphi_Shuriken")]
         static private void Create_Shuriken()
         {
             CreateCustomMeshObject(typeof(Shuriken));
         }
-        [MenuItem("GameObject/Graphi/3D Object/Lozenge")]
+        [MenuItem("GameObject/3D Object/Graphi_Lozenge")]
         static private void Create_Lozenge()
         {
             CreateCustomMeshObject(typeof(Lozenge));
         }
-        [MenuItem("GameObject/Graphi/3D Object/Flat")]
+        [MenuItem("GameObject/3D Object/Graphi_Flat")]
         static private void Create_Flat()
         {
             CreateCustomMeshObject(typeof(Flat));

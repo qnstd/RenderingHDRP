@@ -136,7 +136,7 @@ namespace com.graphi.renderhdrp.editor
             #region 邮件
             Gui.Area(0, 135, C_Revolution.x, C_Revolution.y - 135);
             Gui.Vertical("helpbox");
-            Gui.Label("<color=#ffcc00><b>Contact Us</b></color>", sty);
+            Gui.Label("<color=#ffcc00><b>Contact Me</b></color>", sty);
             Gui.Space(5);
             Gui.Hor();
             Gui.Label("<color=#999999>Your Email: </color>", m_LabelStyle, 85);

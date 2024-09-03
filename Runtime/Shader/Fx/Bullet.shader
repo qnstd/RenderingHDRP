@@ -12,13 +12,13 @@ Shader "Graphi/Fx/Bullet"
     Properties
     {
         [Space(15)]
-        [HDR]_Color("颜色", Color) = (1,1,1,1)
-        _MainTex("纹理", 2D) = "white"{}
-        _Size("尺寸", Float) = 0.2
-        _Offset("偏移", Float) = 0
+        [HDR]_Color("Color", Color) = (1,1,1,1)
+        _MainTex("Tex", 2D) = "white"{}
+        _Size("Size", Float) = 0.2
+        _Offset("Offset", Float) = 0
 
         [Space(10)]
-        _InvFade("边缘软化（软粒子）", Float) = 1.0
+        _InvFade("Fade", Float) = 1.0
 
         [HideInInspector]_AlphaCutoff("Alpha Cutoff", Range(0.0, 1.0)) = 0
         [HideInInspector]_BlendMode("_BlendMode", Range(0.0, 1.0)) = 0.5

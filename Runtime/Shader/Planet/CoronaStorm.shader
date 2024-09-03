@@ -12,34 +12,34 @@ Shader "Graphi/Planet/CoronaStorm"
 {
     Properties
     {
-		[Foldout]_B("基础", Range(0,1)) = 1
-		[To(_B)][HDR]_TintColor("颜色", Color) = (1,1,1,1)
-		[To(_B)][SingleLine]_HybridMap("混合贴图", 2D) = "white" {}
+		[Foldout]_B("Base", Range(0,1)) = 1
+		[To(_B)][HDR]_TintColor("Color", Color) = (1,1,1,1)
+		[To(_B)][SingleLine]_HybridMap("Mix Map", 2D) = "white" {}
        
-		[Foldout]_S("风暴", Range(0,1)) = 1
-		[To(_S)]_StormTileX("X 分布", Float) = 0
-		[To(_S)]_StormTileY("Y 分布", Float) = 0
-		[To(_S)]_StormPower("强度", Float) = 0
-		[To(_S)]_StormPow("强度指数", Float) = 0
-		[To(_S)]_FluidTile("流体分布", Float) = 0
-		[To(_S)]_FluidInfluence("流体强度", Float) = 0
-		[To(_S)]_FluidSped("流体速度", float) = 0
+		[Foldout]_S("Storm", Range(0,1)) = 1
+		[To(_S)]_StormTileX("X tile", Float) = 0
+		[To(_S)]_StormTileY("Y tile", Float) = 0
+		[To(_S)]_StormPower("Force", Float) = 0
+		[To(_S)]_StormPow("Pow", Float) = 0
+		[To(_S)]_FluidTile("Tile", Float) = 0
+		[To(_S)]_FluidInfluence("Force", Float) = 0
+		[To(_S)]_FluidSped("Speed", float) = 0
 
-		[Foldout]_C("日冕", Range(0,1)) = 1
-		[To(_C)]_CoronaTileX("X 分布", Float) = 0
-		[To(_C)]_CoronaTileY("Y 分布", Float) = 0
-		[To(_C)]_CoronaSpeed("速度", Float) = 0
-		[To(_C)]_CoronaAmp("强度", Float) = 0
-		[To(_C)]_CoronaExp("强度指数", Float) = 0
+		[Foldout]_C("Corona", Range(0,1)) = 1
+		[To(_C)]_CoronaTileX("X tile", Float) = 0
+		[To(_C)]_CoronaTileY("Y tile", Float) = 0
+		[To(_C)]_CoronaSpeed("Speed", Float) = 0
+		[To(_C)]_CoronaAmp("Force", Float) = 0
+		[To(_C)]_CoronaExp("Pow", Float) = 0
 
-		[Foldout]_D("光圈", Range(0,1)) = 1
-		[To(_D)]_DiaphragmBoost("延伸", Float) = 0
-		[To(_D)]_DiaphragmPow("强度", Float) = 0
+		[Foldout]_D("LightRing", Range(0,1)) = 1
+		[To(_D)]_DiaphragmBoost("Boost", Float) = 0
+		[To(_D)]_DiaphragmPow("Force", Float) = 0
 
-		[Foldout]_O("其他", Range(0,1)) = 1
-		[To(_O)]_ViewPow("可视范围强度指数", Float) = 0
-		[To(_O)]_ViewBoost("可视范围延伸", Float) = 0
-		[To(_O)]_SoftFade("相交处软化", Range(0.001,1)) = 0.001
+		[Foldout]_O("Other", Range(0,1)) = 1
+		[To(_O)]_ViewPow("Force", Float) = 0
+		[To(_O)]_ViewBoost("Boost", Float) = 0
+		[To(_O)]_SoftFade("Fade", Range(0.001,1)) = 0.001
 
 		// 隐藏属性
 		[HideInInspector] _AlphaCutoff("Alpha Cutoff", Range(0.0, 1.0)) = 0

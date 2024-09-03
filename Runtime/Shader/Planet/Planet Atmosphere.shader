@@ -12,37 +12,37 @@ Shader "Graphi/Planet/Atmosphere"
     Properties
     {
         // 基础
-        [Foldout]_BaseParams("顶点、UV 偏移", Range(0,1))=1
+        [Foldout]_BaseParams("Vertex、UV Offset", Range(0,1))=1
         [Space(5)]
-        [To(_BaseParams)]_VertexOffset("顶点偏移", Float) = 0
-		[To(_BaseParams)]_UVOffset("UV偏移", Float) = 0
+        [To(_BaseParams)]_VertexOffset("Vertex Offset", Float) = 0
+		[To(_BaseParams)]_UVOffset("UV Offset", Float) = 0
 
         // 散射
         [Space(10)]
-        [Foldout]_ScatterParams("散射", Range(0,1))=1
+        [Foldout]_ScatterParams("Scatter", Range(0,1))=1
         [Space(5)]
-        [To(_ScatterParams)][SingleLine]_AtmosphereTex("散射纹理", 2D) = "black" {}
-		[To(_ScatterParams)]_ScatteringOffset("散射偏移", Float) = 0
-		[To(_ScatterParams)][HDR]_ScatteringColor("散射颜色", Color) = (0,0,0,0)
-		[To(_ScatterParams)]_ScatteringIntensity("散射强度", Float) = 0
-		[To(_ScatterParams)]_ScatteringFactor("散射因子", Float) = 0
+        [To(_ScatterParams)][SingleLine]_AtmosphereTex("Tex", 2D) = "black" {}
+		[To(_ScatterParams)]_ScatteringOffset("Offset", Float) = 0
+		[To(_ScatterParams)][HDR]_ScatteringColor("Color", Color) = (0,0,0,0)
+		[To(_ScatterParams)]_ScatteringIntensity("Force", Float) = 0
+		[To(_ScatterParams)]_ScatteringFactor("Factor", Float) = 0
 
         // 发光
         [Space(10)]
-        [Foldout]_GlowParams("发光", Range(0,1))=1
+        [Foldout]_GlowParams("Glow", Range(0,1))=1
         [Space(5)]
-		[To(_GlowParams)]_GlowOffset("发光偏移", Float) = 0
-		[To(_GlowParams)][HDR]_GlowColor("发光颜色", Color) = (0,0,0,0)
-		[To(_GlowParams)]_GlowIntensity("发光强度", Float) = 0
-		[To(_GlowParams)]_GlowFactor("发光因子", Float) = 0
+		[To(_GlowParams)]_GlowOffset("Offset", Float) = 0
+		[To(_GlowParams)][HDR]_GlowColor("Color", Color) = (0,0,0,0)
+		[To(_GlowParams)]_GlowIntensity("Force", Float) = 0
+		[To(_GlowParams)]_GlowFactor("factor", Float) = 0
 
         // 主光
 		[Space(10)]
-        [Foldout]_SunParams("平行光", Range(0,1))=1
+        [Foldout]_SunParams("DirectionalLight", Range(0,1))=1
         [Space(5)]
-		[To(_SunParams)]_LightSensitivity("视觉对主光的敏感度", Float) = 0
-		[To(_SunParams)]_LightPow("视觉衰减", Float) = 0
-        [To(_SunParams)][MaterialToggle]_LightAtten("光衰减", Float) = 0
+		[To(_SunParams)]_LightSensitivity("Sensitivity", Float) = 0
+		[To(_SunParams)]_LightPow("Pow", Float) = 0
+        [To(_SunParams)][MaterialToggle]_LightAtten("Atten", Float) = 0
 
         // Hide
         [HideInInspector]_BlendMode("_BlendMode", Range(0.0, 1.0)) = 0.5

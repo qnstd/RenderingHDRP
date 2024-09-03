@@ -114,7 +114,7 @@ namespace com.graphi.renderhdrp.editor
 
         #region MenuItem 菜单项
 
-        [MenuItem("GameObject/Graphi/Geometric/Normal #N")]
+        [MenuItem("GameObject/Graphi Geometric/Normal #N")]
         static void GeomeryNormalVS()
         {
             Draw(C_GeometryNormalMatName, C_GeometryNormalShaName, (Material m) =>
@@ -123,7 +123,7 @@ namespace com.graphi.renderhdrp.editor
             });
         }
 
-        [MenuItem("GameObject/Graphi/Geometric/Wireframe #M")]
+        [MenuItem("GameObject/Graphi Geometric/Wireframe #M")]
         static void GeometryMesh()
         {
             Draw(C_GeometryMeshMatName, C_GeometryMeshShaName, (Material m) =>
@@ -132,7 +132,7 @@ namespace com.graphi.renderhdrp.editor
             });
         }
 
-        [MenuItem("GameObject/Graphi/Geometric/Close All #&D")]
+        [MenuItem("GameObject/Graphi Geometric/Close All #&D")]
         static void RemoveAllGeometryInActiveScene()
         {
             Scene scn = SceneManager.GetActiveScene();

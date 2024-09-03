@@ -551,7 +551,7 @@
     "m_Guid": {
         "m_GuidSerialized": "3e1e9ecd-10fb-4026-b0d2-926ad69d21e9"
     },
-    "m_Name": "细节贴图 Mask(R)+AO(A)",
+    "m_Name": "Detail Mask(R)+AO(A)",
     "m_DefaultRefNameVersion": 0,
     "m_RefNameGeneratedByDisplayName": "",
     "m_DefaultReferenceName": "Texture2D_B7E74635",
@@ -581,7 +581,7 @@
     "m_Guid": {
         "m_GuidSerialized": "05b287a4-acd6-4f0e-9c30-0c61031e774d"
     },
-    "m_Name": "主颜色",
+    "m_Name": "MainColor",
     "m_DefaultRefNameVersion": 0,
     "m_RefNameGeneratedByDisplayName": "",
     "m_DefaultReferenceName": "Color_9EECA9E8",
@@ -611,10 +611,10 @@
     "m_Guid": {
         "m_GuidSerialized": "249e1aec-6329-468b-a2b4-db6654cfc2ac"
     },
-    "m_Name": "采样空间",
+    "m_Name": "Sample Space",
     "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "采样空间",
-    "m_DefaultReferenceName": "_",
+    "m_RefNameGeneratedByDisplayName": "Sample Space",
+    "m_DefaultReferenceName": "_SAMPLE_SPACE",
     "m_OverrideReferenceName": "_SAMPLESPACE",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,
@@ -698,7 +698,7 @@
     "m_Guid": {
         "m_GuidSerialized": "087859bb-d8ad-46af-865f-50e256a3352a"
     },
-    "m_Name": "细节金属度",
+    "m_Name": "DetailMetallic",
     "m_DefaultRefNameVersion": 0,
     "m_RefNameGeneratedByDisplayName": "",
     "m_DefaultReferenceName": "Vector1_A0BA39B1",
@@ -766,7 +766,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "1304c48e796242f39675e4af51d2f67f",
     "m_Id": 0,
-    "m_DisplayName": "细节平滑度",
+    "m_DisplayName": "DetailSmoothness",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -1008,7 +1008,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector4MaterialSlot",
     "m_ObjectId": "2104f24bb9fe48db92d4c2cda69930c6",
     "m_Id": 0,
-    "m_DisplayName": "主颜色",
+    "m_DisplayName": "MainColor",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -1129,7 +1129,7 @@
     "m_Guid": {
         "m_GuidSerialized": "a1525a6d-75d7-4199-ac66-7c7e3d0cd18b"
     },
-    "m_Name": "平滑度",
+    "m_Name": "Smoothness",
     "m_DefaultRefNameVersion": 0,
     "m_RefNameGeneratedByDisplayName": "",
     "m_DefaultReferenceName": "Vector1_1CEAAFC5",
@@ -1172,7 +1172,7 @@
     "m_Guid": {
         "m_GuidSerialized": "9a29736c-0461-4386-9f9b-b9af1ebeeb38"
     },
-    "m_Name": "法线贴图",
+    "m_Name": "Normal",
     "m_DefaultRefNameVersion": 0,
     "m_RefNameGeneratedByDisplayName": "",
     "m_DefaultReferenceName": "Texture2D_41095461",
@@ -1498,7 +1498,7 @@
     "m_Guid": {
         "m_GuidSerialized": "f1a2a8c0-6c24-4517-a674-ff77b7b86305"
     },
-    "m_Name": "金属度",
+    "m_Name": "Metallic",
     "m_DefaultRefNameVersion": 0,
     "m_RefNameGeneratedByDisplayName": "",
     "m_DefaultReferenceName": "Vector1_1030B766",
@@ -1524,7 +1524,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "53fd89a3e77840a5b8d8a68472328be1",
     "m_Id": 0,
-    "m_DisplayName": "污渍强度",
+    "m_DisplayName": "DirtForce",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -1635,7 +1635,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector4MaterialSlot",
     "m_ObjectId": "5e34bf84f1924157ab34658bbc396dc8",
     "m_Id": 0,
-    "m_DisplayName": "副颜色",
+    "m_DisplayName": "TintColor",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -2506,7 +2506,7 @@
     "m_Guid": {
         "m_GuidSerialized": "bd8176d3-b3fd-4245-8d60-569153b119c8"
     },
-    "m_Name": "细节颜色",
+    "m_Name": "DetailColor",
     "m_DefaultRefNameVersion": 0,
     "m_RefNameGeneratedByDisplayName": "",
     "m_DefaultReferenceName": "Color_8DE6C53",
@@ -2705,7 +2705,7 @@
     "m_Guid": {
         "m_GuidSerialized": "716b8010-ac35-4400-a061-53bdebaa856e"
     },
-    "m_Name": "混合贴图 Dirt(R)+TexHybridColor(G)+SmoothMask(A)",
+    "m_Name": "Mixmap Dirt(R)+TexHybridColor(G)+SmoothMask(A)",
     "m_DefaultRefNameVersion": 0,
     "m_RefNameGeneratedByDisplayName": "",
     "m_DefaultReferenceName": "Texture2D_CAFE2200",
@@ -2805,7 +2805,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Texture2DMaterialSlot",
     "m_ObjectId": "b20374505453bf85b1f700e7911c4144",
     "m_Id": 0,
-    "m_DisplayName": "细节贴图 Mask(R)+AO(A)",
+    "m_DisplayName": "Detail Mask(R)+AO(A)",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -2854,7 +2854,7 @@
     "m_Guid": {
         "m_GuidSerialized": "d3e82d81-0b19-4705-a045-81494b71ce57"
     },
-    "m_Name": "副颜色",
+    "m_Name": "TintColor",
     "m_DefaultRefNameVersion": 0,
     "m_RefNameGeneratedByDisplayName": "",
     "m_DefaultReferenceName": "Color_A684806B",
@@ -2884,7 +2884,7 @@
     "m_Guid": {
         "m_GuidSerialized": "e04d032e-77a7-48cf-a5bd-b54dd9ff4733"
     },
-    "m_Name": "污渍强度",
+    "m_Name": "DirtForce",
     "m_DefaultRefNameVersion": 0,
     "m_RefNameGeneratedByDisplayName": "",
     "m_DefaultReferenceName": "Vector1_3B71985F",
@@ -2910,7 +2910,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector4MaterialSlot",
     "m_ObjectId": "b90957facf144d17a24ffd410459d9dc",
     "m_Id": 0,
-    "m_DisplayName": "细节颜色",
+    "m_DisplayName": "DetailColor",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -2977,7 +2977,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Texture2DMaterialSlot",
     "m_ObjectId": "c12f1126e276aa85b8131146d158e211",
     "m_Id": 0,
-    "m_DisplayName": "混合贴图 Dirt(R)+TexHybridColor(G)+SmoothMask(A)",
+    "m_DisplayName": "Mixmap Dirt(R)+TexHybridColor(G)+SmoothMask(A)",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -3020,7 +3020,7 @@
     "m_Guid": {
         "m_GuidSerialized": "ded67f67-3dcf-4205-9381-37329b85092a"
     },
-    "m_Name": "细节平滑度",
+    "m_Name": "DetailSmoothness",
     "m_DefaultRefNameVersion": 0,
     "m_RefNameGeneratedByDisplayName": "",
     "m_DefaultReferenceName": "Vector1_C4021547",
@@ -3139,7 +3139,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "cef392b9a84daf82a623bbb71a3638e9",
     "m_Id": 0,
-    "m_DisplayName": "细节金属度",
+    "m_DisplayName": "DetailMetallic",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -3156,7 +3156,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Texture2DMaterialSlot",
     "m_ObjectId": "cfb7b61d13eac68fa915a0d316ae4a61",
     "m_Id": 0,
-    "m_DisplayName": "法线贴图",
+    "m_DisplayName": "Normal",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -3181,7 +3181,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "da36d71b4fe46880aeb6f5f4f399338e",
     "m_Id": 0,
-    "m_DisplayName": "金属度",
+    "m_DisplayName": "Metallic",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -3264,7 +3264,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "e2ce1a5b8f4a9389a8042b90e3ba6fd7",
     "m_Id": 0,
-    "m_DisplayName": "污渍平铺因子",
+    "m_DisplayName": "DirtTile",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -3283,7 +3283,7 @@
     "m_Guid": {
         "m_GuidSerialized": "4372d6ef-f771-478d-b114-e244755a72d1"
     },
-    "m_Name": "污渍平铺因子",
+    "m_Name": "DirtTile",
     "m_DefaultRefNameVersion": 0,
     "m_RefNameGeneratedByDisplayName": "",
     "m_DefaultReferenceName": "Vector1_55208390",
@@ -3607,7 +3607,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "fb62a48ba5d545c0810dbd164b0b6434",
     "m_Id": 0,
-    "m_DisplayName": "平滑度",
+    "m_DisplayName": "Smoothness",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",

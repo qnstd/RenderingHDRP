@@ -12,26 +12,26 @@ Shader "Graphi/Fx/Lightning"
     Properties
     {
         //主纹理
-        [Foldout] _Main("主纹理操作",Range(0,1)) = 1
+        [Foldout] _Main("Albedo",Range(0,1)) = 1
         [Space(5)]
-        [To(_Main)][HDR]_TintColor("颜色", Color) = (0.5,0.5,0.5,0.5)
-        [To(_Main)]_MainTex("纹理", 2D) = "white" {}
-        [To(_Main)]_Offset("偏移", Range(-1,1)) = 0
+        [To(_Main)][HDR]_TintColor("Color", Color) = (0.5,0.5,0.5,0.5)
+        [To(_Main)]_MainTex("Tex", 2D) = "white" {}
+        [To(_Main)]_Offset("Offset", Range(-1,1)) = 0
         //扭曲
         [Space(10)]
-        [Foldout]_Twist("扭曲操作",Range(0,1)) = 1
+        [Foldout]_Twist("Twist",Range(0,1)) = 1
         [Space(5)]
-        [To(_Twist)]_TwistTex1("纹理1", 2D) = "white" {}
-        [To(_Twist)]_TwistTex2("纹理2", 2D) = "white" {}
-        [To(_Twist)]_TwistParams("纹理采样参数", Vector) = (1,1,0.1,0.1)
+        [To(_Twist)]_TwistTex1("Tex1", 2D) = "white" {}
+        [To(_Twist)]_TwistTex2("Tex2", 2D) = "white" {}
+        [To(_Twist)]_TwistParams("Sample Params", Vector) = (1,1,0.1,0.1)
         //高级设置
         [Space(10)]
-        [Foldout]_Advanced("高级设置", Range(0,1)) = 0
+        [Foldout]_Advanced("Advanced", Range(0,1)) = 0
         [Space(5)]
-        [To(_Advanced)][Toggle]_USEVOLUMEFOG("体积雾",float) = 0
-        [To(_Advanced)][Enum(UnityEditor.Rendering.HighDefinition.BlendMode)]_BlendMode("体积雾混合模式", float) = 0
+        [To(_Advanced)][Toggle]_USEVOLUMEFOG("Fog",float) = 0
+        [To(_Advanced)][Enum(UnityEditor.Rendering.HighDefinition.BlendMode)]_BlendMode("Fog blend", float) = 0
         [Space(5)]
-        [To(_Advanced)][FloatRange]_AlphaCulloff("透明度裁剪", Range(0, 1)) = 0
+        [To(_Advanced)][FloatRange]_AlphaCulloff("Alpha Cutoff", Range(0, 1)) = 0
 
     }
 

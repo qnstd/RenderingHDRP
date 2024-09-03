@@ -399,10 +399,10 @@
     "m_Guid": {
         "m_GuidSerialized": "14fc45f7-aff0-4c33-94ac-7c09b97c7930"
     },
-    "m_Name": "下落速度",
+    "m_Name": "Downspeed",
     "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "下落速度",
-    "m_DefaultReferenceName": "_",
+    "m_RefNameGeneratedByDisplayName": "Downspeed",
+    "m_DefaultReferenceName": "_Downspeed",
     "m_OverrideReferenceName": "_Speed",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,
@@ -465,10 +465,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -995.333251953125,
-            "y": -50.00004959106445,
-            "width": 96.0,
-            "height": 36.00001907348633
+            "x": -994.0,
+            "y": 6.000004768371582,
+            "width": 113.0,
+            "height": 34.0000114440918
         }
     },
     "m_Slots": [
@@ -496,10 +496,10 @@
     "m_Guid": {
         "m_GuidSerialized": "93f640a3-b508-4a1c-8599-a9abb0b09b01"
     },
-    "m_Name": "层1",
+    "m_Name": "Layer1",
     "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "层1",
-    "m_DefaultReferenceName": "_1",
+    "m_RefNameGeneratedByDisplayName": "Layer1",
+    "m_DefaultReferenceName": "_Layer1",
     "m_OverrideReferenceName": "_Layer1",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,
@@ -568,10 +568,10 @@
     "m_Guid": {
         "m_GuidSerialized": "d40fe89e-473a-470e-8971-47e52d3afd98"
     },
-    "m_Name": "横向位移的偏移强度",
+    "m_Name": "XMove",
     "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "横向位移的偏移强度",
-    "m_DefaultReferenceName": "_",
+    "m_RefNameGeneratedByDisplayName": "XMove",
+    "m_DefaultReferenceName": "_XMove",
     "m_OverrideReferenceName": "_RainDropXMove",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,
@@ -676,7 +676,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "2820dc45c51643ceb06c13bf6e98b785",
     "m_Id": 0,
-    "m_DisplayName": "下落速度",
+    "m_DisplayName": "Downspeed",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -693,10 +693,10 @@
     "m_Guid": {
         "m_GuidSerialized": "71812f21-dda5-4f0a-9edd-1adea6433c46"
     },
-    "m_Name": "层2",
+    "m_Name": "Layer2",
     "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "层2",
-    "m_DefaultReferenceName": "_2",
+    "m_RefNameGeneratedByDisplayName": "Layer2",
+    "m_DefaultReferenceName": "_Layer2",
     "m_OverrideReferenceName": "_Layer2",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,
@@ -734,7 +734,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "2d32bc6d93cc4bbea7918855e7cfa73c",
     "m_Id": 0,
-    "m_DisplayName": "Mipmap级别",
+    "m_DisplayName": "MipmapLevel",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -811,10 +811,10 @@
     "m_Guid": {
         "m_GuidSerialized": "b6b7de07-04c2-4f44-885d-bb149f7fa56e"
     },
-    "m_Name": "拖尾密度",
+    "m_Name": "TrailDensity",
     "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "拖尾密度",
-    "m_DefaultReferenceName": "_",
+    "m_RefNameGeneratedByDisplayName": "TrailDensity",
+    "m_DefaultReferenceName": "_TrailDensity",
     "m_OverrideReferenceName": "_TrailDensity",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,
@@ -939,7 +939,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "442b29e8164c4563a936289de8aca06c",
     "m_Id": 0,
-    "m_DisplayName": "横向位移的偏移强度",
+    "m_DisplayName": "XMove",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -978,7 +978,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "481a3b33af3d48a39222434c2db1e05d",
     "m_Id": 0,
-    "m_DisplayName": "透明度",
+    "m_DisplayName": "Alpha",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -995,10 +995,10 @@
     "m_Guid": {
         "m_GuidSerialized": "704f30ad-edcc-495c-9a12-6aa6a31034a2"
     },
-    "m_Name": "渲染面的宽高比",
+    "m_Name": "Aspect",
     "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "渲染面的宽高比",
-    "m_DefaultReferenceName": "_",
+    "m_RefNameGeneratedByDisplayName": "Aspect",
+    "m_DefaultReferenceName": "_Aspect",
     "m_OverrideReferenceName": "_Aspect",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,
@@ -1023,10 +1023,10 @@
     "m_Guid": {
         "m_GuidSerialized": "d4fa1413-3491-4f99-b051-7e8316bb4fbf"
     },
-    "m_Name": "Mipmap级别",
+    "m_Name": "MipmapLevel",
     "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "Mipmap级别",
-    "m_DefaultReferenceName": "_Mipmap",
+    "m_RefNameGeneratedByDisplayName": "MipmapLevel",
+    "m_DefaultReferenceName": "_MipmapLevel",
     "m_OverrideReferenceName": "_Blur",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,
@@ -1081,10 +1081,10 @@
     "m_Guid": {
         "m_GuidSerialized": "4c0e8460-fc0b-4e7c-b6d5-5d6fe4c3acbc"
     },
-    "m_Name": "平铺",
+    "m_Name": "Tile",
     "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "平铺",
-    "m_DefaultReferenceName": "_",
+    "m_RefNameGeneratedByDisplayName": "Tile",
+    "m_DefaultReferenceName": "_Tile",
     "m_OverrideReferenceName": "_Tile",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,
@@ -1216,7 +1216,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector2MaterialSlot",
     "m_ObjectId": "722872ffee4245619d4eac122e42018a",
     "m_Id": 0,
-    "m_DisplayName": "层2",
+    "m_DisplayName": "Layer2",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -1237,7 +1237,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector2MaterialSlot",
     "m_ObjectId": "759a2d9d0a5a465088345fa163636f92",
     "m_Id": 0,
-    "m_DisplayName": "渲染面的宽高比",
+    "m_DisplayName": "Aspect",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -1275,10 +1275,10 @@
     "m_Guid": {
         "m_GuidSerialized": "9d5c332a-dde2-4839-af7f-cdc989f8e2e7"
     },
-    "m_Name": "扭曲强度",
+    "m_Name": "Force",
     "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "扭曲强度",
-    "m_DefaultReferenceName": "_",
+    "m_RefNameGeneratedByDisplayName": "Force",
+    "m_DefaultReferenceName": "_Force",
     "m_OverrideReferenceName": "_TwistForce",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,
@@ -1417,7 +1417,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "9aea59a9c5564fdbb4b4139763a6f459",
     "m_Id": 0,
-    "m_DisplayName": "扭曲强度",
+    "m_DisplayName": "Force",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -1439,10 +1439,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -995.333251953125,
-            "y": -86.00001525878906,
-            "width": 94.66668701171875,
-            "height": 35.99996566772461
+            "x": -994.0,
+            "y": -29.999980926513673,
+            "width": 111.0,
+            "height": 33.999969482421878
         }
     },
     "m_Slots": [
@@ -1489,7 +1489,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "a8a15371c92a4f48884ae166b134cb2b",
     "m_Id": 0,
-    "m_DisplayName": "拖尾密度",
+    "m_DisplayName": "TrailDensity",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -1506,10 +1506,10 @@
     "m_Guid": {
         "m_GuidSerialized": "fd98057b-9df6-49fc-b189-1b0a50faf7ce"
     },
-    "m_Name": "透明度",
+    "m_Name": "Alpha",
     "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "透明度",
-    "m_DefaultReferenceName": "_",
+    "m_RefNameGeneratedByDisplayName": "Alpha",
+    "m_DefaultReferenceName": "_Alpha",
     "m_OverrideReferenceName": "_Alp",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,
@@ -1531,7 +1531,7 @@
     "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.CategoryData",
     "m_ObjectId": "ad28910911e54606a5cbf5eb3a63d9e1",
-    "m_Name": "密度层（uv信息。x： 缩放比例，y：偏移）",
+    "m_Name": "Density Layer (uv. x： scale，y：offset)",
     "m_ChildObjectList": [
         {
             "m_Id": "1438e0c045d24cfe9b8fe87e8739b4f8"
@@ -1583,7 +1583,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "b5b43d624a3e451bba6c374df016bd39",
     "m_Id": 0,
-    "m_DisplayName": "平铺",
+    "m_DisplayName": "Tile",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -1605,10 +1605,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -1077.9998779296875,
-            "y": -230.0000457763672,
-            "width": 177.33331298828126,
-            "height": 36.00001525878906
+            "x": -1019.0,
+            "y": -220.00001525878907,
+            "width": 113.99993896484375,
+            "height": 34.0
         }
     },
     "m_Slots": [
@@ -1789,10 +1789,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -1054.66650390625,
-            "y": -194.00003051757813,
-            "width": 153.99993896484376,
-            "height": 36.000030517578128
+            "x": -1034.0,
+            "y": -174.99998474121095,
+            "width": 137.0,
+            "height": 33.999969482421878
         }
     },
     "m_Slots": [
@@ -1949,10 +1949,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -1032.6666259765625,
-            "y": -266.0,
-            "width": 132.00006103515626,
-            "height": 35.99995422363281
+            "x": -997.0,
+            "y": -255.0,
+            "width": 94.0,
+            "height": 34.0
         }
     },
     "m_Slots": [
@@ -2154,7 +2154,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector2MaterialSlot",
     "m_ObjectId": "e87f45a1c81d4f19b4967ae594d34e67",
     "m_Id": 0,
-    "m_DisplayName": "层1",
+    "m_DisplayName": "Layer1",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -2216,10 +2216,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -1087.333251953125,
-            "y": -122.00003814697266,
-            "width": 186.66668701171876,
-            "height": 36.000022888183597
+            "x": -995.0,
+            "y": -65.00001525878906,
+            "width": 112.0,
+            "height": 34.00000762939453
         }
     },
     "m_Slots": [
@@ -2260,10 +2260,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -1021.3333129882813,
-            "y": -158.0,
-            "width": 120.666748046875,
-            "height": 35.999961853027347
+            "x": -1043.0,
+            "y": -141.00001525878907,
+            "width": 137.99993896484376,
+            "height": 34.00000762939453
         }
     },
     "m_Slots": [

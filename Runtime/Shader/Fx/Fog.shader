@@ -12,47 +12,47 @@ Shader "Graphi/Fx/Fog"
     Properties
     {
         [Space(10)]
-        [HDR]_Color("主纹理颜色", Color) = (1,1,1,1)
-        _MainTex("主纹理", 2D) = "white" {}
-        _MainIntensity("主纹理强度", float) = 1
+        [HDR]_Color("Color", Color) = (1,1,1,1)
+        _MainTex("Tex", 2D) = "white" {}
+        _MainIntensity("Force", float) = 1
 
         // 灰度
         [Space(10)]
-        [Foldout]_Desatu("灰度（Gray）", Range(0, 1)) = 0
+        [Foldout]_Desatu("Gray", Range(0, 1)) = 0
         [Space(5)]
-        [To(_Desatu)]_Desaturate("插值", Range(0,1)) = 0
-        [To(_Desatu)]_DesaturatePower("强度", float) = 1
+        [To(_Desatu)]_Desaturate("Lerp", Range(0,1)) = 0
+        [To(_Desatu)]_DesaturatePower("Force", float) = 1
 
         // 扰动
         [Space(10)]
-        [Foldout]_Disturbance("扰动（Disturbance）", Range(0,1)) = 0
+        [Foldout]_Disturbance("Disturbance", Range(0,1)) = 0
         [Space(5)]
-        [To(_Disturbance)][MaterialToggle] _DisturSwitch("开启", Float) = 0
-        [To(_Disturbance)]_DisturTex("纹理", 2D) = "white" {}
-        [To(_Disturbance)]_DisturIntensity("强度", Float) = 0.1
-        [To(_Disturbance)]_DisturUSpeed("U 流动速度", Float) = 0
-        [To(_Disturbance)]_DisturVSpeed("V 流动速度", Float) = 0
+        [To(_Disturbance)][MaterialToggle] _DisturSwitch("Enable", Float) = 0
+        [To(_Disturbance)]_DisturTex("Tex", 2D) = "white" {}
+        [To(_Disturbance)]_DisturIntensity("Force", Float) = 0.1
+        [To(_Disturbance)]_DisturUSpeed("U Speed", Float) = 0
+        [To(_Disturbance)]_DisturVSpeed("V Speed", Float) = 0
 
         // 距离比颜色强度
         [Space(10)]
-        [Foldout]_Dist("距离（Distance）", Range(0, 1)) = 0
+        [Foldout]_Dist("Distance", Range(0, 1)) = 0
         [Space(5)]
-        [To(_Dist)][MaterialToggle] _DistanceSwitch("开启", Float) = 0
-        [To(_Dist)]_Near("自定义裁剪面  [近]（非摄像机近裁面）", Float) = 0
-        [To(_Dist)]_Far("自定义裁剪面  [远]（非摄像机远裁面） ", Float) = 0
+        [To(_Dist)][MaterialToggle] _DistanceSwitch("Enable", Float) = 0
+        [To(_Dist)]_Near("Custom Near P", Float) = 0
+        [To(_Dist)]_Far("Custom Far P", Float) = 0
 
         // 径向遮罩
         [Space(10)]
-        [Foldout] _Radial("径向遮罩（Radial Mask）", Range(0,1)) = 0
-        [To(_Radial)][MaterialToggle] _RadialSwitch("开启", Float) = 0
-        [To(_Radial)]_RadialIntensity("强度", Float) = 0
+        [Foldout] _Radial("Radial Mask", Range(0,1)) = 0
+        [To(_Radial)][MaterialToggle] _RadialSwitch("Enable", Float) = 0
+        [To(_Radial)]_RadialIntensity("Force", Float) = 0
 
         // 高级
         [Space(10)]
-        [Foldout] _Advanced("高级（Advanced）", Range(0,1)) = 0
+        [Foldout] _Advanced("Advanced", Range(0,1)) = 0
         [Space(5)]
-        [To(_Advanced)]_DepthVal("交叉软化", float) = 0
-        [To(_Advanced)]_Fade("梯度渐变", float) = 1
+        [To(_Advanced)]_DepthVal("Fade", float) = 0
+        [To(_Advanced)]_Fade("Fade Gradient", float) = 1
         [To(_Advanced)][HideInInspector]_BlendMode("_BlendMode", Range(0.0, 1.0)) = 0.5
     }
 

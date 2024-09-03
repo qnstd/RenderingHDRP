@@ -16,23 +16,23 @@ Shader "Graphi/Unlit/Video"
         [HideInInspector]_BlendMode("_BlendMode", Range(0.0, 1.0)) = 0.5
 
         // 滤镜类型选取器
-        [Enum(None,0,BlackWhite,1,OldPhotos,2,Relief,3,Mosaic,4)]_FilterType("滤镜", float) = 0
+        [Enum(None,0,BlackWhite,1,OldPhotos,2,Relief,3,Mosaic,4)]_FilterType("Filter", float) = 0
 
         [Space(10)]
         _SplitBar0("", int) = 0
         [Space(10)]
 
         // 马赛克参数
-        [Foldout]_Mosaic("马赛克", Range(0,1)) = 0
-        [To(_Mosaic)]_MosaicForce("强度", float) = 10
+        [Foldout]_Mosaic("Mosaic", Range(0,1)) = 0
+        [To(_Mosaic)]_MosaicForce("Force", float) = 10
 
         // 浮雕参数
-        [Foldout]_Relief("浮雕", Range(0,1)) = 0
-        [To(_Relief)]_level("偏移", float) = 2
-        [To(_Relief)]_force("强度", float) = 0.01
-        [To(_Relief)][Enum(On,1,Off,0)]_invertx("反转轴 x", float) = 1
-        [To(_Relief)][Enum(On,1,Off,0)]_inverty("反转轴 y", float) = 1
-        [To(_Relief)]_rgscale("亮度", float) = 0.25
+        [Foldout]_Relief("Relief", Range(0,1)) = 0
+        [To(_Relief)]_level("Level", float) = 2
+        [To(_Relief)]_force("Force", float) = 0.01
+        [To(_Relief)][Enum(On,1,Off,0)]_invertx("Inverse x", float) = 1
+        [To(_Relief)][Enum(On,1,Off,0)]_inverty("Inverse y", float) = 1
+        [To(_Relief)]_rgscale("Brightness", float) = 0.25
     }
 
     HLSLINCLUDE
