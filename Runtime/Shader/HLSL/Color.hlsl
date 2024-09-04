@@ -1,26 +1,6 @@
 #ifndef GRAPHI_COLOR
 #define GRAPHI_COLOR
 
-// 得到曝光颜色值
-// c	: 颜色值
-//float3 GetExposureColor(float3 c)
-//{
-//	return c * GetCurrentExposureMultiplier();
-//}
-
-
-
-// 得到与曝光度相反的颜色值
-// c	: 颜色值
-//float3 GetDeExposureColor(float3 c)
-//{
-//#if defined(DISABLE_UNLIT_DEEXPOSURE)
-//    return 1.0 * c;
-//#else
-//    return _DeExposureMultiplier * c;
-//#endif
-//}
-
 
 // RGBA 归一化（将0-255的值转为0-1）
 float4 RGBAtoNormalize(float4 c)
@@ -35,7 +15,6 @@ float3 Gray(float3 c)
 	float val = dot(c.rgb, float3(0.299, 0.587, 0.114)); //float3(0.2126,0.7152, 0.0722);  float3(0.299, 0.587, 0.114)
 	return val.xxx;
 }
-
 
 
 // 自定义灰度
@@ -54,45 +33,8 @@ out float val
 }
 
 
-
 // 取反
-float3 Negation(float3 c)
-{
-	return 1 - c.rgb;
-}
-
-
-
-real Luminance0(real3 c)
-{
-    return dot(c, real3(0.2126729, 0.7151522, 0.0721750));
-}
-
-real Luminance0(real4 c)
-{
-    return Luminance0(c.rgb);
-}
-
-
-// 对参数颜色进行 亮度、饱和度、对比度 的调节
-float4 Hue(float4 clr, float brightness, float saturation, float contrast)
-{
-	float3 c = clr.rgb;
-
-	// 明亮度
-	c *= brightness;
-
-	// 饱和度
-	float lum = Luminance0(c); //取出亮度值
-	c = lerp(lum.xxx, c, saturation);
-
-	// 对比度
-	float3 avg = float3(0.5, 0.5, 0.5);
-	c = lerp(avg, c, contrast);
-
-	clr.rgb = c;
-	return clr;
-}
+float3 Negation(float3 c){ return 1 - c.rgb; }
 
 
 // 提取像素的亮度值
@@ -119,8 +61,14 @@ float4 Lumi(float4 c, float threshold)
 	float4 final = float4(c.rgb * atten, c.a);
 	return final;
 }
-
-
+real Luminance0(real3 c)
+{
+    return dot(c, real3(0.2126729, 0.7151522, 0.0721750));
+}
+real Luminance0(real4 c)
+{
+    return Luminance0(c.rgb);
+}
 
 
 // RGB 转 HSV 颜色
@@ -145,23 +93,47 @@ float3 HSV_RGB(float3 c)
 }
 
 
-
 // 对参数颜色进行色相、饱和度、明度、对比度调节
-// dataValue :  x(色相的变化量，范围[0-1])，y(饱和度变化量，范围[0-n])，z(明度变化量，范围[0-n]，w(对比度变化量，范围[0-n]))
-float3 HSBC(float3 c, float4 dataValue)
+// clr : 颜色
+// h：色相的变化量，范围[0-1]
+// s: 饱和度变化量，范围[0-n]
+// b: 明度变化量，范围[0-n]
+// c: 对比度变化量，范围[0-n]
+void HSBC_float(float3 clr, float h, float s, float b, float c, out float3 Out)
 {
-	float3 hsv = RGB_HSV(c);
+	float3 hsv = RGB_HSV(clr);
     
-    hsv.x += clamp(dataValue.x, 0, 1);
-    hsv.y *= dataValue.y;//clamp(dataValue.y, 0, 1);
-    hsv.z *= dataValue.z;//clamp(dataValue.z, 0, 1);
+    hsv.x += clamp(h, 0, 1);
+    hsv.y *= s;//clamp(s, 0, 1);
+    hsv.z *= b;//clamp(c, 0, 1);
 
     float3 rgb = HSV_RGB(hsv);
 
     float3 avg = float3(0.5,0.5,0.5);
-    rgb = lerp(avg, rgb, dataValue.w);
+    rgb = lerp(avg, rgb, c);
 
-	return rgb;
+	Out = rgb;
+}
+
+
+// 对参数颜色进行 亮度、饱和度、对比度 的调节
+float4 Hue(float4 clr, float brightness, float saturation, float contrast)
+{
+	float3 c = clr.rgb;
+
+	// 明亮度
+	c *= brightness;
+
+	// 饱和度
+	float lum = Luminance0(c); //取出亮度值
+	c = lerp(lum.xxx, c, saturation);
+
+	// 对比度
+	float3 avg = float3(0.5, 0.5, 0.5);
+	c = lerp(avg, c, contrast);
+
+	clr.rgb = c;
+	return clr;
 }
 
 

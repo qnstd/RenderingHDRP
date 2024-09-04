@@ -10,7 +10,7 @@
 	n		: 法线
 	force	: 强度
 */
-float3 _NormalForce(float3 n, float force)
+float3 NormalForce(float3 n, float force)
 {
 	return float3(n.rg * force, lerp(1.0, n.b, saturate(force)));
 }
@@ -103,9 +103,9 @@ out float3 N
 	float3 Ny = UnpackNormal(SAMPLE_TEXTURE2D(t2d.tex, t2d.samplerstate, uv.xz));
 	float3 Nz = UnpackNormal(SAMPLE_TEXTURE2D(t2d.tex, t2d.samplerstate, uv.xy));
 	// 设置强度
-	Nx = _NormalForce(Nx, force);
-	Ny = _NormalForce(Ny, force);
-	Nz = _NormalForce(Nz, force);
+	Nx = NormalForce(Nx, force);
+	Ny = NormalForce(Ny, force);
+	Nz = NormalForce(Nz, force);
 
 	// 根据顶点的世界法线对三次采样结果做权重分析
 	Nx = float3(Nx.xy + normalWS.zy, abs(Nx.z) * normalWS.x);
