@@ -264,26 +264,6 @@ Thickness = (useThicknessMap) ?  ( thickRange.x + thickRange.y * SampleTex( thic
 
 
 
-/*
-	HSBC  操作（hue、saturation、brightness、contract）
-*/
-void HSBC_float
-(
-// input
-bool Flag,
-float4 color,
-float hue,
-float saturation,
-float brightness,
-float contract,
-// output
-out float3 Out
-)
-{
-	Out = (Flag) ? HSBC(color.rgb, float4(hue, saturation, brightness, contract)) : color.rgb;
-}
-
-
 
 /*
 	覆盖颜色处理
