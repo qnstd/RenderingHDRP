@@ -1,6 +1,6 @@
 {
   "name": "com.cngraphi.renderhdrp",
-  "version": "1.2.0",
+  "version": "1.0.0",
   "unity": "2022.3",
   "displayName": "Graphi Rendering HDRP",
   "description": "Unity shader rendering library (HDRP).",

@@ -50,7 +50,7 @@ namespace com.graphi.renderhdrp.editor
                     Gui.Hor();
                     Gui.Btn("readme", () => { OpenMD("", "README"); }, m_BtnStyle, Gui.W(50), Gui.H(13));
                     Gui.Btn("license", () => { OpenMD("", "LICENSE"); }, m_BtnStyle, Gui.W(50), Gui.H(13));
-                    Gui.Btn("documentation", () => { OpenMD("Documentation", "graphi_shader_hdrp"); }, m_BtnStyle, Gui.W(100), Gui.H(13));
+                    Gui.Btn("documentation", () => { OpenMD("Documentation", "graphi_rendering_hdrp"); }, m_BtnStyle, Gui.W(100), Gui.H(13));
                     Gui.Btn("log", () => { OpenMD("", "CHANGELOG"); }, m_BtnStyle, Gui.W(50), Gui.H(13));
                     Gui.EndHor();
                     Gui.Space(5);
