@@ -127,7 +127,7 @@ namespace com.graphi.renderhdrp.editor
 
 
 
-        [MenuItem("GameObject/Volume/Graphi_OccDisplay")]
+        [MenuItem("GameObject/Volume/OccDisplay Volume")]
         static private void Create_OccDisplay()
         {
             string savepath = "Assets/";
@@ -189,7 +189,7 @@ namespace com.graphi.renderhdrp.editor
 
 
 
-        [MenuItem("GameObject/Volume/Graphi_Twist")]
+        [MenuItem("GameObject/Volume/Twist Volume")]
         static private void Create_TwistDrive()
         {
             int layid = 1 << LayerMask.NameToLayer(Lay.C_BuildinLayer[0]);

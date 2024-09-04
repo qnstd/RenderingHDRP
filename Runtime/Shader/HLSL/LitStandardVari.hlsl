@@ -3,7 +3,7 @@
 
 // 引入操作库
 #include "NormalBlend.hlsl"
-#include "ColorBlend.hlsl"
+#include "Color.hlsl"
 
 
 // 纹理采样
@@ -330,17 +330,17 @@ void CoverColor_float
 		if(g != 0)
 		{
 			if(ZeroColor(blendcolor)){ blendcolor = float4(cg,1);}
-			else { BlendColor_float( blendcolor, float4(cg,1), BlendType, BlendFactor, blendcolor ); }
+			else { BlendColorNode_float( blendcolor, float4(cg,1), BlendType, BlendFactor, blendcolor ); }
 		}
 		if(b != 0)
 		{
 			if(ZeroColor(blendcolor)){ blendcolor = float4(cb,1);}
-			else { BlendColor_float( blendcolor, float4(cb,1), BlendType, BlendFactor, blendcolor ); }
+			else { BlendColorNode_float( blendcolor, float4(cb,1), BlendType, BlendFactor, blendcolor ); }
 		}
 		if(a != 0)
 		{
 			if(ZeroColor(blendcolor)) { blendcolor = float4(ca,1); }
-			else { BlendColor_float( blendcolor, float4(ca,1), BlendType, BlendFactor, blendcolor ); }
+			else { BlendColorNode_float( blendcolor, float4(ca,1), BlendType, BlendFactor, blendcolor ); }
 		}
 		// ===============================================结束=========================================================
 
