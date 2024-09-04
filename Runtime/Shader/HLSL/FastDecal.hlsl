@@ -1,6 +1,8 @@
 ﻿#ifndef FASTDECAL
 #define FASTDECAL
 
+#include "Tex.hlsl"
+
 
 // 输入参数
 	// posRWS				: 相对摄像机的世界空间位置
@@ -68,7 +70,7 @@ void CalculateFastDecal_float
 	
 		#endif
 
-		float4 c = SAMPLE_TEXTURE2D(tex2D, tex2D.samplerstate, uv) * color;
+		float4 c = SampleTex(tex2D, uv) * color;
 		c *= brightnessVal;
 		rgb = c.rgb;
 		alp = c.a * clipOut;

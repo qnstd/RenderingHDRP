@@ -99,12 +99,6 @@ namespace com.graphi.renderhdrp
         #endregion
 
 
-        #region ±¡Ä¤¸ÉÉæ
-        public const string ID_IorIntensity = "_IorIntensity";
-        public const string ID_IorThickness = "_IorThickness";
-        #endregion
-
-
         #region Í¨ÓÃ
         public const string ID_UVSpeed = "_UVSpeed";
         public const string ID_MixedTex = "_MixedTex";

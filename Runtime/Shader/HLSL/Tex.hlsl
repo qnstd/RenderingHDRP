@@ -1,28 +1,17 @@
 ﻿#ifndef TEX
 #define TEX
 
-/////////////////////////////////////////////////////////////////////
-// 通用函数
+#include "Normal.hlsl"
 
-
-/*
-	法线强度
-	n		: 法线
-	force	: 强度
-*/
-float3 NormalForce(float3 n, float force)
+// 常规纹理采样
+float4 SampleTex(UnityTexture2D t2d, float2 uvs)
 {
-	return float3(n.rg * force, lerp(1.0, n.b, saturate(force)));
+	return SAMPLE_TEXTURE2D(t2d.tex, t2d.samplerstate, t2d.GetTransformedUV(uvs));
 }
 
 
-/////////////////////////////////////////////////////////////////////
 
-
-
-/*
-	三向采样
-*/
+// 三向采样
 void TexSampleTriplanar_float
 (
 //input
@@ -45,9 +34,9 @@ out float4 Out
 
 	// UV & 采样
 	float3 uv = pos * tile;
-	float4 X = SAMPLE_TEXTURE2D(t2d.tex, t2d.samplerstate, uv.zy);
-	float4 Y = SAMPLE_TEXTURE2D(t2d.tex, t2d.samplerstate, uv.xz);
-	float4 Z = SAMPLE_TEXTURE2D(t2d.tex, t2d.samplerstate, uv.xy);
+	float4 X = SampleTex(t2d, uv.zy);
+	float4 Y = SampleTex(t2d, uv.xz);
+	float4 Z = SampleTex(t2d, uv.xy);
 
 	// 设置权重
 	float4 blendXYZ = X * Ble.x + Y * Ble.y + Z * Ble.z;
@@ -58,9 +47,7 @@ out float4 Out
 
 
 
-/*
-	三向采样（法线）
-*/
+// 三向采样（法线）
 void NormalTexSampleTriplanar_float
 (
 // input
@@ -99,9 +86,9 @@ out float3 N
 
 	// 采样
 	float3 uv = pos * tile;
-	float3 Nx = UnpackNormal(SAMPLE_TEXTURE2D(t2d.tex, t2d.samplerstate, uv.zy));
-	float3 Ny = UnpackNormal(SAMPLE_TEXTURE2D(t2d.tex, t2d.samplerstate, uv.xz));
-	float3 Nz = UnpackNormal(SAMPLE_TEXTURE2D(t2d.tex, t2d.samplerstate, uv.xy));
+	float3 Nx = UnpackNormal(SampleTex(t2d, uv.zy));
+	float3 Ny = UnpackNormal(SampleTex(t2d, uv.xz));
+	float3 Nz = UnpackNormal(SampleTex(t2d, uv.xy));
 	// 设置强度
 	Nx = NormalForce(Nx, force);
 	Ny = NormalForce(Ny, force);

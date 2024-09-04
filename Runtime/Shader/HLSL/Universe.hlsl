@@ -1,9 +1,9 @@
-﻿#ifndef PLANET
-#define PLANET
+﻿#ifndef UNIVERSE
+#define UNIVERSE
 
 // 引入需要的库文件
 #include "Tex.hlsl"
-#include "NormalBlend.hlsl"
+#include "Normal.hlsl"
 
 
 /*
@@ -186,10 +186,12 @@ out float Alp
 	float factor2 = pow(smoothstep(innerring, 0.5, len), 1);
 	float factor = factor1 * factor2;
 	float2 sampleuv = (factor).xx;
-	Result = pow(factor.xxx, ringpow) * SAMPLE_TEXTURE2D(t2d.tex, t2d.samplerstate, t2d.GetTransformedUV(sampleuv)) * c * force;
+	Result = pow(factor.xxx, ringpow) * SampleTex(t2d, sampleuv) * c * force;
 	Alp = 1;
+
+	
 }
 
 
 
-#endif //星球、恒星相关计算（由 Graphi 着色库工具生成）| 作者：强辰
+#endif //宇宙相关计算（由 Graphi 着色库工具生成）| 作者：强辰

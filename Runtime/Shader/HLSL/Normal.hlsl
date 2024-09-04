@@ -1,11 +1,10 @@
-﻿#ifndef GRAPHI_BLENDNORMAL
-#define GRAPHI_BLENDNORMAL
+﻿#ifndef GRAPHI_NORMAL
+#define GRAPHI_NORMAL
 
 // ////////////////////////////////////////////////////////////
 // ******
 // 以下所有方法参数法线必须是 Unpack 解包并归一化后的法线
-// ******
-// ////////////////////////////////////////////////////////////
+
 
 // 线性混合
 float3 BlendNormal_Linear(float3 n1, float3 n2)
@@ -94,5 +93,18 @@ out float3 blendnormal
 		blendnormal = n1; // 不进行混合操作
 }
 
+// ******
+// ////////////////////////////////////////////////////////////
 
-#endif //法线混合类型计算公式（由 Graphi 着色库工具生成）| 作者：强辰
+
+
+/*
+	法线强度
+*/
+float3 NormalForce(float3 n, float force)
+{
+	return float3(n.rg * force, lerp(1.0, n.b, saturate(force)));
+}
+
+
+#endif //法线相关计算（由 Graphi 着色库工具生成）| 作者：强辰

@@ -2,16 +2,9 @@
 #define LITSTANDARDVARIANT
 
 // 引入操作库
-#include "NormalBlend.hlsl"
+#include "Normal.hlsl"
 #include "Color.hlsl"
-
-
-// 纹理采样
-float4 SampleTex(UnityTexture2D tex, float2 uvs)
-{
-	return SAMPLE_TEXTURE2D(tex, tex.samplerstate, tex.GetTransformedUV(uvs));
-}
-
+#include "Tex.hlsl"
 
 
 /*
