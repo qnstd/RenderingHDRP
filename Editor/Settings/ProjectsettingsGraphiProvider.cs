@@ -77,7 +77,7 @@ namespace com.graphi.renderhdrp.editor
 
                             Gui.Label("The following layers are Graphi library built-in layers that need to be added before runtime.", sty);
                             sty = new GUIStyle("OL Title") { fontSize = 9 };
-                            string[] lays = GraphiMachine.C_BuildinLayer;
+                            string[] lays = Lay.C_BuildinLayer;
                             for (int i = 0; i < lays.Length; i++)
                             {
                                 Gui.Label("<color=#acd4f2ff>" + lays[i] + "</color>", sty);
@@ -180,7 +180,7 @@ namespace com.graphi.renderhdrp.editor
         /// </summary>
         static private void LayerSettings()
         {
-            string[] lays = GraphiMachine.C_BuildinLayer;
+            string[] lays = Lay.C_BuildinLayer;
             for (int i = 0; i < lays.Length; i++)
                 Lay.AddLayer(lays[i]);
         }

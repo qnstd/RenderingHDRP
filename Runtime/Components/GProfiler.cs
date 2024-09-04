@@ -2,30 +2,34 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Unity.Profiling;
+using UnityEngine;
+using static com.graphi.renderhdrp.GProfiler;
+
+
+
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
-using UnityEngine;
+
 
 namespace com.graphi.renderhdrp
 {
     /// <summary>
-    /// 运行时性能检测器
-    /// <para>检测器本身占用 SetPass Call 及 Batches 数据中的各一次</para>
+    /// 图形数据统计
+    /// <para>本身占用 SetPass Call 及 Batches 数据中的各一次</para>
     /// <para>作者：强辰</para>
     /// </summary>
     [DisallowMultipleComponent]
     [ExecuteInEditMode]
-    public class RuntimePerformance : MonoBehaviour
+    public class GProfiler : MonoBehaviour
     {
         /// <summary>
         /// 显示类型
         /// </summary>
         public enum E_ShowTyp
         {
-            None, // 无（但对外提供各项数据的接口，这些接口以静态方式提供）
-            Console, // 控制台打印
-            GUI // 传统 GUI 绘制
+            GUI, // 传统 GUI 绘制
+            Console // 控制台打印
         }
 
 
@@ -33,20 +37,20 @@ namespace com.graphi.renderhdrp
         bool m_CanDraw = false;
         readonly Vector2 C_Size4K = new Vector2(3840, 2160); // 4k尺寸
         Vector2 m_LastResolution;
-        internal Rect m_DrawRect;
-        internal GUIStyle m_DrawStyle;
+        Rect m_DrawRect;
+        GUIStyle m_DrawStyle;
         Texture2D m_DrawTxtBackground; // 背景纹理
         Rect m_DrawBgRect = new Rect(); // 背景纹理绘制区域
         readonly Vector2 C_DrawBgSize = new Vector2(1300, 1700); // 背景纹理标准尺寸 
         #endregion
 
         #region Inspector 控制属性
-        public E_ShowTyp m_ShowType = E_ShowTyp.GUI;
-        public float m_UpdateInterval = 1.0f;
-        public int m_DrawSize = 30;
-        public Vector2 m_DrawArea = new Vector2(10, 5);
-        public Vector2 m_PerforInterval = new Vector2(0.7f, 0.5f);
-        public bool m_ExtremelyAustere = false;
+        [SerializeField]
+        E_ShowTyp m_ShowType = E_ShowTyp.GUI;
+        [SerializeField]
+        float m_UpdateInterval = 1.0f;
+        [SerializeField]
+        bool m_ExtremelyAustere = false;
         #endregion
 
         #region FPS计算时需要的变量
@@ -128,17 +132,6 @@ namespace com.graphi.renderhdrp
         StringBuilder INFO = new StringBuilder();
         #endregion
 
-        #region 对外接口【静态】
-        /// <summary>
-        /// FPS
-        /// </summary>
-        static public float FPS { get { return m_Fps; } }
-        /// <summary>
-        /// FPS 毫秒值
-        /// </summary>
-        static public float FPSMilliSec { get { return m_FpsMillSec; } }
-        #endregion
-
 
         void OnEnable()
         {
@@ -174,7 +167,7 @@ namespace com.graphi.renderhdrp
 
         void Start()
         {
-            m_DrawRect = new Rect(m_DrawArea.x, m_DrawArea.y, 0, 0);
+            m_DrawRect = new Rect(10, 5, 0, 0);
 
             m_TimeSurplus = m_UpdateInterval;
             m_LastSample = Time.realtimeSinceStartup;
@@ -203,9 +196,6 @@ namespace com.graphi.renderhdrp
                 // 显示各项数据。Profiler数据的更新以FPS更新的时段为准。
                 switch (m_ShowType)
                 {
-                    case E_ShowTyp.None:
-                        m_CanDraw = false;
-                        break;
                     case E_ShowTyp.Console:
                         m_CanDraw = false;
                         Lg.Trace(InfoForamt());
@@ -219,16 +209,16 @@ namespace com.graphi.renderhdrp
 
         void OnGUI()
         {
-            if (m_DrawStyle == null)
-            {
-                m_DrawStyle = new GUIStyle("AM EffectName") { richText = true, fontSize = m_DrawSize };
-            }
-
             if (m_CanDraw)
             {
+                if (m_DrawStyle == null)
+                {
+                    m_DrawStyle = new GUIStyle("WhiteMiniLabel") { richText = true, fontSize = 30 };
+                }
+
                 CaluResolutionScale(ref m_LastResolution, C_Size4K, (scale) =>
                 {
-                    m_DrawStyle.fontSize = (int)(m_DrawSize * scale);
+                    m_DrawStyle.fontSize = (int)(30 * scale);
                     Vector2 size = C_DrawBgSize * scale;
                     m_DrawBgRect.Set(0, 0, size.x, size.y);
                 });
@@ -307,9 +297,9 @@ namespace com.graphi.renderhdrp
                     dval /= mod;
                     i++;
                 }
-                _value = dval.ToString(retain) + " <color=#ebce89ff>" + units[i] + "</color>";
+                _value = $"{dval.ToString(retain)} <color=#ebce89ff>{units[i]}</color>";
             }
-            return "<color=#c09fdfff>" + _value + "</color>";
+            return $"<color=#c09fdfff>{_value}</color>";
         }
         string Transfer(string k, long orignval, bool b)
         {
@@ -323,26 +313,18 @@ namespace com.graphi.renderhdrp
         /// <returns></returns>
         string InfoForamt()
         {
-            //FPS 颜色区分
-            int framerate = GraphiMachine.FrameRate;
-            string color = "#8fffc1ff"; // 绿
-            if (FPS <= framerate * m_PerforInterval.x)
-                color = "#fee766ff"; // 黄
-            else if (FPS <= framerate * m_PerforInterval.y)
-                color = "#fe666dff"; // 红
-
             // 信息
             INFO.Clear();
             if (m_ExtremelyAustere)
             {
-                INFO.Append("<color=" + color + ">FPS: " + FPS.ToString("F1") + " / " + framerate + " - " + FPSMilliSec.ToString("F3") + " ms</color>");
+                INFO.Append($"<color=#ffffffff>FPS: {FPS.ToString("F1")} - {FPSMilliSec.ToString("F3")} ms</color>");
             }
             else
             {
                 INFO
                 .Append("<color=#ffffffff><b>Graphi Profiler</b>\n\n")
                 // fps
-                .Append("   <color=" + color + ">FPS: " + FPS.ToString("F1") + " / " + framerate + " - " + FPSMilliSec.ToString("F3") + " ms</color>\n\n")
+                .Append($"   FPS: {FPS.ToString("F1")} - {FPSMilliSec.ToString("F3")} ms\n\n")
                 // profiler
                 .Append("   <color=#89b5ffff>Graphics（PerFrame）</color>\n\n");
                 int dataIndex = 0; //数据真正的索引
@@ -357,13 +339,13 @@ namespace com.graphi.renderhdrp
                         extra = "\n";
                         // 额外: 在顶点数的数据前插入一条自定义的数据（节省的批次数量 = 总DC数量 - 合批数量）
                         long savebybatchesNum = GetProfilerData(1) - GetProfilerData(2);
-                        INFO.Append("       <color=#ff7979ff><b>*</b></color> <color=#ccccccff>Saveby Batches: <color=#8eeb89ff>" + savebybatchesNum + "</color></color>\n");
+                        INFO.Append($"       <color=#ff7979ff><b>*</b></color> <color=#ccccccff>Saveby Batches: <color=#8eeb89ff>{savebybatchesNum}</color></color>\n");
                     }
                     else { extra = ""; }
 
                     if (k.IndexOf(",") == -1)
                     {
-                        INFO.Append(extra + "       " + prefix + "<color=#ccccccff>" + pd.desc + ": </color>" + Transfer(k, GetProfilerData(dataIndex), pd.byteTransfer) + pd.newline);
+                        INFO.Append($"{extra}       {prefix}<color=#ccccccff>{pd.desc}: </color>{Transfer(k, GetProfilerData(dataIndex), pd.byteTransfer)}{pd.newline}");
                         dataIndex++;
                     }
                     else
@@ -375,24 +357,24 @@ namespace com.graphi.renderhdrp
                             d.Add(Transfer(ks[j], GetProfilerData(dataIndex), pd.byteTransfer));
                             dataIndex++;
                         }
-                        INFO.Append(extra + "       " + prefix + "<color=#ccccccff>" + string.Format(pd.desc, d.ToArray()) + "</color>" + pd.newline);
+                        INFO.Append($"{extra}       {prefix}<color=#ccccccff>{string.Format(pd.desc, d.ToArray())}</color>{pd.newline}");
                     }
                 }
                 // systeminfos
-                string[] processor = GraphiMachine.SystemProcessor;
-                object[] graphics = GraphiMachine.Graphics;
+                string[] processor = SystemProcessor;
+                object[] graphics = Graphics;
                 INFO
                     .Append("\n\n   <color=#89b5ffff>System</color><color=#ccccccff>\n\n")
-                    .AppendLine($"       OS: {GraphiMachine.SystemOperating}")
+                    .AppendLine($"       OS: {SystemOperating}")
                     .AppendLine($"\n       Processor: {processor[0]} / {processor[1]}core ({processor[2]}MHz)")
-                    .AppendLine($"\n       Memory: {GraphiMachine.SystemMemory} MB")
+                    .AppendLine($"\n       Memory: {SystemMemory} MB")
                     .AppendLine($"\n       Graphics: {graphics[0]}")
                     .AppendLine($"               Memory: {graphics[1]} MB")
                     .AppendLine($"               Version: {graphics[2]}")
                     .AppendLine($"               Level: {graphics[3]}")
                     .AppendLine($"               Max Size: {graphics[4]}")
                     .AppendLine($"               Multiply Thread: {graphics[5]}")
-                    .AppendLine($"\n       Target: {GraphiMachine.GraphicsDevice}");
+                    .AppendLine($"\n       Target: {GraphicsDevice}");
                 INFO.Append("</color></color>");
             }
 
@@ -401,7 +383,6 @@ namespace com.graphi.renderhdrp
             INFO.Clear();
             return s;
         }
-
 
 
         /// <summary>
@@ -416,37 +397,93 @@ namespace com.graphi.renderhdrp
             return r.Valid ? r.LastValue : 0;
         }
 
+
+        #region 对外静态接口
+        /// <summary>
+        /// FPS
+        /// </summary>
+        static public float FPS { get { return m_Fps; } }
+        /// <summary>
+        /// FPS 毫秒值
+        /// </summary>
+        static public float FPSMilliSec { get { return m_FpsMillSec; } }
+        /// <summary>
+        /// 操作系统
+        /// </summary>
+        static public string SystemOperating { get { return SystemInfo.operatingSystem; } }
+        /// <summary>
+        /// 处理器
+        /// <para>数组元素依次是：处理器型号、处理器核数、频率MHZ。其中后两个值类型为int。</para>
+        /// </summary>
+        static public string[] SystemProcessor
+        {
+            get
+            {
+                return new string[]
+                {
+                    SystemInfo.processorType,
+                    SystemInfo.processorCount.ToString(),
+                    SystemInfo.processorFrequency.ToString()
+                };
+            }
+        }
+        /// <summary>
+        /// 系统内存
+        /// <para>单位：MB</para>
+        /// </summary>
+        static public int SystemMemory { get { return SystemInfo.systemMemorySize; } }
+        /// <summary>
+        /// 渲染设备
+        /// <para>例如：D3D11</para>
+        /// </summary>
+        static public string GraphicsDevice
+        {
+            get
+            {
+                return Enum.GetName(typeof(UnityEngine.Rendering.GraphicsDeviceType), SystemInfo.graphicsDeviceType);
+            }
+        }
+        /// <summary>
+        /// 显卡信息
+        /// <para>数组元素依次是：显卡名称、显存（单位：MB）、显卡支持的着色器版本、支持的着色器等级、支持最大纹理尺寸、显卡是否支持多线程操作</para>
+        /// </summary>
+        static public object[] Graphics
+        {
+            get
+            {
+                return new object[]
+                {
+                    SystemInfo.graphicsDeviceName,      // 显卡名称
+                    SystemInfo.graphicsMemorySize,      // 显存（单位：MB）
+                    SystemInfo.graphicsDeviceVersion,   // 显卡支持的着色器版本（例如：D3D_11.0-[Level 11.1]）
+                    SystemInfo.graphicsShaderLevel,     // 支持的着色器等级（例如：50。对于着色器的 #pragma target 5.0 ）
+                    SystemInfo.maxTextureSize,          // 支持最大纹理尺寸
+                    SystemInfo.graphicsMultiThreaded    // 显卡是否支持多线程操作
+                };
+            }
+        }
+        #endregion
     }
 
 
 #if UNITY_EDITOR
 
     /// <summary>
-    /// RuntimePerformance 组件Inspector面板
+    /// GProfiler 组件Inspector面板
     /// <para>作者：强辰</para>
     /// </summary>
-    [CustomEditor(typeof(RuntimePerformance))]
-    internal class RuntimePerformanceEditor : UnityEditor.Editor
+    [CustomEditor(typeof(GProfiler))]
+    internal class GProfilerEditor : UnityEditor.Editor
     {
-        RuntimePerformance src;
-
         SerializedProperty updateInterval;
         SerializedProperty showType;
-        SerializedProperty drawSize;
-        SerializedProperty drawArea;
-        SerializedProperty perforInterval;
         SerializedProperty extremelyAustere;
 
 
         private void OnEnable()
         {
-            src = target as RuntimePerformance;
-
             updateInterval = serializedObject.FindProperty("m_UpdateInterval");
             showType = serializedObject.FindProperty("m_ShowType");
-            drawSize = serializedObject.FindProperty("m_DrawSize");
-            drawArea = serializedObject.FindProperty("m_DrawArea");
-            perforInterval = serializedObject.FindProperty("m_PerforInterval");
             extremelyAustere = serializedObject.FindProperty("m_ExtremelyAustere");
 
         }
@@ -456,49 +493,17 @@ namespace com.graphi.renderhdrp
             serializedObject.Update();
 
             EditorGUILayout.Space(5);
-            EditorGUILayout.PropertyField(extremelyAustere, new GUIContent("Simple Mode"));
-
-            EditorGUILayout.Space(10);
             EditorGUILayout.PropertyField(updateInterval, new GUIContent("Interval"));
 
-            EditorGUILayout.Space(10);
+            EditorGUILayout.Space(5);
             EditorGUILayout.PropertyField(showType, new GUIContent("Type"));
-            switch (showType.intValue)
+
+            if ((E_ShowTyp)showType.boxedValue == E_ShowTyp.GUI)
             {
-                case 2: //Gui
-                    EditorGUI.indentLevel += 2;
-
-                    EditorGUILayout.Space(4);
-                    EditorGUILayout.PropertyField(drawSize, new GUIContent("Text Size"));
-                    EditorGUILayout.Space(2);
-                    EditorGUILayout.PropertyField(drawArea, new GUIContent("Draw Position"));
-                    EditorGUILayout.Space(2);
-                    EditorGUILayout.PropertyField(perforInterval, new GUIContent("Color interval"));
-
-                    EditorGUILayout.Space(10);
-                    EditorGUILayout.HelpBox(
-                        "Text size is based on 4k resolution.\n\n" +
-                        "FPS ColorSpace\n" +
-                        "x：Greater than this value is an excellent interval；\n" +
-                        "y：Greater than this value and less than or equal to the x value is a medium interval, and less than or equal to this value is an inefficient interval；\n"
-                        , MessageType.None);
-
-                    EditorGUI.indentLevel -= 2;
-
-                    if (src != null)
-                    {
-                        if (src.m_DrawStyle != null)
-                        {
-                            src.m_DrawSize = drawSize.intValue;
-                            src.m_DrawStyle.fontSize = src.m_DrawSize;
-                        }
-                        if (src.m_DrawRect != null)
-                        {
-                            src.m_DrawArea = drawArea.vector2Value;
-                            src.m_DrawRect.Set(src.m_DrawArea.x, src.m_DrawArea.y, 0, 0);
-                        }
-                    }
-                    break;
+                EditorGUILayout.Space(5);
+                EditorGUI.indentLevel++;
+                EditorGUILayout.PropertyField(extremelyAustere, new GUIContent("Simple Mode"));
+                EditorGUI.indentLevel--;
             }
 
             serializedObject.ApplyModifiedProperties();

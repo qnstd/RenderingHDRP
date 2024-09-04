@@ -95,7 +95,7 @@ namespace com.graphi.renderhdrp.editor
         #endregion
 
 
-        [MenuItem("Assets/Graphi/Tex/Normal")]
+        [MenuItem("Assets/Create/NormalTexture")]
         static private void Run()
         {
             Gui.ShowWin<BuildNormalTexture>("NormalTex Build", c_winsize);

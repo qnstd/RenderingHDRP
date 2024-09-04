@@ -1,6 +1,7 @@
 using System.IO;
 using UnityEditor;
 using UnityEngine;
+using static UnityEngine.Rendering.HighDefinition.DrawRenderersCustomPass;
 
 namespace com.graphi.renderhdrp.editor
 {
@@ -14,7 +15,7 @@ namespace com.graphi.renderhdrp.editor
         static Vector2 C_SIZE = new Vector2(330, 115);
 
 
-        [MenuItem("Assets/Graphi/Shader/Lit Standard Variant (ShaderGraph)")]
+        [MenuItem("Assets/Create/Shader Graph/HDRP/Lit Standard Variant")]
         static private void CreateLitStandardVariantSha()
         {
             Gui.ShowWin<CreateLitStandardVariant>("Create LitStandard Variant ShaderGraph", C_SIZE, true);
@@ -92,7 +93,12 @@ namespace com.graphi.renderhdrp.editor
 
             // ´´½¨²ÄÖÊ
             if (m_bCreateMat)
-                CreateShaderMat.Excute(shapath, m_name);
+            {
+                if (!ProjectUtils.SelectDirectory(out string p)) { return; }
+                p = Path.Combine(p, m_name + ".mat").Replace("\\", "/");
+                AssetDatabase.CreateAsset(new Material(ShaderFind.GetTradition(shapath)), p);
+                AssetDatabase.Refresh();
+            }
 
             Close();
             Gui.Dialog

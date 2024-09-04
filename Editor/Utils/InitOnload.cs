@@ -64,7 +64,7 @@ namespace com.graphi.renderhdrp.editor
             #region 不允许修改热扭曲驱动器的名称
             if (m_HierarchySelectObj_Twist != null)
             {
-                string name = GraphiMachine.C_BuildinLayer[0];
+                string name = Lay.C_BuildinLayer[0];
                 if (m_HierarchySelectObj_Twist.name != name)
                 {
                     m_HierarchySelectObj_Twist.name = name;
@@ -91,7 +91,7 @@ namespace com.graphi.renderhdrp.editor
                 if (Event.current.button == 0 && Event.current.type <= EventType.MouseDown)
                 {//鼠标左键按下
                     Object obj = EditorUtility.InstanceIDToObject(instanceID);
-                    if (obj != null && obj.name == GraphiMachine.C_BuildinLayer[0])
+                    if (obj != null && obj.name == Lay.C_BuildinLayer[0])
                     {
                         m_HierarchySelectObj_Twist = obj;
                     }

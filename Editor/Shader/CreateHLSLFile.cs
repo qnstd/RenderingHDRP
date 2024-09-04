@@ -13,7 +13,7 @@ namespace com.graphi.renderhdrp.editor
     {
         static Vector2 C_SIZE = new Vector2(330, 240);
 
-        [MenuItem("Assets/Graphi/Shader/HLSL")]
+        [MenuItem("Assets/Create/Shader/HLSL")]
         static private void Run()
         {
             Gui.ShowWin<CreateHLSLFile>("Create HLSL File", C_SIZE, true);

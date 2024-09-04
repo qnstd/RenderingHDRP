@@ -1,5 +1,4 @@
 using System;
-using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
@@ -36,45 +35,6 @@ namespace com.graphi.renderhdrp.editor
                 win.Show();
             return win;
         }
-
-        static public void WinCenter(EditorWindow win, Vector2 size)
-        {
-            Rect r = GetEditorMainWinPosition();
-            if (r == default) { return; }
-            win.position = new Rect((r.width - size.x) * 0.5f, (r.height - size.y) * 0.5f, size.x, size.y);
-        }
-
-        static public Rect GetEditorMainWinPosition()
-        {
-            var containerWinType = AssemblyUtils.GetAllDerivedTypes(System.AppDomain.CurrentDomain, typeof(ScriptableObject)).Where(t => t.Name == "ContainerWindow").FirstOrDefault();
-            if (containerWinType == null)
-            {
-                Lg.Err("Not find 'ContainerWindow' type. ");
-                return default;
-            }
-
-            var showModeField = containerWinType.GetField("m_ShowMode", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
-            var positionProperty = containerWinType.GetProperty("position", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance);
-            if (showModeField == null || positionProperty == null)
-            {
-                Lg.Err("Not find 'm_ShowMode' and 'position' vars. ");
-                return default;
-            }
-
-            var windows = Resources.FindObjectsOfTypeAll(containerWinType);
-            foreach (var win in windows)
-            {
-                var showmode = (int)showModeField.GetValue(win);
-                if (showmode == 4) // Ö÷´°Ìå
-                {
-                    return (Rect)positionProperty.GetValue(win, null);
-                }
-            }
-
-            Lg.Err("Not find win type.");
-            return default;
-        }
-
 
 
         static public void Space(float val) { EditorGUILayout.Space(val); }

@@ -6,8 +6,21 @@ namespace com.graphi.renderhdrp.editor
     /// 层级相关操作
     /// <para>作者：强辰</para>
     /// </summary>
-    public class Lay 
+    public class Lay
     {
+        /// <summary>
+        /// Graphi 渲染库内置层级
+        /// </summary>
+        static public string[] C_BuildinLayer = new string[]
+        {
+        // ※※※ 以下注册的顺序不能改变 ※※※
+
+            "Graphi_DrawRendererCP_Twist", //热扭曲特定渲染层
+            "Edges",    // 用于游戏对象在全屏通道描边时所使用的层级
+            "OccDisplay", // 用于被遮挡物（非半透明）显示剪影的层级
+        };
+
+
         /// <summary>
         /// 添加层
         /// </summary>
