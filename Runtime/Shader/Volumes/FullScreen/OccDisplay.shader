@@ -6,7 +6,7 @@
 
     ×÷Õß£ºÇ¿³½
 */
-Shader "Graphi/FullScreen/OccDisplay"
+Shader "Graphi/Volume/OccDisplay"
 {
 
     Properties

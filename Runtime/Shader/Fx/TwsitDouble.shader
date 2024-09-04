@@ -151,6 +151,6 @@ Shader "Graphi/Fx/TwistDouble"
         }
     }
 
-    Fallback Off
+    Fallback "Hidden/Graphi/FallbackErr"
     CustomEditor "com.graphi.renderhdrp.editor.TwistDoubleEditorShaderGUI"
 }

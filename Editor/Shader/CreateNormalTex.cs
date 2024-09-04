@@ -11,7 +11,7 @@ namespace com.graphi.renderhdrp.editor
     /// 生成法线贴图
     /// <para>作者：强辰</para>
     /// </summary>
-    public class BuildNormalTexture : EditorWindow
+    public class CreateNormalTex : EditorWindow
     {
         #region 枚举
         /// <summary>
@@ -98,7 +98,7 @@ namespace com.graphi.renderhdrp.editor
         [MenuItem("Assets/Create/NormalTexture")]
         static private void Run()
         {
-            Gui.ShowWin<BuildNormalTexture>("NormalTex Build", c_winsize);
+            Gui.ShowWin<CreateNormalTex>("NormalTex Build", c_winsize);
         }
 
 

@@ -129,6 +129,5 @@ Shader "Hidden/Graphi/Sky/HDRI SkyFloat"
         }
     }
 
-    //Fallback
     Fallback Off
 }

@@ -538,6 +538,6 @@ void Soft(FragInputs fragInputs, inout float4 c)
     }
 
 
-    Fallback Off
+    Fallback "Hidden/Graphi/FallbackErr"
     CustomEditor "com.graphi.renderhdrp.editor.ParticleStandardEditorShaderGUI"
 }

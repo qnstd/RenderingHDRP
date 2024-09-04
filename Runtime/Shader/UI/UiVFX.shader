@@ -442,6 +442,6 @@ void Shadow(inout float4 c, v2f IN)
         }
     }
 
-    Fallback Off
+    Fallback "Hidden/Graphi/FallbackErr"
     CustomEditor "com.graphi.renderhdrp.editor.UiVFXEditorShaderGUI"
 }

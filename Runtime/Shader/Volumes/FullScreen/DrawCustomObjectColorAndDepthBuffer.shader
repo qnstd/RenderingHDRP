@@ -11,7 +11,7 @@
 
     ×÷Õß£ºÇ¿³½
 */
-Shader "Graphi/CustomPass/DrawCustomObjectColorAndDepthBuffer"
+Shader "Graphi/Volume/DrawCustomObjectColorAndDepthBuffer"
 {
     Properties
     {

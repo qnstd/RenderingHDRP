@@ -250,6 +250,6 @@ CBUFFER_END
         }
     }
 
-    FallBack Off
+    FallBack "Hidden/Graphi/FallbackErr"
     CustomEditor "com.graphi.renderhdrp.editor.ShieldEditorShaderGUI"
 }

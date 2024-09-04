@@ -186,6 +186,6 @@ CBUFFER_END
         }
     }
 
-    Fallback Off
+    Fallback "Hidden/Graphi/FallbackErr"
     CustomEditor "com.graphi.renderhdrp.editor.LightningShaderGUI"
 }

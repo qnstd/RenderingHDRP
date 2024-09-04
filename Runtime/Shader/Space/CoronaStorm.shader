@@ -8,7 +8,7 @@
 	作者：
 		强辰
 */
-Shader "Graphi/Planet/CoronaStorm"
+Shader "Graphi/Space/CoronaStorm"
 {
     Properties
     {
@@ -219,6 +219,6 @@ CBUFFER_END
         }
     }
 
-    FallBack Off
+    FallBack "Hidden/Graphi/FallbackErr"
 	CustomEditor "com.graphi.renderhdrp.editor.SunCoronaShaderGUI"
 }

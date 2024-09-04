@@ -7,7 +7,7 @@
     作者：
         强辰
 */
-Shader "Graphi/Planet/Atmosphere"
+Shader "Graphi/Space/Atmosphere"
 {
     Properties
     {
@@ -182,6 +182,6 @@ CBUFFER_END
         }
     }
 
-    Fallback Off
+    Fallback "Hidden/Graphi/FallbackErr"
     CustomEditor "com.graphi.renderhdrp.editor.GeneralEditorShaderGUI"
 }
