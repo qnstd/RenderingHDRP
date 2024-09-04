@@ -1,8 +1,6 @@
-using System;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.Rendering;
 
 namespace com.graphi.renderhdrp.editor
 {
@@ -60,7 +58,6 @@ namespace com.graphi.renderhdrp.editor
             }
         }
 
-
         [MenuItem("GameObject/Graphi Profiler")]
         static private void Create_RuntimePerformance()
         {
@@ -68,7 +65,6 @@ namespace com.graphi.renderhdrp.editor
             SetIcon(go, "Graphi-Analyze-Icon");
             go.AddComponent<RuntimePerformance>();
         }
-
 
         [MenuItem("GameObject/Effects/Graphi_Particle")]
         static private void Create_Fx()
@@ -112,49 +108,6 @@ namespace com.graphi.renderhdrp.editor
 
             EditorGUIUtility.PingObject(obj);
             Selection.activeObject = obj;
-        }
-
-
-        static private void CreateCustomMeshObject(Type t)
-        {
-            string name = t.Name;
-            GameObject go = new GameObject(name);
-            go.AddComponent(t);
-
-            // …Ë÷√∂‘œÛicon
-            string iconPath = ProjectUtils.FindexactFile("Editor/Images", $"Graphi-Mesh-{name}-Icon.png");
-            if (!string.IsNullOrEmpty(iconPath))
-            {
-                EditorGUIUtility.SetIconForObject(go, AssetDatabase.LoadAssetAtPath<Texture2D>(iconPath));
-            }
-
-            GameObject parent = Selection.activeGameObject;
-            if (parent != null)
-                go.transform.SetParent(parent.transform);
-
-            go.transform.localScale = Vector3.one;
-            go.transform.localRotation = Quaternion.identity;
-            go.transform.localPosition = Vector3.zero;
-        }
-        [MenuItem("GameObject/3D Object/Graphi_Tetrahedrons")]
-        static private void Create_Tetrahedrons()
-        {
-            CreateCustomMeshObject(typeof(Tetrahedrons));
-        }
-        [MenuItem("GameObject/3D Object/Graphi_Shuriken")]
-        static private void Create_Shuriken()
-        {
-            CreateCustomMeshObject(typeof(Shuriken));
-        }
-        [MenuItem("GameObject/3D Object/Graphi_Lozenge")]
-        static private void Create_Lozenge()
-        {
-            CreateCustomMeshObject(typeof(Lozenge));
-        }
-        [MenuItem("GameObject/3D Object/Graphi_Flat")]
-        static private void Create_Flat()
-        {
-            CreateCustomMeshObject(typeof(Flat));
         }
 
         #endregion

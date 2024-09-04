@@ -31,13 +31,5 @@ namespace com.graphi.renderhdrp.editor
         }
 
 
-
-        /// <summary>
-        /// «Î«Û unity ±‡“ÎΩ≈±æ
-        /// </summary>
-        static public void CompileScripts()
-        {
-            UnityEditor.Compilation.CompilationPipeline.RequestScriptCompilation();
-        }
     }
 }

@@ -16,7 +16,6 @@ namespace com.graphi.renderhdrp.editor
         /// </summary>
         static InitOnload()
         {
-            GraphiSettings.LoadAll(); // 加载 Graphi 着色库所有的配置项
             GetGraphiLibIcons(); // Graphi 着色库图标集
 
             // Unity IDE退出时的监听
@@ -122,32 +121,10 @@ namespace com.graphi.renderhdrp.editor
         /// </summary> 
         static void Update()
         {
-            // 当 Unity 第一次被打开
-            int isStart = CacheData.GetFirstRunUnity;
-            if (isStart <= 0)
-            {
-                isStart++;
-                CacheData.SetFirstRunUnity(isStart);
-                OnOpenUnity();
-            }
-
             // 自定义 Toolbar
             ToolbarOperate.Draw();
         }
 
-
-
-        /// <summary>
-        /// 在第一次打开Unity时触发
-        /// </summary>
-        static void OnOpenUnity()
-        {
-            // 弹出 Graphi "关于"面板
-            if (GraphiSettings.GlobalSettings != null && GraphiSettings.GlobalSettings.m_PushDialogAbout)
-            {
-                About.Run();
-            }
-        }
 
 
         /// <summary>
@@ -156,7 +133,6 @@ namespace com.graphi.renderhdrp.editor
         /// <returns></returns>
         static void Exiting()
         {
-            CacheData.SetFirstRunUnity(0);
         }
         #endregion
     }

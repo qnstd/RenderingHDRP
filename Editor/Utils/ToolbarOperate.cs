@@ -62,7 +62,7 @@ namespace com.graphi.renderhdrp.editor
 
             Color c = GUI.backgroundColor;
             GUI.backgroundColor = Color.green;
-            Gui.Btn("<color=#ffffff>Graphi  </color>", About.Run, sty, Gui.W(70), Gui.H(22));
+            Gui.Btn("<color=#ffffff>Graphi  </color>", () => { SettingsService.OpenProjectSettings("Project/Graphi Rendering HDRP"); }, sty, Gui.W(70), Gui.H(22));
             GUI.backgroundColor = c;
 
             GUI.DrawTexture(new Rect(6, 2, 17, 17), logoTex2D);

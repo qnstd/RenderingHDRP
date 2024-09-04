@@ -14,23 +14,20 @@ namespace com.graphi.renderhdrp.editor
     /// </summary>
     public class ProjectsettingsGraphiProvider
     {
-        static bool m_Cnfoldout = true;
+        static string GitPath { get; set; } = "https://github.com/qnstd";
 
         static bool m_setFoldout = true;
         static bool m_layerFoldout = true;
         static bool m_shaderFoldout = true;
-        static bool m_runGraphicsInclude = true;
-        static bool m_runCustomPostProcess = true;
         static bool m_otherFoldout = true;
 
-
         static GUIStyle m_BtnStyle = null;
-        static Color m_CompileBtnColor = new Color(120.0f / 255.0f, 218.0f / 255.0f, 1.0f);
+
 
         [SettingsProvider]
         static private SettingsProvider Graphi()
         {
-            return new SettingsProvider("Project/Graphi", SettingsScope.Project)
+            return new SettingsProvider("Project/Graphi Rendering HDRP", SettingsScope.Project)
             {
                 deactivateHandler = () =>
                 {
@@ -45,21 +42,25 @@ namespace com.graphi.renderhdrp.editor
                     if (m_BtnStyle == null)
                         m_BtnStyle = new GUIStyle("IN EditColliderButton") { richText = true, fontSize = 10 };
 
-                    Gui.Space(20);
                     Gui.IndentLevelAdd(2);
 
+                    #region 基本信息
+                    GUIStyle sty = new GUIStyle("LODSliderText") { fontSize = 10 };
+                    Gui.Area(30, 25, 300, 50);
                     Gui.Hor();
-                    Gui.Label("Compile: ", new GUIStyle("LODSliderText") { richText = true, fontSize = 11 }, 100);
-                    Color c = GUI.backgroundColor;
-                    GUI.backgroundColor = m_CompileBtnColor;
-                    Gui.Btn("Run", () => { AssemblyUtils.CompileScripts(); }, new GUIStyle("IN EditColliderButton") { richText = true, fontSize = 10, alignment = TextAnchor.MiddleCenter }, Gui.W(45), Gui.H(20));
-                    GUI.backgroundColor = c;
+                    Gui.Btn("readme", () => { OpenMD("", "README"); }, m_BtnStyle, Gui.W(50), Gui.H(13));
+                    Gui.Btn("license", () => { OpenMD("", "LICENSE"); }, m_BtnStyle, Gui.W(50), Gui.H(13));
+                    Gui.Btn("documentation", () => { OpenMD("Documentation", "graphi_shader_hdrp"); }, m_BtnStyle, Gui.W(100), Gui.H(13));
+                    Gui.Btn("log", () => { OpenMD("", "CHANGELOG"); }, m_BtnStyle, Gui.W(50), Gui.H(13));
                     Gui.EndHor();
-
+                    Gui.Space(5);
+                    Gui.Btn($"<color=#ffcc00><b>Git</b></color> - {GitPath}", () => { Application.OpenURL(GitPath); }, m_BtnStyle, Gui.W(160), Gui.H(15));
+                    Gui.EndArea();
+                    #endregion
 
                     #region 渲染库设置
-                    Gui.Space(20);
-                    GUIStyle sty = new GUIStyle("LODSliderText") { fontSize = 10 };
+                    Gui.Space(90);
+
                     m_setFoldout = EditorGUILayout.Foldout(m_setFoldout, "Render Settings", true);
                     if (m_setFoldout)
                     {
@@ -94,14 +95,8 @@ namespace com.graphi.renderhdrp.editor
                             Gui.IndentLevelAdd(2);
                             Gui.Space(5);
 
-                            Gui.Hor();
                             Gui.Label("<color=#c3c3c3ff>Graphics Include</color>", sty, 450);
-                            m_runGraphicsInclude = EditorGUILayout.Toggle(m_runGraphicsInclude);
-                            Gui.EndHor();
-                            Gui.Hor();
                             Gui.Label("<color=#c3c3c3ff>Global rendering configuration Custom post-processing includes item append</color>", sty, 450);
-                            m_runCustomPostProcess = EditorGUILayout.Toggle(m_runCustomPostProcess);
-                            Gui.EndHor();
                             Gui.Label("<color=#f47e8f><b>*</b></color> Ensure that the HDRP global configuration file exists in the project", sty);
 
                             Gui.IndentLevelSub(2);
@@ -135,39 +130,24 @@ namespace com.graphi.renderhdrp.editor
                     }
                     #endregion
 
-
-                    #region 配置项
-                    Gui.Space(20);
-                    m_Cnfoldout = EditorGUILayout.Foldout(m_Cnfoldout, new GUIContent("ScriptObject Settings"), true);
-                    if (m_Cnfoldout)
-                    {
-                        Gui.Space(5);
-                        Gui.IndentLevelAdd(2);
-                        Gui.Vertical("helpbox");
-                        Gui.Space(5);
-                        Gui.Hor();
-                        Gui.Label("GlobalSettings: ", 160);
-                        Gui.Btn(" ", () => { PO(GraphiSettings.GlobalSettings); }, "ToolbarSearchTextFieldPopup", Gui.W(20), Gui.H(18));
-                        Gui.EndHor();
-                        Gui.Space(5);
-                        Gui.EndVertical();
-                        Gui.IndentLevelSub(2);
-                    }
-                    #endregion
-
                     Gui.IndentLevelSub(2);
                 }
             };
         }
 
 
-        static private void PO<T>(T t) where T : UnityEngine.Object
+
+
+        /// <summary>
+        /// 打开相关文档
+        /// </summary>
+        /// <param name="relp"></param>
+        /// <param name="name"></param>
+        static private void OpenMD(string relp, string name)
         {
-            EditorGUIUtility.PingObject(t);
+            EditorUtility.RevealInFinder(ProjectUtils.FindexactFile(relp, $"{name}.md"));
         }
 
-
-        static private void SetColorSpaceForLinear() { PlayerSettings.colorSpace = ColorSpace.Linear; }
 
 
         /// <summary>
@@ -189,23 +169,28 @@ namespace com.graphi.renderhdrp.editor
         }
 
 
-        #region 层级设置
+        /// <summary>
+        /// 设置线性空间
+        /// </summary>
+        static private void SetColorSpaceForLinear() { PlayerSettings.colorSpace = ColorSpace.Linear; }
+
+
+        /// <summary>
+        /// 层级设置
+        /// </summary>
         static private void LayerSettings()
         {
             string[] lays = GraphiMachine.C_BuildinLayer;
             for (int i = 0; i < lays.Length; i++)
                 Lay.AddLayer(lays[i]);
         }
-        #endregion
 
 
         #region 着色器设置
         static private void ShaderSettings()
         {
-            if (m_runGraphicsInclude)
-                AddtoGraphicsInclude(); // 添加 GraphicsInclude 项
-            if (m_runCustomPostProcess)
-                InsertCustomDataPostProcess(); // 注册自定义后处理渲染项
+            AddtoGraphicsInclude(); // 添加 GraphicsInclude 项
+            InsertCustomDataPostProcess(); // 注册自定义后处理渲染项
         }
         static private void AddtoGraphicsInclude()
         {
