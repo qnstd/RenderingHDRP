@@ -198,7 +198,7 @@ namespace com.graphi.renderhdrp
                 {
                     case E_ShowTyp.Console:
                         m_CanDraw = false;
-                        Lg.Trace(InfoForamt());
+                        Debug.Log(InfoForamt());
                         break;
                     case E_ShowTyp.GUI:
                         m_CanDraw = true;

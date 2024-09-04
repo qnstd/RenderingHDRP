@@ -18,24 +18,17 @@ namespace com.graphi.renderhdrp.editor
         {
             GetGraphiLibIcons(); // Graphi 着色库图标集
 
-            // Unity IDE退出时的监听
-            EditorApplication.quitting -= Exiting;
-            EditorApplication.quitting += Exiting;
-
             // Unity IDE刷新
             EditorApplication.update -= Update;
             EditorApplication.update += Update;
 
-            // Hierarchy 变化
-            EditorApplication.hierarchyChanged -= OnHierarchyChange;
-            EditorApplication.hierarchyChanged += OnHierarchyChange;
+            // Hierarchy 
             EditorApplication.hierarchyWindowItemOnGUI -= OnHierarchyWindowItemOnGUI;
             EditorApplication.hierarchyWindowItemOnGUI += OnHierarchyWindowItemOnGUI;
         }
 
 
         #region 功能
-        static Object m_HierarchySelectObj_Twist = null; // 记录在当前场景中选中的热扭曲驱动器
         static List<string> m_GraphiIconNames = new List<string>(); // 记录 Graphi 着色库包含的图表集
 
 
@@ -54,27 +47,6 @@ namespace com.graphi.renderhdrp.editor
         }
 
 
-        /// <summary>
-        /// Hierarchy 列表视图发生改变
-        /// </summary>
-        static void OnHierarchyChange()
-        {
-            if (EditorApplication.isPlaying) { return; }
-
-            #region 不允许修改热扭曲驱动器的名称
-            if (m_HierarchySelectObj_Twist != null)
-            {
-                string name = Lay.C_BuildinLayer[0];
-                if (m_HierarchySelectObj_Twist.name != name)
-                {
-                    m_HierarchySelectObj_Twist.name = name;
-                    Lg.Err("Changing the name of the twist drive is not allowed！");
-                }
-            }
-            #endregion
-        }
-
-
 
         /// <summary>
         /// 选中 Hierarchy 视图列表中的对象
@@ -84,21 +56,6 @@ namespace com.graphi.renderhdrp.editor
         static void OnHierarchyWindowItemOnGUI(int instanceID, Rect selectRect)
         {
             if (EditorApplication.isPlaying) { return; }
-
-            #region 记录创建的热扭曲驱动器
-            if (Event.current != null && selectRect.Contains(Event.current.mousePosition))
-            {
-                if (Event.current.button == 0 && Event.current.type <= EventType.MouseDown)
-                {//鼠标左键按下
-                    Object obj = EditorUtility.InstanceIDToObject(instanceID);
-                    if (obj != null && obj.name == Lay.C_BuildinLayer[0])
-                    {
-                        m_HierarchySelectObj_Twist = obj;
-                    }
-                }
-            }
-            #endregion
-
 
             #region 在 Hierarchy 列表内，显示 Graphi 着色库包含的对象图标
             GUIContent objectContent = EditorGUIUtility.ObjectContent(EditorUtility.InstanceIDToObject(instanceID), null);
@@ -121,19 +78,9 @@ namespace com.graphi.renderhdrp.editor
         /// </summary> 
         static void Update()
         {
-            // 自定义 Toolbar
             ToolbarOperate.Draw();
         }
 
-
-
-        /// <summary>
-        /// Unity IDE 关闭时需要处理的操作
-        /// </summary>
-        /// <returns></returns>
-        static void Exiting()
-        {
-        }
         #endregion
     }
 }

@@ -87,7 +87,6 @@ namespace com.graphi.renderhdrp.editor
 
             Shader sha = AssetDatabase.LoadAssetAtPath<Shader>(srcp);
             string shapath = sha.name.Substring(0, sha.name.LastIndexOf("/") + 1) + m_name;
-            //Lg.Trace(shapath);
 
             AssetDatabase.Refresh();
 

@@ -341,7 +341,7 @@ namespace com.graphi.renderhdrp.editor
                 if (showDialog)
                     Gui.Dialog("Texture missing", "Warnning");
                 else
-                    Lg.Err("Texture missing");
+                    Debug.LogError("Texture missing");
                 return;
             }
 
@@ -352,7 +352,7 @@ namespace com.graphi.renderhdrp.editor
                 if (showDialog)
                     Gui.Dialog("Texture's Read/Write value must be true.", "Warnning");
                 else
-                    Lg.Err("Texture's Read/Write value must be true.");
+                    Debug.LogError("Texture's Read/Write value must be true.");
 
                 if (m_normal != null)
                     DestroyImmediate(m_normal);

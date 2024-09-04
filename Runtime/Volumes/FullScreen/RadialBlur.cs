@@ -94,7 +94,7 @@ namespace com.graphi.renderhdrp
             if (m_Shader != null)
                 m_Material = CoreUtils.CreateEngineMaterial(m_Shader);
             else
-                Lg.Err($"Not find shader. '{m_Shader.name}'");
+                Debug.LogError($"Not find shader. '{m_Shader.name}'");
 
 
             // 创建操作时的临时纹理

@@ -56,7 +56,7 @@ namespace com.graphi.renderhdrp
             if (m_shader != null)
                 m_Material = CoreUtils.CreateEngineMaterial(m_shader);
             else
-                Lg.Err($"Not find '{m_shader.name}'.");
+                Debug.LogError($"Not find '{m_shader.name}'.");
         }
 
 

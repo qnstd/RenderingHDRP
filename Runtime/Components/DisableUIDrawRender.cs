@@ -12,11 +12,6 @@ namespace com.graphi.renderhdrp
         /// 覆盖默认渲染
         /// </summary>
         /// <param name="update"></param>
-        public override void Rebuild(CanvasUpdate update)
-        {
-            /** 不绘制任何像素 */
-        }
-
+        public override void Rebuild(CanvasUpdate update) { /** 不绘制任何像素 */}
     }
-
 }

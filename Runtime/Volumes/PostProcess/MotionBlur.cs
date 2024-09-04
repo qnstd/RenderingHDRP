@@ -43,7 +43,7 @@ namespace com.graphi.renderhdrp
             if (m_Shader != null)
                 m_Material = new Material(m_Shader);
             else
-                Lg.Err("Not find Shader.");
+                Debug.LogError("Not find Shader.");
         }
 
 

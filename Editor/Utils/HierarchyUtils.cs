@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Text;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -51,7 +53,21 @@ namespace com.graphi.renderhdrp.editor
             AssetDatabase.Refresh();
             return mat;
         }
-
+        /// <summary>
+        /// 随机数
+        /// </summary>
+        /// <param name="length">随机数长度</param>
+        /// <returns></returns>
+        static private string GenerateRandomNum(int length)
+        {
+            StringBuilder result = new StringBuilder();
+            for (var i = 0; i < length; i++)
+            {
+                var r = new System.Random(Guid.NewGuid().GetHashCode());
+                result.Append(r.Next(0, 10));
+            }
+            return result.ToString();
+        }
 
 
         [MenuItem("GameObject/Graphi Profiler")]
@@ -69,7 +85,7 @@ namespace com.graphi.renderhdrp.editor
         static private void Create_Fx()
         {
             //在 Hierarchy 列表中创建粒子对象
-            string id = Mth.GenerateRandomNum(8);
+            string id = GenerateRandomNum(8);
             GameObject obj = new GameObject("Particle_" + id);
             ParticleSystem ps = obj.AddComponent<ParticleSystem>();
             SetIcon(obj, "Graphi-ParticleObj-Icon");
@@ -119,14 +135,14 @@ namespace com.graphi.renderhdrp.editor
             int layid = 1 << LayerMask.NameToLayer(Lay.C_BuildinLayer[2]);
             if (layid < 0)
             {
-                Lg.Err("occdisplay layer does not exist.");
+                Debug.LogError("occdisplay layer does not exist.");
                 return;
             }
 
             string objname = "OccDisplay";
             if (GameObject.Find(objname) != null)
             {
-                Lg.Err("already exist in scene.");
+                Debug.LogError("already exist in scene.");
                 return;
             }
 
@@ -161,7 +177,7 @@ namespace com.graphi.renderhdrp.editor
             fscp.name = "OccDisplayDraw";
             fscp.clearFlags = ClearFlag.None;
             fscp.fetchColorBuffer = false;
-            fscp.fullscreenPassMaterial = CreateMat($"{savepath}occdisplaydraw_{Mth.GenerateRandomNum(6)}.mat", "Graphi/FullScreen/OccDisplay"); // 材质
+            fscp.fullscreenPassMaterial = CreateMat($"{savepath}occdisplaydraw_{GenerateRandomNum(6)}.mat", "Graphi/FullScreen/OccDisplay"); // 材质
 
             // 添加
             cpv.customPasses.Add(drcp);
@@ -179,14 +195,14 @@ namespace com.graphi.renderhdrp.editor
             int layid = 1 << LayerMask.NameToLayer(Lay.C_BuildinLayer[0]);
             if (layid < 0)
             {
-                Lg.Err("twist layer does not exist.");
+                Debug.LogError("twist layer does not exist.");
                 return;
             }
 
             string objname = "TwistDrive";
             if (GameObject.Find(objname) != null)
             {
-                Lg.Err("already exist in scene.");
+                Debug.LogError("already exist in scene.");
                 return;
             }
 

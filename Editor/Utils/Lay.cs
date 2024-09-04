@@ -1,4 +1,5 @@
 using UnityEditor;
+using UnityEngine;
 
 namespace com.graphi.renderhdrp.editor
 {
@@ -15,7 +16,7 @@ namespace com.graphi.renderhdrp.editor
         {
         // ※※※ 以下注册的顺序不能改变 ※※※
 
-            "Graphi_DrawRendererCP_Twist", //热扭曲特定渲染层
+            "TwistDrive", //热扭曲特定渲染层
             "Edges",    // 用于游戏对象在全屏通道描边时所使用的层级
             "OccDisplay", // 用于被遮挡物（非半透明）显示剪影的层级
         };
@@ -43,7 +44,7 @@ namespace com.graphi.renderhdrp.editor
                         {
                             sp.stringValue = layer;
                             tagManager.ApplyModifiedProperties();
-                            Lg.Trace("Add layer：" + sp.stringValue);
+                            Debug.Log("Add layer：" + sp.stringValue);
                             return;
                         }
                     }

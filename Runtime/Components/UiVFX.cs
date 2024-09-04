@@ -39,7 +39,7 @@ namespace com.graphi.renderhdrp
             //创建Shader
             if (m_material == null)
             {
-                Lg.Err("UiVFX material is null.");
+                Debug.LogError("UiVFX material is null.");
                 return;
             }
 

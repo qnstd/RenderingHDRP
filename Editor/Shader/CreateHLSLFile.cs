@@ -89,7 +89,6 @@ namespace com.graphi.renderhdrp.editor
 
             // ÄÚÈÝ
             string content = string.Format(m_content, key, key, m_desc, m_author);
-            //Lg.Trace(content);
             File.WriteAllText(p, content, Encoding.UTF8);
             AssetDatabase.Refresh();
 

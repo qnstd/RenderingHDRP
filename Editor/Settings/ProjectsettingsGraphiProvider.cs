@@ -245,7 +245,7 @@ namespace com.graphi.renderhdrp.editor
                                 it.InsertArrayElementAtIndex(_i);//在列表末尾追加
                                 prop = it.GetArrayElementAtIndex(_i);
                                 prop.objectReferenceValue = ShaderFind.Get(sha, e);
-                                Lg.Trace("Add to GraphicsInclude：" + sha);
+                                Debug.Log("Add to GraphicsInclude：" + sha);
                             }
                         }
 
@@ -265,13 +265,13 @@ namespace com.graphi.renderhdrp.editor
             RenderPipelineGlobalSettings gloset = GraphicsSettings.GetSettingsForRenderPipeline<HDRenderPipeline>();
             if (gloset == null)
             {
-                Lg.Err("RenderPipeline is not HDRP.");
+                Debug.LogError("RenderPipeline is not HDRP.");
                 return;
             }
             string[] guids = AssetDatabase.FindAssets(gloset.name);
             if (guids.Length == 0)
             {
-                Lg.Err("HDRP GlobalSettings is not exist.");
+                Debug.LogError("HDRP GlobalSettings is not exist.");
                 return;
             }
             string path = AssetDatabase.GUIDToAssetPath(guids[0]);

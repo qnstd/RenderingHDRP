@@ -105,7 +105,7 @@ namespace com.graphi.renderhdrp
                 }
             }
             if (m_Mat == null)
-                Lg.Err
+                Debug.LogError
                     (
                         string.Format("Not find {0}! Shader = {1}", "Shield", SHADER_NAME)
                     );
