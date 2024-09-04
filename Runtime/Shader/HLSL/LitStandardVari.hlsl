@@ -57,7 +57,7 @@ out float3 normal
 	n.rgb = UnpackNormal(n);
 
 	// 法线强度处理
-	float3 basenormal = float3(n.rg * normalstrength, lerp(1, n.b, saturate(normalstrength)));
+	float3 basenormal = NormalForce(n, normalstrength);
 
 	// 混合细节法线（以 Reoriented 方式进行混合）
 	float3 blendnormal = BlendNormal_RNM2( basenormal, detailnormal );
