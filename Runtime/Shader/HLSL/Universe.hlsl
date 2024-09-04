@@ -3,7 +3,7 @@
 
 // 引入需要的库文件
 #include "Tex.hlsl"
-#include "Graphi-BlendNormal.hlsl"
+#include "NormalBlend.hlsl"
 
 
 /*

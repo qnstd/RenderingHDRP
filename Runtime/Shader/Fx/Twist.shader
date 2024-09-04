@@ -92,7 +92,7 @@ float4 _UVParams;
 CBUFFER_END
 
 #include "Packages/com.unity.render-pipelines.high-definition/Runtime/RenderPipeline/RenderPass/CustomPass/CustomPassRenderersV2.hlsl"
-#include "../HLSL/Graphi_Transformation.hlsl"
+#include "../HLSL/Transformation.hlsl"
 
 //顶点变换操作函数
              #define HAVE_MESH_MODIFICATION

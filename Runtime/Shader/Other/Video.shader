@@ -107,7 +107,7 @@ CBUFFER_END
 
             #include "Packages/com.unity.render-pipelines.high-definition/Runtime/RenderPipeline/RenderPass/CustomPass/CustomPassRenderersV2.hlsl"
             // 滤镜
-            #include "../HLSL/Graphi-Filter.hlsl" 
+            #include "../HLSL/Filter.hlsl" 
 
            
             // 顶点处理函数

@@ -11,7 +11,7 @@
 */
 
 
-#include "../HLSL/GNoise.hlsl"
+#include "../HLSL/Noise.hlsl"
 
 
 
@@ -157,7 +157,7 @@ void FillPerlinNoise( uint3 dispatchThreadID:SV_DispatchThreadID )
     int Tex2DWorleyNoiseSize;
     // 噪声密度
     int Tex2DWorleyNoiseTile;
-    // 类型（请参考GNoise.hlsl规定）
+    // 类型
     int Tex2DWorleyNoiseType;
 // 结束
 

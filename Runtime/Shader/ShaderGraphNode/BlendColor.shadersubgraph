@@ -635,7 +635,7 @@
     "m_Group": {
         "m_Id": ""
     },
-    "m_Name": "BlendColor (Custom Function)",
+    "m_Name": "BlendColorNode (Custom Function)",
     "m_DrawState": {
         "m_Expanded": true,
         "m_Position": {
@@ -675,8 +675,8 @@
         "m_SerializableColors": []
     },
     "m_SourceType": 0,
-    "m_FunctionName": "BlendColor",
-    "m_FunctionSource": "b78ca0374794e414b89fb7a4c92fde12",
+    "m_FunctionName": "BlendColorNode",
+    "m_FunctionSource": "7740d07aaf1f8a1469a751af1f011eb3",
     "m_FunctionBody": "Enter function body here..."
 }
 

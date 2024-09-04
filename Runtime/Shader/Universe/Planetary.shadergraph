@@ -722,7 +722,7 @@
         },
         "preventRotation": false
     },
-    "m_Path": "Graphi/Planet",
+    "m_Path": "Graphi/Universe",
     "m_GraphPrecision": 1,
     "m_PreviewMode": 2,
     "m_OutputNode": {

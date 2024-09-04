@@ -2,8 +2,8 @@
 #define LITSTANDARDVARIANT
 
 // 引入操作库
-#include "Graphi-BlendNormal.hlsl"
-#include "Graphi-BlendColor.hlsl"
+#include "NormalBlend.hlsl"
+#include "ColorBlend.hlsl"
 
 
 // 纹理采样

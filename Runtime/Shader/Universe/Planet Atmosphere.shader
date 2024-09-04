@@ -7,7 +7,7 @@
     作者：
         强辰
 */
-Shader "Graphi/Space/Atmosphere"
+Shader "Graphi/Universe/Atmosphere"
 {
     Properties
     {
@@ -69,7 +69,7 @@ Shader "Graphi/Space/Atmosphere"
 
         Pass
         {
-            Name "Graphi - Planet Atmosphere"
+            Name "Graphi - Atmosphere"
             Tags { "LightMode" = "Forward" }
 
             Blend One One

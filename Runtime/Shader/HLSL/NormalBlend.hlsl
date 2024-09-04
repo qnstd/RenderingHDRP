@@ -3,7 +3,7 @@
 
 // ////////////////////////////////////////////////////////////
 // ******
-// 以下所有方法参数法线必须是Unpack解包并归一化后的法线
+// 以下所有方法参数法线必须是 Unpack 解包并归一化后的法线
 // ******
 // ////////////////////////////////////////////////////////////
 
@@ -58,6 +58,40 @@ float3 BlendNormal_RNM2(real3 n1, real3 n2)
     real3 u = n2.xyz * real3(-1.0, -1.0, 1.0);
     real3 r = (t / t.z) * dot(t, u) - u;
     return r;
+}
+
+
+
+/*
+	法线混合
+*/
+void BlendNormalDeal_float
+(
+// Input
+float3 n1,
+float3 n2,
+float blendtype,
+// Output
+out float3 blendnormal
+)
+{
+	if(blendtype == 0)
+		blendnormal = BlendNormal_Linear(n1,  n2);
+
+	else if(blendtype == 1)
+		blendnormal = BlendNormal_Overlay(n1,  n2);
+
+	else if(blendtype == 2)
+		blendnormal = BlendNormal_UDN(n1,  n2);
+
+	else if(blendtype == 3)
+		blendnormal = BlendNormal_RNM(n1,  n2);
+
+	else if(blendtype == 4)
+		blendnormal = BlendNormal_RNM2(n1,  n2);
+
+	else
+		blendnormal = n1; // 不进行混合操作
 }
 
 

@@ -18,7 +18,7 @@ Shader "Hidden/Graphi/PostProcess/Hue"
     #include "Packages/com.unity.render-pipelines.high-definition/Runtime/PostProcessing/Shaders/FXAA.hlsl"
     #include "Packages/com.unity.render-pipelines.high-definition/Runtime/PostProcessing/Shaders/RTUpscale.hlsl"
 
-    #include "../../HLSL/Graphi_Color.hlsl"
+    #include "../../HLSL/Color.hlsl"
 
 
     struct Attributes

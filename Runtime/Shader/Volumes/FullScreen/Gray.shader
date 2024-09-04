@@ -14,7 +14,7 @@ Shader "Hidden/Graphi/FullScreen/Gray"
 #pragma target 4.5
 #pragma only_renderers d3d11 playstation xboxone xboxseries vulkan metal switch
 #include "Packages/com.unity.render-pipelines.high-definition/Runtime/RenderPipeline/RenderPass/CustomPass/CustomPassCommon.hlsl"
-#include "../../HLSL/Graphi_Color.hlsl" 
+#include "../../HLSL/Color.hlsl" 
             
         // The PositionInputs struct allow you to retrieve a lot of useful information for your fullScreenShader:
         // struct PositionInputs

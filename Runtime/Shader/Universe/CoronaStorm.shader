@@ -8,7 +8,7 @@
 	作者：
 		强辰
 */
-Shader "Graphi/Space/CoronaStorm"
+Shader "Graphi/Universe/CoronaStorm"
 {
     Properties
     {
@@ -113,7 +113,7 @@ CBUFFER_END
 
 			
             #include "Packages/com.unity.render-pipelines.high-definition/Runtime/RenderPipeline/RenderPass/CustomPass/CustomPassRenderersV2.hlsl"
-			#include "../HLSL/Graphi_Transformation.hlsl"
+			#include "../HLSL/Transformation.hlsl"
 
 
             // 顶点修改

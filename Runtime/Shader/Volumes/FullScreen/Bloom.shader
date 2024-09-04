@@ -17,7 +17,7 @@ Shader "Hidden/Graphi/FullScreen/Bloom"
     #pragma only_renderers d3d11 playstation xboxone xboxseries vulkan metal switch
 
     #include "Packages/com.unity.render-pipelines.high-definition/Runtime/RenderPipeline/RenderPass/CustomPass/CustomPassCommon.hlsl"
-    #include "../../HLSL/Graphi_Color.hlsl"
+    #include "../../HLSL/Color.hlsl"
 
 // /////////////////////////////////////////////////////////////
 // 创建脚本时，unity自动增加的注释

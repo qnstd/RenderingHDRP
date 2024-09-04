@@ -24,7 +24,7 @@ Shader "Hidden/Graphi/FallbackErr"
             #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Common.hlsl"
             #include "Packages/com.unity.render-pipelines.high-definition/Runtime/ShaderLibrary/ShaderVariables.hlsl"
 
-            #include "./HLSL/Graphi_Color.hlsl"
+            #include "./HLSL/Color.hlsl"
 
 
             struct a2v

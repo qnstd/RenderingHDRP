@@ -25,7 +25,7 @@ Shader "Hidden/Graphi/Tool/NormalTextureBuild"
         #include "Packages/com.unity.render-pipelines.high-definition/Runtime/ShaderLibrary/ShaderVariables.hlsl"
 
         // 滤镜
-        #include "../HLSL/Graphi-Filter.hlsl" 
+        #include "../HLSL/Filter.hlsl" 
 
 
         //源纹理数据

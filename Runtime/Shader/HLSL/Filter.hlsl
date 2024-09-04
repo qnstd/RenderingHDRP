@@ -2,7 +2,7 @@
 #define GRAPHI_FILTER
 
 // include
-#include "Graphi_Color.hlsl"
+#include "Color.hlsl"
 
 
 // 单色比率
