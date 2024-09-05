@@ -241,6 +241,14 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.Rendering.HighDefinition.ShaderGraph.HDUnlitData",
+    "m_ObjectId": "043d8fa0ee67402e8c97ff46197c1baa",
+    "m_EnableShadowMatte": false,
+    "m_DistortionOnly": false
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.PropertyNode",
     "m_ObjectId": "09898854ff1940909a6d707772ba768b",
     "m_Group": {
@@ -277,18 +285,10 @@
 
 {
     "m_SGVersion": 0,
-    "m_Type": "UnityEditor.Rendering.HighDefinition.ShaderGraph.HDUnlitData",
-    "m_ObjectId": "0ad15b6537db482c9f1f483d25bc6e1e",
-    "m_EnableShadowMatte": false,
-    "m_DistortionOnly": false
-}
-
-{
-    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.Vector4MaterialSlot",
     "m_ObjectId": "146ee40dcce844e88047558f1668b855",
     "m_Id": 0,
-    "m_DisplayName": "叠加色",
+    "m_DisplayName": "Color",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -323,7 +323,7 @@
             "m_Id": "ef107490be74431ab2c7dfbe9c051c7a"
         },
         {
-            "m_Id": "0ad15b6537db482c9f1f483d25bc6e1e"
+            "m_Id": "043d8fa0ee67402e8c97ff46197c1baa"
         }
     ],
     "m_CustomEditorGUI": "",
@@ -338,10 +338,10 @@
     "m_Guid": {
         "m_GuidSerialized": "50a776e4-b4a2-487f-90a0-6189d226e7d3"
     },
-    "m_Name": "采样循环模式",
+    "m_Name": "Wrap",
     "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "采样循环模式",
-    "m_DefaultReferenceName": "_",
+    "m_RefNameGeneratedByDisplayName": "Wrap",
+    "m_DefaultReferenceName": "_WRAP",
     "m_OverrideReferenceName": "_TEXWRAPMODE",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,
@@ -618,7 +618,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "5b7bb1fe6919414c8fcc53c3a7304a25",
     "m_Id": 0,
-    "m_DisplayName": "亮度",
+    "m_DisplayName": "Brightness",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -688,10 +688,10 @@
     "m_Guid": {
         "m_GuidSerialized": "60273e62-3c59-4bfe-a2ce-89d23daa39cc"
     },
-    "m_Name": "亮度",
+    "m_Name": "Brightness",
     "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "亮度",
-    "m_DefaultReferenceName": "_",
+    "m_RefNameGeneratedByDisplayName": "Brightness",
+    "m_DefaultReferenceName": "_Brightness",
     "m_OverrideReferenceName": "_BrightnessVal",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,
@@ -907,7 +907,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Texture2DMaterialSlot",
     "m_ObjectId": "9aafac0e85c948818d6ac488d838b561",
     "m_Id": 0,
-    "m_DisplayName": "纹理",
+    "m_DisplayName": "Tex",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -981,10 +981,10 @@
     "m_Guid": {
         "m_GuidSerialized": "ba4f11e7-ce94-4517-862f-eaeefe5080ac"
     },
-    "m_Name": "叠加色",
+    "m_Name": "Color",
     "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "叠加色",
-    "m_DefaultReferenceName": "_",
+    "m_RefNameGeneratedByDisplayName": "Color",
+    "m_DefaultReferenceName": "_Color",
     "m_OverrideReferenceName": "_Color",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,
@@ -998,7 +998,7 @@
         "r": 1.0,
         "g": 1.0,
         "b": 1.0,
-        "a": 0.0
+        "a": 1.0
     },
     "isMainColor": false,
     "m_ColorMode": 1
@@ -1045,10 +1045,10 @@
     "m_Guid": {
         "m_GuidSerialized": "d1aecd72-6218-4798-bdee-92a5e62aaf73"
     },
-    "m_Name": "纹理",
+    "m_Name": "Tex",
     "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "纹理",
-    "m_DefaultReferenceName": "_",
+    "m_RefNameGeneratedByDisplayName": "Tex",
+    "m_DefaultReferenceName": "_Tex",
     "m_OverrideReferenceName": "_Tex",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,
@@ -1236,10 +1236,10 @@
     "m_Guid": {
         "m_GuidSerialized": "49af1cb2-e143-4b26-9c69-0ed569d69086"
     },
-    "m_Name": "投影距离",
+    "m_Name": "Distance",
     "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "投影距离",
-    "m_DefaultReferenceName": "_",
+    "m_RefNameGeneratedByDisplayName": "Distance",
+    "m_DefaultReferenceName": "_Distance",
     "m_OverrideReferenceName": "_ProjDistance",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,
@@ -1369,7 +1369,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "f0a7b625484a4ca28104ea57e27d4d4b",
     "m_Id": 0,
-    "m_DisplayName": "投影距离",
+    "m_DisplayName": "Distance",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",

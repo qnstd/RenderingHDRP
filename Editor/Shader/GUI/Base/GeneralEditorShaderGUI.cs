@@ -59,7 +59,23 @@ namespace com.graphi.renderhdrp.editor
 
         protected Dictionary<string, MaterialProperty> m_MaterialProperty = new Dictionary<string, MaterialProperty>(); //存储材质中所有属性
         protected List<MaterialData> m_MaterialDataList = new List<MaterialData>(); //存储自定义材质数据，自定义数据包含材质属性及显示是否缩进信息（但这里不包含 Foldout 为关闭状态时，其子节点的显示）
+        protected bool m_ShowRenderQueue = false;
         #endregion
+
+
+
+        /// <summary>
+        /// 构造
+        /// </summary>
+        /// <param name="showRenderQueue">是否在材质的检视板中显示渲染队列<br/><br/>
+        /// 在HDRP渲染管线下，是不允许显示并操作渲染队列的，而是通过渲染类型自动决定渲染队列。<br/>
+        /// 但在UI层面，有时需要使用Stencil模板来确定裁剪，并需要修改渲染队列。因此，提供此参数是针对UI层的着色器检视板，并非针对所有着色器，非UI层着色器不建议使用此参数。
+        /// </param>
+        public GeneralEditorShaderGUI(bool showRenderQueue = false)
+        {
+            m_ShowRenderQueue = showRenderQueue;
+        }
+
 
 
         /// <summary>
@@ -184,10 +200,15 @@ namespace com.graphi.renderhdrp.editor
 
             //Unity 材质默认项
             Gui.Space(5);
-            if (SupportedRenderingFeatures.active.editableMaterialRenderQueue)
-            {//如果支持渲染功能中渲染队列的动态设置，则显示。
+            // 显示渲染队列
+            if (m_ShowRenderQueue)
+            {
                 materialEditor.RenderQueueField();
             }
+            //if (SupportedRenderingFeatures.active.editableMaterialRenderQueue)
+            //{
+            //    materialEditor.RenderQueueField();
+            //}
             //显示GPU实例操作项
             materialEditor.EnableInstancingField();
             //显示双边GI操作项

@@ -7,7 +7,7 @@
     作者：
         强辰
 */
-Shader "Graphi/UI/UiVFX"
+Shader "Graphi/Unlit/UI/VFX"
 {
     Properties
     {
@@ -60,7 +60,7 @@ Shader "Graphi/UI/UiVFX"
         [Space(10)]
         [Foldout] _OutEdge("Out line", Range(0,1)) = 0
         [Space(8)]
-        [To(_OutEdge)][Toggle]_OutEdgeFlag("Enable", float) = 1
+        [To(_OutEdge)][Toggle]_OutEdgeFlag("Enable", float) = 0
         [To(_OutEdge)][HDR]_OutEdgeClr("Color", Color) = (0,0,0,1)
         [HideInInspector]_OutEdgeWidth("Width", float) = 1
 
@@ -90,7 +90,7 @@ Shader "Graphi/UI/UiVFX"
         [Space(10)]
         [Foldout] _Shadows("Shadow", Range(0,1)) = 0
         [Space(8)]
-        [To(_Shadows)][Toggle]_ShadowFlag("Enable",float) = 1
+        [To(_Shadows)][Toggle]_ShadowFlag("Enable",float) = 0
         [To(_Shadows)]_ShadowClr("Color",Color)=(0,0,0,1)
         [To(_Shadows)]_ShadowAlphaThreshold("Alpha Threshold", Range(0,1)) = 0.5
         [HideInInspector][To(_Shadows)]_ShadowDist("Offset",Vector)=(0,0,0,0)

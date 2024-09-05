@@ -53,6 +53,8 @@ namespace com.graphi.renderhdrp.editor
             AssetDatabase.Refresh();
             return mat;
         }
+
+
         /// <summary>
         /// 随机数
         /// </summary>
@@ -67,6 +69,28 @@ namespace com.graphi.renderhdrp.editor
                 result.Append(r.Next(0, 10));
             }
             return result.ToString();
+        }
+
+
+        [MenuItem("GameObject/Rendering/FastDecalProjector")]
+        static private void Create_FastDecalProjector()
+        {
+            string id = GenerateRandomNum(6);
+
+            GameObject obj = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            obj.name = $"FastDecalProjector_{id}";
+            obj.transform.localPosition = Vector3.zero;
+            obj.transform.localScale = Vector3.one;
+            obj.transform.localRotation = Quaternion.identity;
+
+            obj.GetComponent<MeshFilter>().hideFlags = HideFlags.NotEditable;
+
+            MeshRenderer renderer = obj.GetComponent<MeshRenderer>();
+            renderer.shadowCastingMode = ShadowCastingMode.Off;
+            renderer.sharedMaterial = CreateMat($"Assets/FastDecal_{id}.mat", "Graphi/Unlit/FastDecal"); // 设定材质
+
+            SetIcon(obj, "Graphi-Projector-Icon");
+            EditorGUIUtility.PingObject(obj);
         }
 
 

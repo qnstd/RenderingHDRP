@@ -9,6 +9,8 @@ namespace com.graphi.renderhdrp.editor
     /// </summary>
     public class UiVFXEditorShaderGUI : GeneralEditorShaderGUI
     {
+        public UiVFXEditorShaderGUI() : base(true) { }
+
         //帮助说明组
         List<List<string>> m_helpdesc = new List<List<string>>()
         {//0: 属性字段；1: 属性相关的帮助说明
