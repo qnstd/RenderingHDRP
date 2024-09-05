@@ -16,9 +16,6 @@
             "m_Id": "ae3edbdfba324b74acf6ccbfb316bb3c"
         },
         {
-            "m_Id": "6047ff229dcb4aa994e9210bdfcd7201"
-        },
-        {
             "m_Id": "966de6a69f85453d988c0189f7bfdc3b"
         }
     ],
@@ -349,29 +346,6 @@
 
 {
     "m_SGVersion": 0,
-    "m_Type": "UnityEditor.ShaderGraph.Internal.BooleanShaderProperty",
-    "m_ObjectId": "6047ff229dcb4aa994e9210bdfcd7201",
-    "m_Guid": {
-        "m_GuidSerialized": "75465a55-1023-430c-8fb4-f6752e819610"
-    },
-    "m_Name": "Flag",
-    "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "Flag",
-    "m_DefaultReferenceName": "_Flag",
-    "m_OverrideReferenceName": "",
-    "m_GeneratePropertyBlock": true,
-    "m_UseCustomSlotLabel": false,
-    "m_CustomSlotLabel": "",
-    "m_DismissedVersion": 0,
-    "m_Precision": 0,
-    "overrideHLSLDeclaration": false,
-    "hlslDeclarationOverride": 0,
-    "m_Hidden": false,
-    "m_Value": false
-}
-
-{
-    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.PropertyNode",
     "m_ObjectId": "6bd936240c3e4be5abd3f57fed3a81b2",
     "m_Group": {
@@ -652,9 +626,6 @@
     "m_ObjectId": "b0260b0af41543598468b033b3e68867",
     "m_Name": "",
     "m_ChildObjectList": [
-        {
-            "m_Id": "6047ff229dcb4aa994e9210bdfcd7201"
-        },
         {
             "m_Id": "c2d2df870d204e4fb28fe63171de9431"
         },
