@@ -8,10 +8,7 @@ namespace com.graphi.renderhdrp.editor
     {
         protected override void ExtensionProps()
         {
-            Gui.Hor();
-            m_Editor.TexturePropertySingleLine(new UnityEngine.GUIContent("Tex"), FindProperty(ShaderPropIDs.ID_AlbedoTex, m_Props));
-            DrawShaderProperty(ShaderPropIDs.ID_AlbedoColor);
-            Gui.EndHor();
+            m_Editor.TexturePropertyWithHDRColor(new UnityEngine.GUIContent("Tex"), FindProp(ShaderPropIDs.ID_AlbedoTex), FindProp(ShaderPropIDs.ID_AlbedoColor), true);
             Gui.Space(3);
             DrawShaderProperty("_OutRing", "Out ring");
             DrawShaderProperty("_InnerRing", "inner ring");

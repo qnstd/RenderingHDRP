@@ -1432,7 +1432,7 @@
             "m_Id": "48a6e5d21f724552b10065c4659f0adf"
         }
     ],
-    "m_CustomEditorGUI": "",
+    "m_CustomEditorGUI": "com.graphi.renderhdrp.editor.ClipRGBShaderGUI",
     "m_SupportVFX": false,
     "m_SupportComputeForVertexSetup": false
 }

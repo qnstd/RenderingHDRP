@@ -14,7 +14,7 @@ Shader "Graphi/Universe/CoronaStorm"
     {
 		[Foldout]_B("Base", Range(0,1)) = 1
 		[To(_B)][HDR]_TintColor("Color", Color) = (1,1,1,1)
-		[To(_B)][SingleLine]_HybridMap("Mix Map", 2D) = "white" {}
+		[To(_B)][SingleLine]_HybridMap("Tex", 2D) = "white" {}
        
 		[Foldout]_S("Storm", Range(0,1)) = 1
 		[To(_S)]_StormTileX("X tile", Float) = 0

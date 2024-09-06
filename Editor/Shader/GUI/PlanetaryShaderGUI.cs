@@ -14,10 +14,7 @@ namespace com.graphi.renderhdrp.editor
             Gui.Label("Surface");
             Gui.IndentLevelAdd();
             Gui.Space(3);
-            Gui.Hor();
-            m_Editor.TexturePropertySingleLine(new UnityEngine.GUIContent("Tex"), FindProperty(ShaderPropIDs.ID_AlbedoTex, m_Props));
-            DrawShaderProperty(ShaderPropIDs.ID_AlbedoColor, "");
-            Gui.EndHor();
+            m_Editor.TexturePropertyWithHDRColor(new UnityEngine.GUIContent("Tex"), FindProp(ShaderPropIDs.ID_AlbedoTex), FindProp(ShaderPropIDs.ID_AlbedoColor), true);
             Gui.Hor();
             m_Editor.TexturePropertySingleLine(new UnityEngine.GUIContent("Normal"), FindProperty(ShaderPropIDs.ID_NormalTex, m_Props));
             DrawShaderProperty(ShaderPropIDs.ID_NormalStrength, "");
@@ -32,10 +29,8 @@ namespace com.graphi.renderhdrp.editor
             Gui.Label("Detail");
             Gui.IndentLevelAdd();
             Gui.Space(3);
-            Gui.Hor();
-            m_Editor.TexturePropertySingleLine(new UnityEngine.GUIContent("Tex£¨R£ºGray¡¢G£ºMask¡¢B£ºSmooth£©"), FindProperty(ShaderPropIDs.ID_DetailTex, m_Props));
-            DrawShaderProperty(ShaderPropIDs.ID_DetailColor, "");
-            Gui.EndHor();
+            m_Editor.TexturePropertyWithHDRColor(new UnityEngine.GUIContent("Tex"), FindProp(ShaderPropIDs.ID_DetailTex), FindProp(ShaderPropIDs.ID_DetailColor), true);
+            Gui.Help("R£ºGray\nG£ºMask\nB£ºSmooth", UnityEditor.MessageType.None);
             m_Editor.TexturePropertySingleLine(new UnityEngine.GUIContent("Normal"), FindProperty(ShaderPropIDs.ID_DetailNormalTex, m_Props));
             DrawShaderProperty(ShaderPropIDs.ID_DetailUVTile, "Tile");
             DrawShaderProperty(ShaderPropIDs.ID_DetailBlendWeight, "Blend Weight");

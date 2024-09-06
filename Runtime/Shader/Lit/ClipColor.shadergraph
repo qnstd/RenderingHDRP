@@ -1644,7 +1644,7 @@
             "m_Id": "e185714d230e412fa000aa9a992fd8ac"
         }
     ],
-    "m_CustomEditorGUI": "",
+    "m_CustomEditorGUI": "com.graphi.renderhdrp.editor.ClipColorShaderGUI",
     "m_SupportVFX": false,
     "m_SupportComputeForVertexSetup": false
 }

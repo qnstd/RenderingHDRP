@@ -1,7 +1,7 @@
-using UnityEngine;
-
+using Unity.Plastic.Newtonsoft.Json.Serialization;
 using UnityEditor;
 using UnityEditor.Rendering.HighDefinition;
+using UnityEngine;
 
 
 namespace com.graphi.renderhdrp.editor
@@ -107,8 +107,39 @@ namespace com.graphi.renderhdrp.editor
 
 
         /// <summary>
+        /// 获取属性
+        /// </summary>
+        /// <param name="propname"></param>
+        /// <returns></returns>
+        protected MaterialProperty FindProp(string propname) { return FindProperty(propname, m_Props); }
+
+
+        /// <summary>
+        /// 绘制Foldout组
+        /// </summary>
+        /// <param name="foldout"></param>
+        /// <param name="label"></param>
+        /// <param name="action"></param>
+        protected void FoldoutGroup(ref bool foldout, string label, Action action)
+        {
+            foldout = EditorGUILayout.Foldout(foldout, label);
+            if (foldout)
+            {
+                Gui.Space(5);
+                Gui.IndentLevelAdd();
+                action?.Invoke();
+                Gui.IndentLevelSub();
+                Gui.Space(5);
+            }
+        }
+
+
+
+        /// <summary>
         /// 扩展属性的绘制（子类实现）
         /// </summary>
         protected virtual void ExtensionProps() { }
+
+
     }
 }

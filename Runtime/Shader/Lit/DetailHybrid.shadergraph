@@ -1624,7 +1624,7 @@
             "m_Id": "92ba88d595414abfa77723f662ac8d31"
         }
     ],
-    "m_CustomEditorGUI": "",
+    "m_CustomEditorGUI": "com.graphi.renderhdrp.editor.DetailHybridShaderGUI",
     "m_SupportVFX": false,
     "m_SupportComputeForVertexSetup": false
 }

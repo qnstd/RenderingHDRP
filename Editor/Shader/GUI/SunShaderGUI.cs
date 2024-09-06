@@ -14,12 +14,13 @@ namespace com.graphi.renderhdrp.editor
             Gui.Label("Surface");
             Gui.IndentLevelAdd();
             Gui.Space(3);
-            m_Editor.TexturePropertySingleLine(new UnityEngine.GUIContent("Tex£¨R£ºOut Detail£¬G£ºInner Detail£¬B£ºOut Detail Twist Noise£©"), FindProperty(ShaderPropIDs.ID_MixedTex, m_Props));
-            DrawShaderProperty("_SurfaceRTile", "Tex R channel Tile");
-            DrawShaderProperty("_SurfaceGTile", "Tex G channel Tile");
+            m_Editor.TexturePropertySingleLine(new UnityEngine.GUIContent("Tex"), FindProperty(ShaderPropIDs.ID_MixedTex, m_Props));
+            Gui.Help("R£ºOut Detail\nG£ºInner Detail\nB£ºOut Detail Twist Noise", UnityEditor.MessageType.None);
             DrawShaderProperty("_SurfaceSamplePow", "Sample Pow");
+            DrawShaderProperty("_SurfaceGTile", "G channel Tile");
+            DrawShaderProperty("_SurfaceRTile", "R channel Tile");
             DrawShaderProperty("_RFloatSpeed", "R Channel Speed");
-            DrawShaderProperty(ShaderPropIDs.ID_TwistUVTile, "Twist UVTile");
+            DrawShaderProperty(ShaderPropIDs.ID_TwistUVTile, "Twist UV Tile");
             DrawShaderProperty(ShaderPropIDs.ID_TwistSpeed, "Twist Speed");
             DrawShaderProperty(ShaderPropIDs.ID_TwistForce, "Twist Force");
             DrawShaderProperty("_BottomColor", "Out Color");

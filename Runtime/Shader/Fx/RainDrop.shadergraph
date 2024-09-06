@@ -929,7 +929,7 @@
             "m_Id": "ed64976fa0ab4827830bc237335d7d6f"
         }
     ],
-    "m_CustomEditorGUI": "",
+    "m_CustomEditorGUI": "com.graphi.renderhdrp.editor.RainDropShaderGUI",
     "m_SupportVFX": false,
     "m_SupportComputeForVertexSetup": false
 }

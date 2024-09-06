@@ -17,13 +17,9 @@ namespace com.graphi.renderhdrp.editor
             Gui.Label("Albedo & Detail");
             Gui.IndentLevelAdd();
             Gui.Space(3);
-            m_Editor.TexturePropertySingleLine
-                (
-                    new GUIContent("Tex£¨R£ºAlbedo£¬G£ºDetail£©"),
-                    FindProperty(ShaderPropIDs.ID_AlbedoTex, m_Props)
-                );
-            DrawShaderProperty(ShaderPropIDs.ID_AlbedoColor, "Albedo Color");
-            DrawShaderProperty(ShaderPropIDs.ID_AlbedoUVTile, "Albedo UV Tile");
+            m_Editor.TexturePropertyWithHDRColor(new GUIContent("Tex"), FindProp(ShaderPropIDs.ID_AlbedoTex), FindProp(ShaderPropIDs.ID_AlbedoColor), true);
+            Gui.Help("R£ºAlbedo\nG£ºDetail", UnityEditor.MessageType.None);
+            DrawShaderProperty(ShaderPropIDs.ID_AlbedoUVTile, "UV Tile");
             DrawShaderProperty(ShaderPropIDs.ID_DetailColor, "Detail Color");
             DrawShaderProperty(ShaderPropIDs.ID_DetailUVTile, "Detail UV Tile");
             DrawShaderProperty(ShaderPropIDs.ID_DetailPow, "Detail Pow");

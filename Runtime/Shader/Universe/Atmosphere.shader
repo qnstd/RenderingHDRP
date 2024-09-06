@@ -12,10 +12,10 @@ Shader "Graphi/Universe/Atmosphere"
     Properties
     {
         // 基础
-        [Foldout]_BaseParams("Vertex、UV Offset", Range(0,1))=1
+        [Foldout]_BaseParams("Offset", Range(0,1))=1
         [Space(5)]
-        [To(_BaseParams)]_VertexOffset("Vertex Offset", Float) = 0
-		[To(_BaseParams)]_UVOffset("UV Offset", Float) = 0
+        [To(_BaseParams)]_VertexOffset("Vertex", Float) = 0
+		[To(_BaseParams)]_UVOffset("UV", Float) = 0
 
         // 散射
         [Space(10)]
@@ -38,7 +38,7 @@ Shader "Graphi/Universe/Atmosphere"
 
         // 主光
 		[Space(10)]
-        [Foldout]_SunParams("DirectionalLight", Range(0,1))=1
+        [Foldout]_SunParams("Light", Range(0,1))=1
         [Space(5)]
 		[To(_SunParams)]_LightSensitivity("Sensitivity", Float) = 0
 		[To(_SunParams)]_LightPow("Pow", Float) = 0
@@ -183,5 +183,5 @@ CBUFFER_END
     }
 
     Fallback "Hidden/Graphi/FallbackErr"
-    CustomEditor "com.graphi.renderhdrp.editor.GeneralEditorShaderGUI"
+    CustomEditor "com.graphi.renderhdrp.editor.AtmosphereShaderGUI"
 }

@@ -326,7 +326,7 @@
             "m_Id": "043d8fa0ee67402e8c97ff46197c1baa"
         }
     ],
-    "m_CustomEditorGUI": "",
+    "m_CustomEditorGUI": "com.graphi.renderhdrp.editor.FastDecalShaderGUI",
     "m_SupportVFX": false,
     "m_SupportComputeForVertexSetup": false
 }
@@ -854,10 +854,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": 2707.333251953125,
-            "y": -706.0,
-            "width": 98.666748046875,
-            "height": 36.0
+            "x": 2677.333251953125,
+            "y": -705.9999389648438,
+            "width": 132.0,
+            "height": 35.99993896484375
         }
     },
     "m_Slots": [
