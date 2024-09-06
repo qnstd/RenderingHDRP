@@ -56,7 +56,7 @@ namespace com.graphi.renderhdrp
                 base.graphic.canvas.additionalShaderChannels |= addch; //添加texcoord2通道
 
             //刷新
-            Refresh();
+            base.graphic.SetVerticesDirty();
         }
 
 
@@ -74,26 +74,9 @@ namespace com.graphi.renderhdrp
 
             // 刷新
             if (base.graphic != null && base.graphic.material != null)
-                Refresh();
+                base.graphic.SetVerticesDirty();
         }
 #endif
-
-
-        /// <summary>
-        /// 刷新材质参数
-        /// </summary>
-        private void Refresh()
-        {
-            Material mat = base.graphic.material;
-            if (mat == null) { return; }
-
-            //透传参数
-            mat.SetFloat("_OutEdgeWidth", m_OutEdgeWidth);
-            mat.SetVector("_ShadowDist", m_ShadowUVOffsetDistance);
-
-            //重绘
-            base.graphic.SetVerticesDirty();
-        }
 
 
         /// <summary>
@@ -111,6 +94,11 @@ namespace com.graphi.renderhdrp
             //清理并重新设置网格顶点三角面数据
             vh.Clear();
             vh.AddUIVertexTriangleStream(m_vertexLst);
+
+            //透传参数
+            Material mat = base.graphic.material;
+            mat.SetFloat("_OutEdgeWidth", m_OutEdgeWidth);
+            mat.SetVector("_ShadowDist", m_ShadowUVOffsetDistance);
         }
 
 
@@ -155,7 +143,7 @@ namespace com.graphi.renderhdrp
                     uvY = v2.uv0 - v1.uv0;
                 }
 
-                // 为每个顶点设置新的Position和UV，并传入原始UV框
+                // 为每个顶点设置新的Position和UV
                 v1 = SetNewPosAndUV(v1, m_OutEdgeWidth, posCenter, triX, triY, uvX, uvY, uvOrigin, m_ShadowOffsetDistance, ref m_ShadowUVOffsetDistance);
                 v2 = SetNewPosAndUV(v2, m_OutEdgeWidth, posCenter, triX, triY, uvX, uvY, uvOrigin, m_ShadowOffsetDistance, ref m_ShadowUVOffsetDistance);
                 v3 = SetNewPosAndUV(v3, m_OutEdgeWidth, posCenter, triX, triY, uvX, uvY, uvOrigin, m_ShadowOffsetDistance, ref m_ShadowUVOffsetDistance);
@@ -168,6 +156,7 @@ namespace com.graphi.renderhdrp
         }
 
 
+        // 为顶点设置新的位置和UV
         static private UIVertex SetNewPosAndUV
         (
             UIVertex pVertex,
@@ -264,7 +253,6 @@ namespace com.graphi.renderhdrp
             serializedObject.Update();
 
             EditorGUILayout.Space(5);
-            EditorGUI.BeginChangeCheck();
             EditorGUILayout.PropertyField(m_Material, new GUIContent("Material"));
 
             EditorGUILayout.Space(10);
@@ -272,8 +260,6 @@ namespace com.graphi.renderhdrp
 
             EditorGUILayout.Space(10);
             EditorGUILayout.PropertyField(m_ShadowUVOffset, new GUIContent("Shadow Offset"));
-            if (EditorGUI.EndChangeCheck())
-            { }
 
             EditorGUILayout.Space(5);
 
