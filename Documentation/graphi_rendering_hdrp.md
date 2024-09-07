@@ -19,11 +19,24 @@
 
 
 ## 部署 
-> 点击 Unity 窗体左上角带有 ***Graphi*** 标签的按钮，
+> 用 UnityHub 创建一个 Unity 2022.3.21f1c1 或以上版本的默认3D工程。
+> 
+> 打开 PackageManager 窗体，点击 **“+”** 号，选择 **git URL** 方式加载着色库的 UPM 包体。***gitURL = https://github.com/qnstd/RenderingHDRP.git***
+
+> ![](images/doc5.png)
+> 
+> 等待着色库及相关依赖的安装。待安装完毕后，点击菜单 ***[Window/Rendering/HDRP Wizard]***。在弹出的面板中，点击所有 **“Fix”**按钮， 执行 HDRP 高清渲染管线所需的资源及配置对象的创建及部署。
+> 
+> ![](images/doc6.png) 
+> 
+> ![](images/doc7.png)
+
+
+> 操作完毕后，点击 Unity 窗体左上角带有 ***Graphi*** 标签的按钮，此时会弹出 ***Project Settings*** 检视板中的 ***Graphi Rendering HDRP*** 页签。在页签中，点击 ***Set*** 按钮，使着色库与当前工程进行适配。
 
 > ![](images/doc1.png)
 
-> 此时会弹出 ***Project Settings*** 检视板中的 ***Graphi Rendering HDRP*** 页签。在页签中，点击 ***Set*** 按钮，使着色库与当前工程进行适配。
+> 
 
 > ![](images/doc2.png)
 
