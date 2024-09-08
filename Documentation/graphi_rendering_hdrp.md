@@ -31,8 +31,17 @@
 > 
 > ![](images/doc7.png)
 
+> 操作完毕后，此时在Assets目录下会生成一个HDRP资源配置目录，进入此目录后，有两个文件需要设置。
+>> 1. **HDRenderPipelineAsset:** 点击后在Inspector检视板中，选择 LitShaderMode 下拉菜单中的 ForwardOnly 选项卡。 
+>> ![](images/doc8.png)
+>> ![](images/doc9.png)
+>> 2. **HDRenderPipelineGlobalSettings:** 点击后在Inspector检视板中，找到FrameSettings（Default Value）模块，分别将Camera，Realtime Reflection，Baked or Custom Reflection的Rendering/LitShaderMode 的选项卡设置为Forward。 (其中Reflection相关的Rendering的LitShaderMode根据实际情况而定)
+>> ![](images/doc10.png)
+>
+>> *其他选项设置请按照实际情况进行配置，这里不再说明。对于HDRP管线配置及全局帧渲染配置项建议TA来完成。*
+>
 
-> 操作完毕后，点击 Unity 窗体左上角带有 ***Graphi*** 标签的按钮，此时会弹出 ***Project Settings*** 检视板中的 ***Graphi Rendering HDRP*** 页签。在页签中，点击 ***Set*** 按钮，使着色库与当前工程进行适配。
+> 上述已完成HDRP基本的设置操作，接下来点击 Unity 窗体左上角带有 ***Graphi*** 标签的按钮，此时会弹出 ***Project Settings*** 检视板中的 ***Graphi Rendering HDRP*** 页签。在页签中，点击 ***Set*** 按钮，使着色库与当前工程进行适配。
 
 > ![](images/doc1.png)
 
