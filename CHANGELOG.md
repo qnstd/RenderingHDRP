@@ -4,6 +4,11 @@
 ## 日志
 #
 
+
+### 1.0.1
+> Runtime
+>> 1. 优化 Mth.hlsl 数学操作库，增加可控范围的 PingPong 算法
+
 ### 1.0.0
 > Editor
 >> 1. 增加 HierarchyUtils 工具包，提供在层次列表中创建着色库中的游戏对象

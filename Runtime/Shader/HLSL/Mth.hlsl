@@ -53,4 +53,15 @@ float PingPong(float t, float len)
 }
 
 
+// PingPong 运动（范围）
+// 根据参数t（时间），在 start 到 end 范围内往返运动
+float PingPongRange(float t, float start, float end)
+{
+	end = max(start, end);
+	float len = end - start;
+	t = Repeat(t, len * 2);
+    return (len - abs(t - len)) + start;
+}
+
+
 #endif // Math 函数库（由 Graphi 着色库工具生成）| 作者：强辰
