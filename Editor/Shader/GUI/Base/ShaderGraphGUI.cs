@@ -1,5 +1,6 @@
 using Unity.Plastic.Newtonsoft.Json.Serialization;
 using UnityEditor;
+using UnityEditor.Rendering;
 using UnityEditor.Rendering.HighDefinition;
 using UnityEngine;
 
@@ -102,7 +103,7 @@ namespace com.graphi.renderhdrp.editor
         /// <param name="label">标签</param>
         protected void DrawShaderProperty(string propName, string label = "")
         {
-            m_Editor.ShaderProperty(FindProperty(propName, m_Props), label);
+            m_Editor.ShaderProperty(FindProperty(propName, m_Props), string.IsNullOrEmpty(label) ? propName : label);
         }
 
 
@@ -133,6 +134,59 @@ namespace com.graphi.renderhdrp.editor
             }
         }
 
+
+        /// <summary>
+        /// 绘制贴图（单行模式，不带TillingAndOffset）
+        /// </summary>
+        /// <param name="label"></param>
+        /// <param name="pname"></param>
+        protected void DrawTex(string label, string pname)
+        {
+            m_Editor.TexturePropertySingleLine
+                (
+                    new GUIContent(label),
+                    FindProp(pname)
+                );
+        }
+
+        /// <summary>
+        /// 绘制贴图（单行模式，不带TillingAndOffset）
+        /// </summary>
+        /// <param name="label"></param>
+        /// <param name="pname1"></param>
+        /// <param name="pname2"></param>
+        protected void DrawTex(string label, string pname1, string pname2)
+        {
+            m_Editor.TexturePropertySingleLine
+                (
+                    new GUIContent(label),
+                    FindProp(pname1),
+                    FindProp(pname2)
+                );
+        }
+
+
+        /// <summary>
+        /// 绘制范围的Slider组件
+        /// </summary>
+        /// <param name="label"></param>
+        /// <param name="pname"></param>
+        protected void DrawRange(string label, string pname)
+        {
+            m_Editor.RangeProperty(FindProp(pname), label);
+        }
+
+
+
+        /// <summary>
+        /// 绘制范围的Slider组件（int类型）
+        /// </summary>
+        /// <param name="label"></param>
+        /// <param name="pname"></param>
+        protected void DrawIntRange(string label, string pname, string tooltip = null)
+        {
+            m_Editor.IntSliderShaderProperty(FindProp(pname), EditorGUIUtility.TrTextContent(label, tooltip));
+        }
 
 
         /// <summary>
