@@ -6,7 +6,7 @@
 
     作者：强辰
 */
-Shader "Graphi/Unlit/Video"
+Shader "Graphi/Sundry/Video"
 {
     Properties
     {

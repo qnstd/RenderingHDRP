@@ -6,7 +6,7 @@
 
     作者：强辰
 */
-Shader "Graphi/Unlit/UI/General"
+Shader "Graphi/UI/General"
 {
     Properties
     {

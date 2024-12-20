@@ -101,9 +101,11 @@ namespace com.graphi.renderhdrp.editor
         /// </summary>
         /// <param name="propName">属性ID</param>
         /// <param name="label">标签</param>
-        protected void DrawShaderProperty(string propName, string label = "")
+        /// <param name="usePropName">在参数label为空的情况下，此值为true，则使用属性名称，否则设置为空字符</param>
+        protected void DrawShaderProperty(string propName, string label = "", bool usePropName = true)
         {
-            m_Editor.ShaderProperty(FindProperty(propName, m_Props), string.IsNullOrEmpty(label) ? propName : label);
+            string s = string.IsNullOrEmpty(label) ? (usePropName ? propName : "") : label;
+            m_Editor.ShaderProperty(FindProperty(propName, m_Props), s);
         }
 
 

@@ -13,8 +13,11 @@ SurfaceDescription SurfaceDescriptionFunction(SurfaceDescriptionInputs IN)
     // 计算绒毛
     float layer = IN.uv3.z;
     float2 uv0 = IN.uv0.xy;
-    float fur = SAMPLE_TEXTURE2D(_FurMap, sampler_FurMap, TRANSFORM_TEX(uv0, _FurMap) * _Density).r;
-    float alpclip = fur * (1.0 - layer);
+    float fur = SAMPLE_TEXTURE2D_X_LOD(_FurMap, sampler_FurMap, TRANSFORM_TEX(uv0, _FurMap) * _Density, 0).r;
+    float furmask = SAMPLE_TEXTURE2D_X_LOD(_FurMaskMap, sampler_FurMaskMap, TRANSFORM_TEX(uv0, _FurMaskMap), 0).r;
+    //float alpclip = fur * (1.0 - layer);
+    float alpclip = fur * (1.0 - layer) * furmask;
+
     
     #if (SHADERPASS == SHADERPASS_SHADOWS)
         surface.Alpha = _Alp;

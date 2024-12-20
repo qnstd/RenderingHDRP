@@ -22,8 +22,12 @@ namespace com.graphi.renderhdrp.editor
             FoldoutGroup(ref m_FurFlag, "Fur", () =>
             {
                 DrawTex("Noise", "_FurMap");
-                DrawTex("Noise Normal", "_FurNormalMap");
-                DrawShaderProperty("_FurNormalForce", "Normal Force");
+                Gui.Hor();
+                DrawTex("Normal", "_FurNormalMap");
+                DrawShaderProperty("_FurNormalForce", "", false);
+                Gui.EndHor();
+                DrawTex("Mask", "_FurMaskMap");
+
                 DrawIntRange("Layer", "_Length");
                 DrawShaderProperty("_Step", "Step");
                 DrawShaderProperty("_Density", "Density");

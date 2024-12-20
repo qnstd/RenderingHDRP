@@ -57,14 +57,12 @@ void Frag
 (  
     PackedVaryingsToPS packedInput
     #ifdef WRITE_MSAA_DEPTH
-    // We need the depth color as SV_Target0 for alpha to coverage
     , out float4 depthColor : SV_Target0
     , out float4 outMotionVector : SV_Target1
         #ifdef WRITE_DECAL_BUFFER
         , out float4 outDecalBuffer : SV_Target2
         #endif
     #else
-    // When no MSAA, the motion vector is always the first buffer
     , out float4 outMotionVector : SV_Target0
         #ifdef WRITE_DECAL_BUFFER
         , out float4 outDecalBuffer : SV_Target1
@@ -84,7 +82,6 @@ void Frag
 {
 
     FragInputs input = UnpackVaryingsToFragInputs(packedInput);
-    // input.positionSS is SV_Position
     PositionInputs posInput = GetPositionInput(input.positionSS.xy, _ScreenSize.zw, input.positionSS.z, input.positionSS.w, input.positionRWS);
 
     #ifdef VARYINGS_NEED_POSITION_WS
@@ -104,44 +101,30 @@ void Frag
 #endif
 
     float2 motionVector = CalculateMotionVector(inputPass.positionCS, inputPass.previousPositionCS);
-    // Convert from Clip space (-1..1) to NDC 0..1 space.
-    // Note it doesn't mean we don't have negative value, we store negative or positive offset in NDC space.
-    // Note: ((positionCS * 0.5 + 0.5) - (previousPositionCS * 0.5 + 0.5)) = (motionVector * 0.5)EncodeMotionVector(motionVector * 0.5, outMotionVector);
-    // Note: unity_MotionVectorsParams.y is 0 is forceNoMotion is enabled
     bool forceNoMotion = unity_MotionVectorsParams.y == 0.0;
 
-    // Setting the motionVector to a value more than 2 set as a flag for "force no motion". This is valid because, given that the velocities are in NDC,
-    // a value of >1 can never happen naturally, unless explicitely set.
     if (forceNoMotion)
         outMotionVector = float4(2.0, 0.0, 0.0, 0.0);
 
-// Depth and Alpha to coverage
 #ifdef WRITE_MSAA_DEPTH
-    // In case we are rendering in MSAA, reading the an MSAA depth buffer is way too expensive. To avoid that, we export the depth to a color buffer
     depthColor = packedInput.vmesh.positionCS.z;
-    // Alpha channel is used for alpha to coverage
     depthColor.a = SharpenAlpha(builtinData.opacity, builtinData.alphaClipTreshold);
 #endif
 
-// Normal Buffer Processing
 #ifdef WRITE_NORMAL_BUFFER
     EncodeIntoNormalBuffer(ConvertSurfaceDataToNormalData(surfaceData), outNormalBuffer);
 #endif
 
 #if defined(WRITE_DECAL_BUFFER)
     DecalPrepassData decalPrepassData;
-    // Force a write in decal buffer even if decal is disab. This is a neutral value which have no impact for later pass
     #ifdef _DISABLE_DECALS
-    ZERO_INITIALIZE(DecalPrepassData, decalPrepassData);
+        ZERO_INITIALIZE(DecalPrepassData, decalPrepassData);
     #else
-    // We don't have the right to access SurfaceData in a shaderpass.
-    // However it would be painful to have to add a function like ConvertSurfaceDataToDecalPrepassData() to every Material to return geomNormalWS anyway
-    // Here we will put the constrain that any Material requiring to support Decal, will need to have geomNormalWS as member of surfaceData (and we already require normalWS anyway)
+    
     decalPrepassData.geomNormalWS = surfaceData.geomNormalWS;
     decalPrepassData.decalLayerMask = GetMeshRenderingDecalLayer();
-    #endif
+#endif
     EncodeIntoDecalPrepassBuffer(decalPrepassData, outDecalBuffer);
-    // make sure we don't overwrite light layers
     outDecalBuffer.w = (GetMeshRenderingLightLayer() & 0x000000FF) / 255.0;
 #endif
 

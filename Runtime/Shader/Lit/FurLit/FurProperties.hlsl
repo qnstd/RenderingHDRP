@@ -39,6 +39,7 @@ CBUFFER_START(UnityPerMaterial)
     // fur 参数
     float4 _FurMap_ST;
     float4 _FurNormalMap_ST;
+    float4 _FurMaskMap_ST;
     int _Length;
     float _Step;
     float _Cutoffs;
@@ -70,6 +71,9 @@ TEXTURE2D(_FurMap);
 SAMPLER(sampler_FurMap);
 TEXTURE2D(_FurNormalMap);
 SAMPLER(sampler_FurNormalMap);
+
+TEXTURE2D(_FurMaskMap);
+SAMPLER(sampler_FurMaskMap);
 
 // ScenePickingPass 使用（着色器暂不支持此着色Pass）
 #ifdef SCENEPICKINGPASS

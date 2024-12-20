@@ -32,18 +32,19 @@ Shader "Graphi/Lit/Fur"
         // fur 参数
         [SingleLine][NoScaleOffset]_FurMap("Fur Map", 2D) = "white" {}
         [SingleLine][NoScaleOffset]_FurNormalMap("FurNormal Map", 2D) = "bump" {}
+        [SingleLine][NoScaleOffset]_FurMaskMap("FurMask Map", 2D) = "white" {}
         [Space(5)]
         _FurNormalForce("Fur NormalForce", float) = 1
         [IntRange] _Length("Length", Range(1, 10)) = 10
-        _Step("Step", Range(0.0, 0.01)) = 0.00707
-        _Density("Density", Range(0.0, 30.0)) = 10.94
-        _Cutoffs("Cutoff", Range(0.0, 1.0)) = 0.139
-        _Occlusion("Occlusion", Range(0.0, 1.0)) = 0.937
+        _Step("Step", Range(0.0, 0.01)) = 0.00276
+        _Density("Density", Range(0.0, 100.0)) = 50
+        _Cutoffs("Cutoff", Range(0.0, 1.0)) = 0.135
+        _Occlusion("Occlusion", Range(0.0, 1.0)) = 0
         [Space(10)]
         _BaseOffset("Base Offset", Vector) = (0.0, 0.0, 0.0, 0.0)
         _WindOffset("Wind Offset", Vector) = (0.2, 0.3, 0.2, 0.0)
         _WindAxisWeight("Wind AxisWeight", Vector) = (0.5, 0.7, 0.9, 0.0)
-        _WindForce("Wind Force", float) = 3.0
+        _WindForce("Wind Force", float) = 0
         _WindDisturbance("Wind Disturbance", float) = 1.0
 
         [HideInInspector]_EmissionColor("Color", Color) = (1, 1, 1, 1)
@@ -252,35 +253,38 @@ Shader "Graphi/Lit/Fur"
             ENDHLSL
         }
         //motion vector
-        Pass
-        {
-            Name "MotionVectors"
-            Tags
-            {
-                "LightMode" = "MotionVectors"
-            }
+        //Pass
+        //{
+        //    Name "MotionVectors"
+        //    Tags
+        //    {
+        //        "LightMode" = "MotionVectors"
+        //    }
         
-            Cull [_CullMode]
-            ZWrite On
-            Stencil
-            {
-                WriteMask [_StencilWriteMaskMV]
-                Ref [_StencilRefMV]
-                CompFront Always
-                PassFront Replace
-                CompBack Always
-                PassBack Replace
-            }
+        //    Cull [_CullMode]
+        //    ZWrite On
+        //    Stencil
+        //    {
+        //        WriteMask [_StencilWriteMaskMV]
+        //        Ref [_StencilRefMV]
+        //        CompFront Always
+        //        PassFront Replace
+        //        CompBack Always
+        //        PassBack Replace
+        //    }
         
-            HLSLPROGRAM
-            #include "Packages/com.unity.render-pipelines.high-definition/Runtime/RenderPipeline/ShaderPass/ShaderPass.cs.hlsl"
-            #define SHADERPASS SHADERPASS_MOTION_VECTORS
-            #include "FurH.hlsl"
-            ENDHLSL
-        }
+        //    HLSLPROGRAM
+        //    #include "Packages/com.unity.render-pipelines.high-definition/Runtime/RenderPipeline/ShaderPass/ShaderPass.cs.hlsl"
+        //    #define SHADERPASS SHADERPASS_MOTION_VECTORS
+        //    #include "FurH.hlsl"
+        //    ENDHLSL
+        //}
     }
    
     CustomEditor "UnityEditor.ShaderGraph.GenericShaderGraphMaterialGUI"
     CustomEditorForRenderPipeline "com.graphi.renderhdrp.editor.FurShaderGUI" "UnityEngine.Rendering.HighDefinition.HDRenderPipelineAsset"
-    FallBack "Hidden/Shader Graph/FallbackError"
+    
+    // 如果不支持几何着色器，则回退到标准的自定义PBR光照着色器
+    //FallBack "Hidden/Shader Graph/FallbackError"
+    FallBack "Graphi/Lit/LitStandardVariant"
 }

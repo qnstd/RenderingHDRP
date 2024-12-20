@@ -7,7 +7,7 @@
     作者：
         强辰
 */
-Shader "Graphi/Unlit/UI/VFX"
+Shader "Graphi/UI/VFX"
 {
     Properties
     {
