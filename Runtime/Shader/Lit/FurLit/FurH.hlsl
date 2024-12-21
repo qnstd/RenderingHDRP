@@ -227,6 +227,16 @@
 #if defined(_TRANSPARENT_WRITES_MOTION_VEC) && defined(_SURFACE_TYPE_TRANSPARENT)
     #define _WRITE_TRANSPARENT_MOTION_VECTOR
 #endif
+
+
+// 禁用屏幕空间间接漫反射计算 （SSGI）
+#define SCREEN_SPACE_INDIRECT_DIFFUSE_DISABLED
+// 禁用屏幕空间反射（SSR）
+#define _DISABLE_SSR
+// 禁用贴花
+//#define _DISABLE_DECALS
+
+
 // 结束
 // ///////////////////////////////////////////////////////////////////////////////
 
@@ -252,7 +262,8 @@
 //#include "Packages/com.unity.render-pipelines.high-definition/Runtime/Material/Lit/Lit.hlsl"
 #include "FurLitHlsl.hlsl"
 #if SHADERPASS == SHADERPASS_FORWARD
-    #include "Packages/com.unity.render-pipelines.high-definition/Runtime/Lighting/LightLoop/LightLoop.hlsl"
+    //#include "Packages/com.unity.render-pipelines.high-definition/Runtime/Lighting/LightLoop/LightLoop.hlsl"
+    #include "FurLightLoop.hlsl"
 #endif
 
 #include "Packages/com.unity.render-pipelines.high-definition/Runtime/Material/BuiltinUtilities.hlsl"
