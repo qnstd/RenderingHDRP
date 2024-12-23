@@ -479,6 +479,7 @@ void LightLoop( float3 V, PositionInputs posInput, PreLightData preLightData, BS
 #if !defined(_SURFACE_TYPE_TRANSPARENT) && !defined(SCREEN_SPACE_INDIRECT_DIFFUSE_DISABLED)
             if (_IndirectDiffuseMode != INDIRECTDIFFUSEMODE_OFF)
             {
+                // SSGI 屏幕空间的全局光照（间接漫反射）
                 tempBuiltinData.bakeDiffuseLighting = LOAD_TEXTURE2D_X(_IndirectDiffuseTexture, posInput.positionSS).xyz * GetInverseCurrentExposureMultiplier();
             }
             else
@@ -507,6 +508,7 @@ void LightLoop( float3 V, PositionInputs posInput, PreLightData preLightData, BS
                 }
 #endif
             }
+
 
 #ifdef MODIFY_BAKED_DIFFUSE_LIGHTING
 #ifdef DEBUG_DISPLAY

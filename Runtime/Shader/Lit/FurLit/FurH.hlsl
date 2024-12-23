@@ -231,6 +231,8 @@
 
 // 禁用屏幕空间间接漫反射计算 （SSGI）
 #define SCREEN_SPACE_INDIRECT_DIFFUSE_DISABLED
+// 开启探针
+#define PROBE_VOLUMES_L1
 // 禁用屏幕空间反射（SSR）
 #define _DISABLE_SSR
 // 禁用贴花
