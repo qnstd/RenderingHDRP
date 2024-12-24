@@ -6,7 +6,10 @@
 #endif
 
 
+#define _DEPTHOFFSET_ON
 
+
+// 顶点、几何着色程序
 #include "FurGeometry.hlsl"
 
 
@@ -50,26 +53,44 @@ void Frag(  PackedVaryingsToPS packedInput
     FragInputs input = UnpackVaryingsToFragInputs(packedInput);
     PositionInputs posInput = GetPositionInput(input.positionSS.xy, _ScreenSize.zw, input.positionSS.z, input.positionSS.w, input.positionRWS);
 
-    #ifdef VARYINGS_NEED_POSITION_WS
-        float3 V = GetWorldSpaceNormalizeViewDir(input.positionRWS);
-    #else
-        float3 V = float3(1.0, 1.0, 1.0);
-    #endif
+#ifdef VARYINGS_NEED_POSITION_WS
+    float3 V = GetWorldSpaceNormalizeViewDir(input.positionRWS);
+#else
+    float3 V = float3(1.0, 1.0, 1.0);
+#endif
 
-        SurfaceData surfaceData;
-        BuiltinData builtinData;
-        GetSurfaceAndBuiltinData(input, V, posInput, surfaceData, builtinData);
+    //表面数据
+    SurfaceData surfaceData;
+    BuiltinData builtinData;
+    GetSurfaceAndBuiltinData(input, V, posInput, surfaceData, builtinData);
 
-    #if defined(_DEPTHOFFSET_ON) && !defined(SCENEPICKINGPASS)
-        outputDepth = posInput.deviceDepth;
-
-
+    // 深度偏移
+#if defined(_DEPTHOFFSET_ON) && !defined(SCENEPICKINGPASS)
+    outputDepth = posInput.deviceDepth;
     #if SHADERPASS == SHADERPASS_SHADOWS
         float bias = max(abs(ddx(posInput.deviceDepth)), abs(ddy(posInput.deviceDepth))) * _SlopeScaleDepthBias;
         outputDepth += bias;
     #endif
-
 #endif
+
+    // msaa 抗锯齿
+    #ifdef WRITE_MSAA_DEPTH
+        depthColor = packedInput.vmesh.positionCS.z;
+        depthColor.a = SharpenAlpha(builtinData.opacity, builtinData.alphaClipTreshold);
+    #endif
+
+    // 写入深度、法线
+    #if defined(WRITE_NORMAL_BUFFER)
+        EncodeIntoNormalBuffer(ConvertSurfaceDataToNormalData(surfaceData), outNormalBuffer);
+    #endif
+
+    // 贴花法线
+    #if defined(WRITE_DECAL_BUFFER) && !defined(_DISABLE_DECALS)
+        DecalPrepassData decalPrepassData;
+        decalPrepassData.geomNormalWS = surfaceData.geomNormalWS;
+        decalPrepassData.decalLayerMask = GetMeshRenderingDecalLayer();
+        EncodeIntoDecalPrepassBuffer(decalPrepassData, outDecalBuffer);
+    #endif
 
 }
 

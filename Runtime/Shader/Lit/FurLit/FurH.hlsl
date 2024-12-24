@@ -77,6 +77,12 @@
     #pragma multi_compile _ WRITE_DECAL_BUFFER
     #pragma shader_feature_local _ _REFRACTION_PLANE _REFRACTION_SPHERE _REFRACTION_THIN
 
+    //#pragma shader_feature_local_fragment _NORMALMAP
+    //#pragma shader_feature_local_fragment _MASKMAP
+    //#pragma shader_feature_local_fragment _NORMALMAP_TANGENT_SPACE
+    //#pragma shader_feature_local_raytracing _NORMALMAP_TANGENT_SPACE
+
+
 #elif SHADERPASS == SHADERPASS_MOTION_VECTORS
 // 运动模糊
     #pragma multi_compile_fragment _ WRITE_MSAA_DEPTH
@@ -229,13 +235,10 @@
 #endif
 
 
-// 禁用屏幕空间间接漫反射计算 （SSGI）
-#define SCREEN_SPACE_INDIRECT_DIFFUSE_DISABLED
-// 开启探针
-#define PROBE_VOLUMES_L1
-// 禁用屏幕空间反射（SSR）
+
+// 禁用自身接收屏幕空间反射（SSR）
 #define _DISABLE_SSR
-// 禁用贴花
+// 禁用自身接收贴花
 //#define _DISABLE_DECALS
 
 

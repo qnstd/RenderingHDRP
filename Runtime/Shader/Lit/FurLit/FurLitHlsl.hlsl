@@ -2102,12 +2102,11 @@ IndirectLighting EvaluateBSDF_Env(  LightLoopContext lightLoopContext,
     重写底层关于 SSAO & AO 处理函数
     NOTE: 短绒毛着色渲染情况下，关闭 SSAO 的影响
 */
-void GetScreenSpaceAmbientOcclusionMultibounce__(float2 positionSS, float NdotV, float perceptualRoughness, float ambientOcclusionFromData, float specularOcclusionFromData, float3 diffuseColor, float3 fresnel0, out AmbientOcclusionFactor aoFactor)
+void GetScreenSpaceAmbientOcclusionMultibounce_Forbid(float2 positionSS, float NdotV, float perceptualRoughness, float ambientOcclusionFromData, float specularOcclusionFromData, float3 diffuseColor, float3 fresnel0, out AmbientOcclusionFactor aoFactor)
 {
     // 不管是在光线追踪的情况下，还是Opaque、Transparent渲染类型情况下，将间接SSAO的值设置为1.0，取消其带来的影响
     //float indirectAmbientOcclusion = GetScreenSpaceDiffuseOcclusion(positionSS);
     float indirectAmbientOcclusion = 1.0;
-
 
     float directAmbientOcclusion = lerp(1.0, indirectAmbientOcclusion, _AmbientOcclusionParam.w);
     float roughness = PerceptualRoughnessToRoughness(perceptualRoughness);
@@ -2133,8 +2132,8 @@ void PostEvaluateBSDF(  LightLoopContext lightLoopContext,
 #if 0
     GetScreenSpaceAmbientOcclusion(posInput.positionSS, preLightData.NdotV, bsdfData.perceptualRoughness, bsdfData.ambientOcclusion, bsdfData.specularOcclusion, aoFactor);
 #else
-    //GetScreenSpaceAmbientOcclusionMultibounce(posInput.positionSS, preLightData.NdotV, bsdfData.perceptualRoughness, bsdfData.ambientOcclusion, bsdfData.specularOcclusion, bsdfData.diffuseColor, bsdfData.fresnel0, aoFactor);
-    GetScreenSpaceAmbientOcclusionMultibounce__(posInput.positionSS, preLightData.NdotV, bsdfData.perceptualRoughness, bsdfData.ambientOcclusion, bsdfData.specularOcclusion, bsdfData.diffuseColor, bsdfData.fresnel0, aoFactor);
+    GetScreenSpaceAmbientOcclusionMultibounce(posInput.positionSS, preLightData.NdotV, bsdfData.perceptualRoughness, bsdfData.ambientOcclusion, bsdfData.specularOcclusion, bsdfData.diffuseColor, bsdfData.fresnel0, aoFactor);
+    //GetScreenSpaceAmbientOcclusionMultibounce_Forbid(posInput.positionSS, preLightData.NdotV, bsdfData.perceptualRoughness, bsdfData.ambientOcclusion, bsdfData.specularOcclusion, bsdfData.diffuseColor, bsdfData.fresnel0, aoFactor);
 #endif
 
     ApplyAmbientOcclusionFactor(aoFactor, builtinData, lighting);
