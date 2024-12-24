@@ -23,6 +23,7 @@ SurfaceDescription SurfaceDescriptionFunction(SurfaceDescriptionInputs IN)
         surface.Alpha = _Alp;
         surface.AlphaClip = alpclip;
         surface.AlphaClipThreshold = _Cutoffs;
+
     #else
         UnityTexture2D albedotex = UnityBuildTexture2DStructNoScale(_AlbedoTex);
         UnityTexture2D detailtex = UnityBuildTexture2DStructNoScale(_DetailTex);

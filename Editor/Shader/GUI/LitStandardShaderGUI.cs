@@ -1,3 +1,4 @@
+using System;
 using UnityEditor;
 using static UnityEditor.Rendering.BuiltIn.ShaderGraph.BuiltInBaseShaderGUI;
 
@@ -9,6 +10,17 @@ namespace com.graphi.renderhdrp.editor
     /// </summary>
     public class LitStandardShaderGUI : NodeShaderGUI
     {
+        /// <summary>
+        /// 标准PBR光照着色属性数据发生改变的触发函数
+        /// </summary>
+        Action<string, string> m_PropChangeAction = null;
+
+        public LitStandardShaderGUI(Action<string, string> action = null)
+        {
+            m_PropChangeAction = action;
+        }
+
+
         public override void Draw(MaterialEditor editor, MaterialProperty[] props)
         {
             // 基础数据
@@ -39,7 +51,12 @@ namespace com.graphi.renderhdrp.editor
             }
             Gui.IndentLevelSub(2);
             Gui.Space(2);
+            Gui.Check();
             DrawTex("Clear coat", ShaderPropIDs.ID_CoatTex, ShaderPropIDs.ID_Coat, editor, props);
+            if (Gui.EndCheck())
+            {
+                m_PropChangeAction?.Invoke(ShaderPropIDs.ID_CoatTex, ShaderPropIDs.ID_Coat);
+            }
             if ((SurfaceType)FindProperty("_SurfaceType", props).floatValue == SurfaceType.Transparent)
             {
                 Gui.Space(2);

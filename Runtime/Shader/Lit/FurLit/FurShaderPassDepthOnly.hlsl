@@ -6,6 +6,7 @@
 #endif
 
 
+#define WRITE_NORMAL_BUFFER
 #define _DEPTHOFFSET_ON
 
 

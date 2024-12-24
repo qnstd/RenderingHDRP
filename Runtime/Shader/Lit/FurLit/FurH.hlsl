@@ -77,11 +77,6 @@
     #pragma multi_compile _ WRITE_DECAL_BUFFER
     #pragma shader_feature_local _ _REFRACTION_PLANE _REFRACTION_SPHERE _REFRACTION_THIN
 
-    //#pragma shader_feature_local_fragment _NORMALMAP
-    //#pragma shader_feature_local_fragment _MASKMAP
-    //#pragma shader_feature_local_fragment _NORMALMAP_TANGENT_SPACE
-    //#pragma shader_feature_local_raytracing _NORMALMAP_TANGENT_SPACE
-
 
 #elif SHADERPASS == SHADERPASS_MOTION_VECTORS
 // 运动模糊
@@ -133,6 +128,9 @@
     #pragma shader_feature_local _ _REFRACTION_PLANE _REFRACTION_SPHERE _REFRACTION_THIN
 
 #endif
+
+#pragma shader_feature_local_fragment _MATERIAL_FEATURE_CLEAR_COAT
+
 // 结束
 // ///////////////////////////////////////////////////////////////////////////////
 
@@ -188,7 +186,6 @@
     #endif
 #endif
 
-#define _MATERIAL_FEATURE_CLEAR_COAT
 
 #if SHADERPASS != SHADERPASS_SHADOWS
     #define _AMBIENT_OCCLUSION 1
