@@ -20,7 +20,7 @@ namespace com.graphi.renderhdrp.editor
         protected void TitleStyle()
         {
             if (m_TitleStyle == null)
-                m_TitleStyle = new GUIStyle("ObjectFieldThumb") { richText = true, fontSize = 11, contentOffset = new Vector2(30, 0) };
+                m_TitleStyle = new GUIStyle("AC BoldHeader") { richText = true, fontSize = 11, alignment = TextAnchor.MiddleLeft, contentOffset = new Vector2(30, -1) };
         }
 
 
@@ -34,11 +34,11 @@ namespace com.graphi.renderhdrp.editor
         /// <returns></returns>
         protected bool Foldout(bool b, string title)
         {
-            Rect rect = GUILayoutUtility.GetRect(new GUIContent(title), m_TitleStyle, Gui.W(4000), Gui.H(18));
+            Rect rect = GUILayoutUtility.GetRect(new GUIContent(title), m_TitleStyle, Gui.W(4000), Gui.H(25));
             rect.x = 0;
             GUI.Box(rect, title, m_TitleStyle);
 
-            var toggleRect = new Rect(rect.x + 16f, rect.y + 3f, 13f, 13f); // foldout 三角形状的区域
+            var toggleRect = new Rect(rect.x + 16f, rect.y + 5f, 13f, 13f); // foldout 三角形状的区域
             var e = Event.current;
             if (e.type == EventType.Repaint)
             {
@@ -83,7 +83,7 @@ namespace com.graphi.renderhdrp.editor
 
             TitleStyle();
 
-            m_Foldout = Foldout(m_Foldout, "<color=#86ff3d>Custom Renderer Data</color>");
+            m_Foldout = Foldout(m_Foldout, "<color=#cefff9>Rendering Parameters</color>");
             if (m_Foldout)
             {
                 Gui.Space(3);
@@ -125,7 +125,7 @@ namespace com.graphi.renderhdrp.editor
         /// <param name="action"></param>
         protected void FoldoutGroup(ref bool foldout, string label, Action action)
         {
-            foldout = EditorGUILayout.Foldout(foldout, label);
+            foldout = EditorGUILayout.Foldout(foldout, label, true);
             if (foldout)
             {
                 Gui.Space(5);
@@ -188,6 +188,57 @@ namespace com.graphi.renderhdrp.editor
         protected void DrawIntRange(string label, string pname, string tooltip = null)
         {
             m_Editor.IntSliderShaderProperty(FindProp(pname), EditorGUIUtility.TrTextContent(label, tooltip));
+        }
+
+
+        /// <summary>
+        /// 绘制 Vector3 类型的着色属性
+        /// <para>在 shader 声明为 vector 类型的属性，实际是 Vector3 类型。因此，在 Inspector 检视板内需要将显示改为 vector3 类型。</para>
+        /// </summary>
+        /// <param name="prop"></param>
+        /// <param name="desc"></param>
+        protected void DrawVector3(string prop, string desc)
+        {
+            m_Editor.Vector3ShaderProperty(FindProp(prop), new GUIContent(desc));
+        }
+
+
+        /// <summary>
+        /// 绘制组合模式的Slider组件（可主动调节最大最小值）
+        /// </summary>
+        /// <param name="minprop"></param>
+        /// <param name="maxprop"></param>
+        /// <param name="min"></param>
+        /// <param name="max"></param>
+        /// <param name="desc"></param>
+        protected void DrawMaxMinSlider(string minprop, string maxprop, float min, float max, string desc)
+        {
+            m_Editor.MinMaxShaderProperty
+                (
+                    FindProp(minprop),
+                    FindProp(maxprop),
+                    min,
+                    max,
+                    new GUIContent(desc)
+                );
+        }
+
+        /// <summary>
+        /// 绘制组合模式的Slider组件（可主动调节最大最小值）
+        /// </summary>
+        /// <param name="prop"></param>
+        /// <param name="min"></param>
+        /// <param name="max"></param>
+        /// <param name="desc"></param>
+        protected void DrawMaxMinSlider(string prop, float min, float max, string desc)
+        {
+            m_Editor.MinMaxShaderProperty
+                (
+                    FindProp(prop),
+                    min,
+                    max,
+                    new GUIContent(desc)
+                );
         }
 
 

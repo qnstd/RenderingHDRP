@@ -34,5 +34,7 @@
 >
 >![](Documentation/images/example_universe_3.png)
 
->***毛发(短绒毛)***
+>***毛发***
 >![](Documentation/images/example_geometry1.png)
+>
+>![](Documentation/images/example_longwool.png)
